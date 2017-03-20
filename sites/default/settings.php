@@ -12,3 +12,7 @@ $databases['default']['default'] = array (
 $settings['hash_salt'] = 'dXQFP659SBOR0CSppLNDw31mczw-k9_Nq4XYZbYUKfh8qCD5-JH6z9cFiHal1O9xM79rMLPM4Q';
 $settings['install_profile'] = 'standard';
 $config_directories['sync'] = 'sites/default/files/config_9CIWWMiGqpn1DPQowLypL4GjWWxHds3voOuywa8Ye9mD4pBiR-bVtHFTYdVdUFV-gHpt1QPgtQ/sync';
+
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
+}
