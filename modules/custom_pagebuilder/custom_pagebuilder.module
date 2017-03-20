@@ -39,10 +39,12 @@ function custom_pagebuilder_help($route_name, RouteMatchInterface $route_match) 
  * Implements hook_theme().
  */
 function custom_pagebuilder_theme() {
-  return [
-    'custom_pagebuilder' => [
-      'template' => 'custom_pagebuilder',
-      'render element' => 'children',
-    ],
-  ];
+  return array(
+    'custom_pagebuilder_admin_builder' => array(
+      'variables' => array(
+        'custom_pagebuild_object' => '',
+        'pagebuild_data' => '',
+      )
+    )
+  );
 }

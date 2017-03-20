@@ -61,10 +61,23 @@ class CustomPagebuilderForm extends ContentEntityForm {
 		$gbb_els = array( $gbb_els_new );
 	}
 	$gbb_rows_count = is_array( $gbb_els ) ? count( $gbb_els ) : 0;
-	ob_start();
-  	include GAVIAS_BLOCKBUILDER_PATH . '/templates/backend/admin-builder.php';
-  	$content = ob_get_clean();
-    kint($content);
+	//ob_start();
+  	//include GAVIAS_BLOCKBUILDER_PATH . '/templates/backend/admin-builder.php';
+    $template = array(
+      '#type' => 'page',
+      '#cache' => array('max-age' => 0),
+      '#theme' => 'custom_pagebuilder_admin_builder', 
+      '#custom_pagebuild_object' => $gsc, 
+      '#pagebuild_data' => $pbd_single
+    );
+    $output = drupal_render($template);
+    //print_r($output); die();
+  	//$content = ob_get_clean();
+    //kint($content);
+    $form['content_pagebuilder'] = array(
+      '#type' => 'item',
+      '#markup' => $output,
+    );
     return $form;
   }
 
