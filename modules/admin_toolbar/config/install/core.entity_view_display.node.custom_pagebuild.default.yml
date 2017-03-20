@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - field.field.node.custom_pagebuild.body
+        - node.type.custom_pagebuild
+    module:
+        - text
+        - user
+id: node.custom_pagebuild.default
+targetEntityType: node
+bundle: custom_pagebuild
+mode: default
+content:
+    body:
+        label: hidden
+        type: text_default
+        weight: 101
+        settings: {  }
+        third_party_settings: {  }
+    links:
+        weight: 100
+hidden: {  }

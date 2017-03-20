@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_pagebuilder.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+
+//module_load_include('php','custom_pagebuilder', 'includes/core/model');
+//module_load_include('php','custom_pagebuilder', 'includes/core/shortcode');
+module_load_include('php','custom_pagebuilder', 'includes/core/ClassCustomPagebuilder');
+//module_load_include('php','custom_pagebuilder', 'includes/define');
+//module_load_include('php','custom_pagebuilder', 'includes/utilities');
+//module_load_include('php','custom_pagebuilder', 'includes/general_shortcodes');
+//module_load_include('php','custom_pagebuilder', 'includes/core/fields');
+//module_load_include('php','custom_pagebuilder', 'includes/frontend');
+//module_load_include('php','custom_pagebuilder', 'includes/oembed');
+//module_load_include('php','custom_pagebuilder', 'includes/shortcode_block');
+
+/**
+ * Implements hook_help().
+ */
+function custom_pagebuilder_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the custom_pagebuilder module.
+    case 'help.page.custom_pagebuilder':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My custom page Buider') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function custom_pagebuilder_theme() {
+  return [
+    'custom_pagebuilder' => [
+      'template' => 'custom_pagebuilder',
+      'render element' => 'children',
+    ],
+  ];
+}

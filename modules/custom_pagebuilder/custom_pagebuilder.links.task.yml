@@ -1,0 +1,15 @@
+custom_pagebuilder.view:
+  route_name: entity.custom_pagebuilder.canonical
+  base_route: entity.custom_pagebuilder.canonical
+  title: View
+
+custom_pagebuilder.page_edit:
+  route_name: entity.custom_pagebuilder.edit_form
+  base_route: entity.custom_pagebuilder.canonical
+  title: Edit
+
+custom_pagebuilder.delete_confirm:
+  route_name:  entity.custom_pagebuilder.delete_form
+  base_route:  entity.custom_pagebuilder.canonical
+  title: Delete
+  weight: 10

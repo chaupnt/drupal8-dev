@@ -1,0 +1,7 @@
+name: custom_pagebuilder
+type: module
+description: My custom page Buider
+core: 8.x
+package: Custom ChauPhan
+dependencies:
+  - entity_reference

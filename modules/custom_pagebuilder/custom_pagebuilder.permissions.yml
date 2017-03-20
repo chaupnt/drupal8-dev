@@ -1,0 +1,4 @@
+administer pagebuilder:
+    title: 'Administer Pagebuild'
+    description: 'Administer Pagebuild'
+    restrict access: false

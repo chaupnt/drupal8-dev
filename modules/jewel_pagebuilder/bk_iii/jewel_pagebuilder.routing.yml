@@ -1,0 +1,53 @@
+
+entity.content_entity_jewel_pagebuilder.canonical:
+  path: '/pagebuilder/{content_entity_jewel_pagebuilder}'
+  defaults:
+  # Calls the view controller, defined in the annotation of the contact entity
+    _entity_view: 'content_entity_jewel_pagebuilder'
+    _title: 'Contact Content'
+  #requirements:
+  # Calls the access controller of the entity, $operation 'view'
+  #  _entity_access: 'content_entity_jewel_pagebuild.view'
+
+entity.content_entity_jewel_pagebuilder.collection:
+  path: '/admin/jewel_pagebuilder/list'
+  defaults:
+  # Calls the list controller, defined in the annotation of the contact entity.
+    _entity_list: 'content_entity_jewel_pagebuilder'
+    _title: 'Contact List'
+  #requirements:
+  # Checks for permission directly.
+  #  _permission: 'view contact entity'#
+
+jewel_pagebuilder.pagebuilder_add:
+  path: '/admin/jewel_pagebuilder/add'
+  defaults:
+  # Calls the form.add controller, defined in the contact entity.
+    _entity_form: jewel_pagebuilder_entity_form.add
+    _title: 'Add Page'
+
+entity.content_entity_jewel_pagebuilder.edit_form:
+  path: '/admin/jewel_pagebuilder/{content_entity_jewel_pagebuilder}/edit'
+  defaults:
+  # Calls the form.edit controller, defined in the contact entity.
+    _entity_form: jewel_pagebuilder_entity_form.edit
+    _title: 'Edit Contact'
+  #requirements:
+  #  _entity_access: 'content_entity_example_contact.edit'
+
+entity.content_entity_jewel_pagebuilder.delete_form:
+  path: '/admin/jewel_pagebuilder/{content_entity_jewel_pagebuilder}/delete'
+  defaults:
+    # Calls the form.delete controller, defined in the contact entity.
+    _entity_form: jewel_pagebuilder_entity_form.delete
+    _title: 'Delete Contact'
+  requirements:
+    _entity_access: 'jewel_pagebuilder_entity_form.delete'
+
+#content_entity_example.contact_settings:
+#  path: 'admin/structure/content_entity_example_contact_settings'
+#  defaults:
+#    _form: '\Drupal\content_entity_example\Form\ContactSettingsForm'
+#    _title: 'Contact Settings'
+#  requirements:
+#    _permission: 'administer contact entity'

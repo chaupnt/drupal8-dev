@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+    config:
+        - core.entity_view_mode.node.teaser
+        - field.field.node.custom_pagebuild.body
+        - node.type.custom_pagebuild
+    module:
+        - text
+        - user
+id: node.custom_pagebuild.teaser
+targetEntityType: node
+bundle: custom_pagebuild
+mode: teaser
+content:
+    body:
+        label: hidden
+        type: text_summary_or_trimmed
+        weight: 101
+        settings:
+            trim_length: 600
+        third_party_settings: {  }
+    links:
+        weight: 100
+hidden: {  }

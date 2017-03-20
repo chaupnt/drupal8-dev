@@ -1,0 +1,8 @@
+name: jewel_pagebuilder
+type: module
+description: Module Page Builder
+core: 8.x
+package: jeweb_drupal
+dependencies:
+  - options
+  - entity_reference

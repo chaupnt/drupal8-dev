@@ -1,0 +1,9 @@
+jewel_pagebuilder.pagebuilder_add:
+  # Which route will be called by the link
+  route_name: jewel_pagebuilder.pagebuilder_add
+  title: 'Add Contact'
+
+  # Where will the link appear, defined by route name.
+  appears_on:
+    - entity.content_entity_jewel_pagebuilder.collection
+    - entity.content_entity_jewel_pagebuilder.canonical

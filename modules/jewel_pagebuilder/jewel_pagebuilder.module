@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Contains jewel_pagebuilder.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function jewel_pagebuilder_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the jewel_pagebuilder module.
+    case 'help.page.jewel_pagebuilder':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module Page Builder') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function jewel_pagebuilder_theme() {
+  return [
+    'jewel_pagebuilder' => [
+      'template' => 'jewel_pagebuilder',
+      'render element' => 'children',
+    ],
+  ];
+}

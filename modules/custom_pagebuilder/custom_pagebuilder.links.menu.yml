@@ -1,0 +1,8 @@
+# Define the menu links for this module
+
+entity.custom_pagebuilder.collection:
+  title: 'List Page Builder Listing'
+  route_name: entity.custom_pagebuilder.collection
+  description: 'List Page Builder'
+  weight: 10
+  parent: system.admin_structure
