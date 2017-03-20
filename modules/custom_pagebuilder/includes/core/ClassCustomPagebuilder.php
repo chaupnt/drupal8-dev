@@ -3,11 +3,42 @@ namespace Drupal\custom_pagebuilder\includes\core;
 class ClassCustomPagebuilder {
 
   protected $cb_shortcodes = array();
-
-  public function __construct(){
-    
+  protected $title = '';
+  protected $params = '';
+  protected $rows_cound = 0;
+  public function __construct($pid){
+    $result = db_select('{gavias_blockbuilder}', 'd')
+          ->fields('d')
+          ->condition('id', $pid, '=')
+          ->execute()
+          ->fetchObject();
+    $pbd_single = new \stdClass();
+    if($result){
+      $this->title =  $result->title;
+      $this->params = $result->params;  
+    }
   }
- 
+  
+  public function get_title() {  return $this->title;}
+  public function get_params() { return $this->params;}
+  public function get_json_decode() {
+    $gbb_els = base64_decode($this->get_params());
+    $gbb_els = json_decode($gbb_els, true);
+    if( is_array( $gbb_els ) && ! key_exists( 'attr', $gbb_els[0] ) ){
+  		$gbb_els_new = array(
+  			'attr'	=> $this->row_opts(),
+  			'items'	=> $gbb_els
+  		);
+      $gbb_els = array( $gbb_els_new );
+    }
+		
+    return  $gbb_els;
+  }
+  
+  function get_rows_count() {
+    return is_array( $this->get_json_decode() ) ? count( $this->get_json_decode() ) : 0;
+  }
+  
   public function custom_pagebuilder_get_list_shortcodes(){
     $theme_default = \Drupal::config('system.theme')->get('default');
     $theme_path =  $theme_name = drupal_get_path('theme', $theme_default);

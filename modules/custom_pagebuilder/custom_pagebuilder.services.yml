@@ -1,5 +1,5 @@
 services:
-  CustomPagebuilderAdminRowTwig.twig.CustomPagebuilderAdminRow:
+  custom_pagebuilder_twig:
     class: Drupal\custom_pagebuilder\TwigExtension\CustomPagebuilderAdminRow
     tags:
       - { name: twig.extension }

@@ -41,7 +41,8 @@ class CustomPagebuilderForm extends ContentEntityForm {
     }else{
       return false;
     }
-    $gsc = new \Drupal\custom_pagebuilder\includes\core\ClassCustomPagebuilder();
+    $gsc = new ClassCustomPagebuilder(1);
+    /*
   	$gsc->custom_pagebuilder_load_shortcodes(true);
   	$gbb_rows_opts = $gsc->row_opts(); 
   	$gbb_columns_opts = $gsc->column_opts(); 
@@ -59,10 +60,11 @@ class CustomPagebuilderForm extends ContentEntityForm {
 			'items'	=> $gbb_els
 		);
 		$gbb_els = array( $gbb_els_new );
-	}
-	$gbb_rows_count = is_array( $gbb_els ) ? count( $gbb_els ) : 0;
+	 }
+	  $gbb_rows_count = is_array( $gbb_els ) ? count( $gbb_els ) : 0;
 	//ob_start();
   	//include GAVIAS_BLOCKBUILDER_PATH . '/templates/backend/admin-builder.php';
+    */
     $template = array(
       '#type' => 'page',
       '#cache' => array('max-age' => 0),
@@ -74,6 +76,8 @@ class CustomPagebuilderForm extends ContentEntityForm {
     //print_r($output); die();
   	//$content = ob_get_clean();
     //kint($content);
+    //$twig = \Drupal\custom_pagebuilder\TwigExtension\CustomPagebuilderAdminRow();
+    //print_r($twig); die();
     $form['content_pagebuilder'] = array(
       '#type' => 'item',
       '#markup' => $output,

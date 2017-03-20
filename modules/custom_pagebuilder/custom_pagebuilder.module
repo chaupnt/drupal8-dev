@@ -45,6 +45,12 @@ function custom_pagebuilder_theme() {
         'custom_pagebuild_object' => '',
         'pagebuild_data' => '',
       )
+    ),
+    'custom_pagebuilder_builder_row' => array(
+      'variables' => array(
+        'custom_pagebuild_object' => '',
+        'pagebuild_data' => '',
+      )
     )
   );
 }
