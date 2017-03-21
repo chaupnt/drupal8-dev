@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_our_team')):
    class gsc_our_team{
 
@@ -93,7 +93,7 @@ if(!class_exists('gsc_our_team')):
                   'type'      => 'select',
                   'title'     => t('Animation'),
                   'sub_desc'  => t('Entrance animation'),
-                  'options'   => gavias_blockbuilder_animate()
+                  'options'   => custom_pagebuilder_animate()
                ),
             ),                                      
          );

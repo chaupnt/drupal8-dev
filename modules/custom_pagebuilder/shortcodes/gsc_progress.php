@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_progress')):
    class gsc_progress{
 
@@ -42,7 +42,7 @@ if(!class_exists('gsc_progress')):
                   'type'      => 'select',
                   'title'     => t('Animation'),
                   'desc'      => t('Entrance animation for element'),
-                  'options'   => gavias_blockbuilder_animate(),
+                  'options'   => custom_pagebuilder_animate(),
                ),
                array(
                   'id'        => 'el_class',

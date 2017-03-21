@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_accordion')):
    class gsc_accordion{
       public function render_form(){
@@ -35,7 +35,7 @@ if(!class_exists('gsc_accordion')):
             'title'  => '',
             'tabs'      => '',
          ), $attr));
-         $_id = 'accordion-' . gavias_blockbuilder_makeid();
+         $_id = 'accordion-' . custom_pagebuilder_makeid();
          ?>
 
          <div class="panel-group" id="<?php print $_id; ?>" role="tablist" aria-multiselectable="true">

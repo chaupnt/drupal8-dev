@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_drupal_block')):
    class gsc_drupal_block{
       public function render_form(){
@@ -20,7 +20,7 @@ if(!class_exists('gsc_drupal_block')):
                   'id'        => 'block_drupal',
                   'type'      => 'select',
                   'title'     => t('Block for drupal'),
-                  'options'   => gavias_blockbuilder_get_blocks_options(),
+                  'options'   => custom_pagebuilder_get_blocks_options(),
                   'std'       => '',
                ),
                array(
@@ -68,7 +68,7 @@ if(!class_exists('gsc_drupal_block')):
                   'type'      => 'select',
                   'title'     => t('Animation'),
                   'desc'      => t('Entrance animation'),
-                  'options'   => gavias_blockbuilder_animate(),
+                  'options'   => custom_pagebuilder_animate(),
                ),
             ),                                      
          );
@@ -101,7 +101,7 @@ if(!class_exists('gsc_drupal_block')):
 
          if($block_drupal){
             print '<div class="widget gsc-block-drupal '.implode($class, ' ') .'">';
-              print gavias_blockbuilder_render_block($block_drupal);
+              print custom_pagebuilder_render_block($block_drupal);
             print '</div>';
          }   
       }

@@ -42,6 +42,8 @@ class CustomPagebuilderForm extends ContentEntityForm {
       return false;
     }
     $gsc = new ClassCustomPagebuilder(1);
+    $gsc->custom_pagebuilder_load_shortcodes(true);
+    //print_r($gsc->custom_pagebuilder_shortcodes_forms()); 
     /*
   	$gsc->custom_pagebuilder_load_shortcodes(true);
   	$gbb_rows_opts = $gsc->row_opts(); 
@@ -69,8 +71,12 @@ class CustomPagebuilderForm extends ContentEntityForm {
       '#type' => 'page',
       '#cache' => array('max-age' => 0),
       '#theme' => 'custom_pagebuilder_admin_builder', 
-      '#custom_pagebuild_object' => $gsc, 
-      '#pagebuild_data' => $pbd_single
+      '#cpb_title' => $gsc->get_title(),
+      '#cbp_rows_count' => $gsc->get_rows_count(),
+      '#cpb_els_ops' => $gsc->custom_pagebuilder_shortcodes_forms(), 
+      '#cpb_rows_opts' => $gsc->row_opts(),
+      '#cpb_columns_opts' => $gsc->column_opts(),
+      '#cpb_gbb_els' => $gsc->get_json_decode(),
     );
     $output = drupal_render($template);
     //print_r($output); die();

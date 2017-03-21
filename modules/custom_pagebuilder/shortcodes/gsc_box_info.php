@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_box_info')):
    class gsc_box_info{
       public function render_form(){

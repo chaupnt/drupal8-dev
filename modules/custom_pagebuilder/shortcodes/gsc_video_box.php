@@ -1,7 +1,7 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 
-use Drupal\gavias_blockbuilder\includes\gavias_blockbuilder_embed;
+use Drupal\custom_pagebuilder\includes\custom_pagebuilder_embed;
 if(!class_exists('gsc_video_box')):
    class gsc_video_box{
 
@@ -44,7 +44,7 @@ if(!class_exists('gsc_video_box')):
                   'type'      => 'select',
                   'title'     => t('Animation'),
                   'desc'      => t('Entrance animation for element'),
-                  'options'   => gavias_blockbuilder_animate(),
+                  'options'   => custom_pagebuilder_animate(),
                ),
                
                array(
@@ -77,11 +77,11 @@ if(!class_exists('gsc_video_box')):
          ), $attr));
 
          $style='width:100%; height:'.$height.'px; max-width:100%;';
-         $_id = gavias_blockbuilder_makeid();
+         $_id = custom_pagebuilder_makeid();
          if($image){
             $image = $base_url . '/' .$image; 
          }
-         $autoembed = new gavias_blockbuilder_embed();
+         $autoembed = new custom_pagebuilder_embed();
          $video = trim($autoembed->parse($content));
       ?>
 

@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_chart')):
    class gsc_chart{
 
@@ -42,7 +42,7 @@ if(!class_exists('gsc_chart')):
                   'type'      => 'select',
                   'title'  => ('Animation'),
                   'desc'  => t('Entrance animation for element'),
-                  'options'   => gavias_blockbuilder_animate(),
+                  'options'   => custom_pagebuilder_animate(),
                ),
                array(
                   'id'        => 'el_class',

@@ -27,12 +27,18 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
   /**
    * The php function to load a given block
    */
-  public function custom_pagebuilder_twig( $class_page ) {
-    kint($class_page->get_rows_count());
-    $t = '';
-    for( $i = 0; $i < $class_page->get_rows_count(); $i++ ) {
-      $t .= 'asdasdasdas<br/>';
-    }
+  public function custom_pagebuilder_twig( $item_std, $row_std, $column_std, $row = false, $row_id = false  ) {
+    $template = array(
+      '#type' => 'page',
+      '#cache' => array('max-age' => 0),
+      '#theme' => 'custom_pagebuilder_builder_row', 
+      '#item_std' => $item_std,
+      '#row_std' => $row_std,
+      '#column_std' => $column_std,
+      '#row' => $row,
+      '#row_id' => $row_id,
+    );
+    $t .= drupal_render($template);
     return $t;
     //print_r('sdfsdfsd'); die();
     //return array('#markup' => 'asdasdasdasdasdasdas');

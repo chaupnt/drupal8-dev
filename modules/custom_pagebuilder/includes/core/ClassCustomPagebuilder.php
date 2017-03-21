@@ -52,10 +52,11 @@ class ClassCustomPagebuilder {
         $shortcodes_theme = gavias_blockbuilder_override_shortcodes(); //theme_name/includes/shortcodes.php
       }
 
-      $shortcodes_module = gavias_blockbuilder_list_shortcodes(); //this module 
+      $shortcodes_module = custom_pagebuilder_list_shortcodes(); //this module 
 
       $shortcodes = array_merge($shortcodes_theme, $shortcodes_module);
     }
+    //print_r($shortcodes);die();
     return $shortcodes;
   }
 
@@ -70,8 +71,8 @@ class ClassCustomPagebuilder {
         $sc_path = '';
         if(file_exists($theme_path . '/gavias_shortcodes/' . $sc . '.php')){
           $sc_path = $theme_path . '/gavias_shortcodes/' . $sc . '.php';
-        }else if(file_exists(GAVIAS_BLOCKBUILDER_PATH . '/shortcodes/' . $sc . '.php')){
-          $sc_path = GAVIAS_BLOCKBUILDER_PATH . '/shortcodes/' . $sc . '.php';
+        }else if(file_exists(CUSTOM_PAGEBUILDER_PATH . '/shortcodes/' . $sc . '.php')){
+          $sc_path = CUSTOM_PAGEBUILDER_PATH . '/shortcodes/' . $sc . '.php';
         }
         if($sc_path){
           require($sc_path);
@@ -81,7 +82,7 @@ class ClassCustomPagebuilder {
   }
 
   public function custom_pagebuilder_load_shortcodes( $backend=true ){
-    if( empty($this->cb_shortcodes) ){
+    if( empty($this->cb_shortcodes) ) {
       $theme_default = \Drupal::config('system.theme')->get('default');
       $theme_path =  $theme_name = drupal_get_path('theme', $theme_default);
       $shortcodes = $this->custom_pagebuilder_get_list_shortcodes();

@@ -1,5 +1,5 @@
 <?php 
-namespace Drupal\gavias_blockbuilder\shortcodes;
+namespace Drupal\custom_pagebuilder\shortcodes;
 if(!class_exists('gsc_tabs')):
    global $tabs_array, $tabs_count;
    class gsc_tabs{
@@ -58,7 +58,7 @@ if(!class_exists('gsc_tabs')):
             'type'   => '',
          ), $attr)); 
          do_shortcode( $content );
-         $_id = gavias_blockbuilder_makeid();
+         $_id = custom_pagebuilder_makeid();
          $uid .= $_id;
          // content builder
          if( $tabs ){

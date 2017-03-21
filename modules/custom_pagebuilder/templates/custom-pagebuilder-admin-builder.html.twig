@@ -1,24 +1,25 @@
-<div id="gbb-builder">kl;k;kl
+<div id="gavias-blockbuilder-setting">
+  <div id="gbb-builder">
   {# kint(custom_pagebuild_object) #}
    <div class="gbb-block-title">
-    <?php print 'Edit: ' ?><?php print $gbb_title ?> <span style="color:red;"><?php print "[gbb name=\"{$gbb_shortcode}\"]" ?></span> ( ID: <?php print $gbb_id ?> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.import', array('bid' => $gbb_id)) ?>">Import</a> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.export', array('bid' => $gbb_id)) ?>">Export</a> )
+    <?php print 'Edit: ' ?>{{ cpb_title }} <span style="color:red;"><?php print "[gbb name=\"{$gbb_shortcode}\"]" ?></span> ( ID: <?php print $gbb_id ?> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.import', array('bid' => $gbb_id)) ?>">Import</a> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.export', array('bid' => $gbb_id)) ?>">Export</a> )
    </div>
 
-   <input type="hidden" id="gbb-row-id" value="<?php echo $gbb_rows_count; ?>" />
+   <input type="hidden" id="gbb-row-id" value="{{ cbp_rows_count }}" />
    <input type="hidden" id="gbb-column-id" value="0" />
 
    <div id="gbb-content">
       <div id="gbb-admin-wrap" class="clearfix">
-        {{ custom_pagebuilder_twig(custom_pagebuild_object) }}
-         <?php
-            for( $i = 0; $i < $gbb_rows_count; $i++ ) {
-               gavias_admin_row( $gbb_els_ops, $gbb_rows_opts, $gbb_columns_opts, $gbb_els[$i], $i+1 );
-            }
-         ?>
+        {% if cpb_gbb_els %}
+          {% for key, value_els in cpb_gbb_els %}
+              <li>{{ key }}: {{ value_els.attr.bg_position|e }}</li>
+              {{ custom_pagebuilder_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts, value_els, key + 1) }}
+          {% endfor %}
+        {% endif %}
       </div>
       
       <div id="gbb-rows" class="clearfix">
-         <?php gavias_admin_row( $gbb_els_ops, $gbb_rows_opts, $gbb_columns_opts ); ?>
+          {{ custom_pagebuilder_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts) }}
       </div>
       
       <div id="gbb-columns" class="clearfix">
@@ -46,4 +47,5 @@
       </div>  
     </div>
   </div>  
+</div>
 </div>

@@ -1,5 +1,5 @@
 <?php
-
+use Drupal\custom_pagebuilder\includes\core\ClassCustomPagebuilder;
 /**
  * @file
  * Contains custom_pagebuilder.module.
@@ -7,7 +7,7 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 
-
+define( 'CUSTOM_PAGEBUILDER_PATH', drupal_get_path('module', 'custom_pagebuilder') );
 //module_load_include('php','custom_pagebuilder', 'includes/core/model');
 //module_load_include('php','custom_pagebuilder', 'includes/core/shortcode');
 module_load_include('php','custom_pagebuilder', 'includes/core/ClassCustomPagebuilder');
@@ -18,6 +18,9 @@ module_load_include('php','custom_pagebuilder', 'includes/core/ClassCustomPagebu
 //module_load_include('php','custom_pagebuilder', 'includes/frontend');
 //module_load_include('php','custom_pagebuilder', 'includes/oembed');
 //module_load_include('php','custom_pagebuilder', 'includes/shortcode_block');
+
+$cpb = new ClassCustomPagebuilder();
+$cpb->custom_pagebuilder_load_file_shortcodes();
 
 /**
  * Implements hook_help().
@@ -42,15 +45,143 @@ function custom_pagebuilder_theme() {
   return array(
     'custom_pagebuilder_admin_builder' => array(
       'variables' => array(
-        'custom_pagebuild_object' => '',
-        'pagebuild_data' => '',
+        'cpb_title' => '',
+        'cbp_rows_count' => '',
+        'cpb_els_ops' => '',
+        'cpb_rows_opts' => '',
+        'cpb_columns_opts' => '',
+        'cpb_gbb_els' => '',
       )
     ),
     'custom_pagebuilder_builder_row' => array(
       'variables' => array(
-        'custom_pagebuild_object' => '',
-        'pagebuild_data' => '',
+        'item_std' => '',
+        'row_std' => '',
+        'column_std' => '',
+        'row' => '',
+        'row_id' => 0,
       )
     )
   );
 }
+
+function custom_pagebuilder_list_shortcodes(){
+  return $shortcodes = array(
+    'gsc_accordion', 
+    'gsc_box_image',
+    'gsc_box_info',
+    'gsc_call_to_action',
+    'gsc_chart',
+    'gsc_code',
+    'gsc_column',
+    'gsc_counter',
+    'gsc_divider',
+    'gsc_drupal_block',
+    'gsc_heading',
+    'gsc_hover_background',
+    'gsc_hover_box',
+    'gsc_icon_box',
+    'gsc_image',
+    'gsc_our_team',
+    'gsc_pricing_item',
+    'gsc_progress',
+    'gsc_tabs',
+    'gsc_video_box'
+  );
+}
+
+function custom_pagebuilder_animate(){
+    return array(
+        ''          => '- Not Animated -',
+        'fadeIn'      => 'Fade In',
+        'fadeInUp'      => 'Fade In Up',
+        'fadeInDown'    => 'Fade In Down ',
+        'fadeInLeft'    => 'Fade In Left',
+        'fadeInRight'     => 'Fade In Right ',
+        'fadeInUpLarge'   => 'Fade In Up Large',
+        'fadeInDownLarge'   => 'Fade In Down Large',
+        'fadeInLeftLarge'   => 'Fade In Left Large',
+        'fadeInRightLarge'  => 'Fade In Right Large',
+        'zoomIn'      => 'Zoom In',
+        'zoomInUp'      => 'Zoom In Up',
+        'zoomInDown'    => 'Zoom In Down',
+        'zoomInLeft'    => 'Zoom In Left',
+        'zoomInRight'     => 'Zoom In Right',
+        'zoomInUpLarge'   => 'Zoom In Up Large',
+        'zoomInDownLarge'   => 'Zoom In Down Large',
+        'zoomInLeftLarge'   => 'Zoom In Left Large',
+        'bounceIn'      => 'Bounce In',
+        'bounceInUp'    => 'Bounce In Up',
+        'bounceInDown'    => 'Bounce In Down',
+        'bounceInLeft'    => 'Bounce In Left',
+        'bounceInRight'   => 'Bounce In Right',
+    );
+}
+
+//function variable_get($name, $default = NULL) {
+//  global $conf;
+//  return isset($conf[$name]) ? $conf[$name] : $default;
+//}
+
+function custom_pagebuilder_makeid($length = 5){
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+
+function custom_pagebuilder_includes( $path, $ifiles=array() ){
+    if( !empty($ifiles) ){
+         foreach( $ifiles as $key => $file ){
+            $file  = $path.'/'.$file; 
+            if(is_file($file)){
+                require($file);
+            }
+         }   
+    }else {
+        $files = glob($path);
+        foreach ($files as $key => $file) {
+            if(is_file($file)){
+                require($file);
+            }
+        }
+    }
+}
+
+/*================================================
+                Block for theme
+=================================================*/                
+function custom_pagebuilder_get_blocks_options() {
+  static $_blocks_array = array();
+    if (empty($_blocks_array)) {
+      // Get default theme for user.
+      $theme_default = \Drupal::config('system.theme')->get('default');
+      // Get storage handler of block.
+      $block_storage = \Drupal::entityManager()->getStorage('block');
+      // Get the enabled block in the default theme.
+      $entity_ids = $block_storage->getQuery()->condition('theme', $theme_default)->execute();
+      $entities = $block_storage->loadMultiple($entity_ids);
+      $_blocks_array = [];
+      foreach ($entities as $block_id => $block) {
+        $_blocks_array[$block_id] = $block->label();
+      }
+      asort($_blocks_array);
+    }
+    return $_blocks_array;
+}
+
+function custom_pagebuilder_render_block($key) {
+    $block = \Drupal\block\Entity\Block::load($key);
+    if($block){
+      $block_content = \Drupal::entityManager()
+        ->getViewBuilder('block')
+        ->view($block);
+        $block = null;
+      return drupal_render($block_content);
+    }else{
+      return '<div>Missing view, block "'.$key.'"</div>';
+    }
+  }
+
