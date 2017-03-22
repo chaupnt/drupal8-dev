@@ -42,6 +42,14 @@ entity.custom_pagebuilder.delete_form:
   requirements:
     _permission: 'administer pagebuilder'
 
+custom_pagebuilder.admin.config:
+  path: '/admin/structure/custom_pagebuilder/{custom_pagebuilder}/config'
+  defaults:
+    _title: 'Save configuration of PageBuilder'
+    _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderAdminController::custom_pagebuilder_config_page'
+  requirements:
+    _permission: 'administer pagebuilder'
+
 custom_pagebuilder.admin.save:
   path: '/admin/structure/custom_pagebuilder/save'
   defaults:

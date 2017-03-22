@@ -43,15 +43,28 @@ class CustomPagebuilderList extends EntityListBuilder {
     $header['title'] = $this->t('Title');
     return $header + parent::buildHeader();
   }
+  
+  public function getOperations(EntityInterface $entity) {
+    $operations = parent::getOperations($entity);
+    
+    
+    $operations['Edit'] = array(
+      'title' => 'Edit',
+      'url' => \Drupal::url('entity.custom_pagebuilder.edit_form', array('custom_pagebuilder' => $entity->id())),
+    );
+    
+    return $operations;
+  }
 
   /**
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var $entity \Drupal\content_entity_example\Entity\Contact */
+    $operations = '<a href="'. \Drupal::url('entity.custom_pagebuilder.edit_form', array('custom_pagebuilder' => $entity->id())) .'">Edit</a>';
+    $operations .= '<a href="'. \Drupal::url('custom_pagebuilder.admin.config', array('custom_pagebuilder' => $entity->id())) .'">Config</a>';
     $row['id'] = $entity->id();
     $row['title'] = $entity->link();
-    $row['operations']['data'] = $this->buildOperations($entity);
+    $row['operations']['data'] = array('#markup' => $operations);
     return $row + parent::buildRow($entity);
   }
 

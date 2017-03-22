@@ -4,7 +4,35 @@ use  Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal\custom_pagebuilder\Core\ClassCustomPagebuilder;
+
 class CustomPagebuilderAdminController extends ControllerBase {
+  
+  public function custom_pagebuilder_config_page($custom_pagebuilder){
+    
+    $page;
+    $abs_url_config = \Drupal::url('custom_pagebuilder.admin.save', array(), array('absolute' => FALSE)); 
+    
+    $cpb = new ClassCustomPagebuilder(1);
+    $cpb->custom_pagebuilder_load_shortcodes(true);
+    
+    $page = array(
+      '#attached' => array( 
+        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' ) ,
+        'drupalSettings' => array('drupalSettings' => array('custom_pagebuilder'=> array('saveConfigURL' => $abs_url_config)))
+      ),
+      '#type' => 'page',
+      '#cache' => array('max-age' => 0),
+      '#theme' => 'custom_pagebuilder_admin_builder', 
+      '#cpb_title' => $cpb->get_title(),
+      '#cbp_rows_count' => $cpb->get_rows_count(),
+      '#cpb_els_ops' => $cpb->custom_pagebuilder_shortcodes_forms(), 
+      '#cpb_rows_opts' => $cpb->row_opts(),
+      '#cpb_columns_opts' => $cpb->column_opts(),
+      '#cpb_gbb_els' => $cpb->get_json_decode(),
+    );
+    return $page;
+  }
   
   
   public function custom_pagebuilder_save(){
