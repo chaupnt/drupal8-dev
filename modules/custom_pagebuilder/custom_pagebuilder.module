@@ -1,5 +1,6 @@
 <?php
-use Drupal\custom_pagebuilder\includes\core\ClassCustomPagebuilder;
+use Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder;
+use Drupal\custom_pagebuilder\Core\ClassCustomPagebuilder;
 /**
  * @file
  * Contains custom_pagebuilder.module.
@@ -10,7 +11,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 define( 'CUSTOM_PAGEBUILDER_PATH', drupal_get_path('module', 'custom_pagebuilder') );
 //module_load_include('php','custom_pagebuilder', 'includes/core/model');
 //module_load_include('php','custom_pagebuilder', 'includes/core/shortcode');
-module_load_include('php','custom_pagebuilder', 'includes/core/ClassCustomPagebuilder');
+//module_load_include('php','custom_pagebuilder', 'includes/core/ClassCustomPagebuilder');
 //module_load_include('php','custom_pagebuilder', 'includes/define');
 //module_load_include('php','custom_pagebuilder', 'includes/utilities');
 //module_load_include('php','custom_pagebuilder', 'includes/general_shortcodes');
@@ -59,9 +60,39 @@ function custom_pagebuilder_theme() {
         'row_std' => '',
         'column_std' => '',
         'row' => '',
-        'row_id' => 0,
+        'row_id' => false,
       )
-    )
+    ),
+    'custom_pagebuilder_builder_column' => array(
+      'variables' => array(
+        'item_std' => '',
+        'column_std' => '',
+        'column' => false,
+        'column_id' => false,
+        'row_id' => false,
+        'column_size' => 4,
+        'column_type' => '',
+        'name_column_id' => ''
+      )
+    ),
+    'custom_pagebuilder_builder_elements' => array(
+      'variables' => array(
+        'item_std' => '',
+        'cpb_item' => '',
+        'column_id' => false,
+        'row_id' => false,
+        'element_type' => 4,
+        'element_parent' => '',
+        'element_row_parent' => '',
+        'label' => ''
+      )
+    ),
+    'custom_pagebuilder_builder_fields' => array(
+      'variables' => array(
+        'field' => false,
+        'meta' => false,
+      )
+    ),
   );
 }
 
@@ -185,3 +216,21 @@ function custom_pagebuilder_render_block($key) {
     }
   }
 
+  function custom_pagebuilder_single_field( $field, $meta ){
+  	$output = '';
+  	if( isset( $field['type'] ) ) { 
+  		$output .= '<div class="single-field clearfix">';
+  			$output .= '<div class="field-title">';
+  				 if( key_exists('title', $field) ) {
+  					$output .= '<span class="label-field">'. $field['title'] .'</span>';
+  				 } 
+  			$output .= '</div>';
+  			$output .= '<div class="field-content">';
+        $bb_field = new ClassFieldsCustomPagebuilder();
+        $field_function = 'render_field_'. $field['type'];
+        $output .= $bb_field->$field_function($field, $meta);
+  			$output .= '</div>';
+  		$output .= '</div>';
+  	}
+    return $output;
+  }

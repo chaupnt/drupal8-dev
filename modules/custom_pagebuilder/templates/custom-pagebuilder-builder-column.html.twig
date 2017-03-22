@@ -1,0 +1,54 @@
+<div class="gbb-element gbb-columns {{ column_type ? 'type-' ~ column_type : '' }} {{ column_size ? 'wb-' ~ column_size : ''}}">
+   <div class="gavias-blockbuilder-content">
+      <input type="hidden" class="gbb-column-id" name="gbb-column-id[]" value="{{ column_id }}" />
+      <div class="gbb-el-header header-column">
+          <div class="gbb-add-element">
+            <a class="bb-drap action" ><i class="fa fa-arrows"></i></a>
+            <a class="gbb-add action" ><i class="fa fa-plus"></i></a>
+            <div class="gbb-items">
+              <div class="hedding">
+                <span>Add Element</span>
+                <a class="bb-btn close-gbb-items"><i class="fa fa-times"></i></a>
+              </div>
+              <ul class="clearfix">
+                  {% if item_std %}
+                    {% for key , value_item_std in item_std  %}
+                      <li><a class="{{ value_item_std.type }}" >{{ value_item_std.title }}</a></li>
+                    {% endfor %}
+                  {% endif %}
+              </ul>
+            </div>
+          </div>
+          <div class="element-size">
+            <a class="bb-btn gbb-minus" >-</a>
+            <span class="item-w-label">{{ column_size }}</span>
+            <a class="bb-btn gbb-plus" >+</a>
+            
+          </div>
+          <div class="gbb-el-action">
+            <a class="bb-btn gbb-edit border-none" title="Edit" ><i class="fa fa-pencil"></i></a>
+            <a class="bb-btn gbb-column-clone gbb-item-clone" title="Clone" ><i class="fa fa-clone"></i></a>
+            <a class="bb-btn gbb-column-delete" title="Delete"><i class="fa fa-times"></i></a>
+
+          </div>
+      </div>
+         
+      <div class="gbb-droppable gbb-sortable gbb-droppable-column clearfix">
+        {% if column.items %}
+          {% for key , val_column_item in column.items %}
+            {{ custom_pagebuilder_column_elements(item_std[val_column_item.type], val_column_item, column_id, row_id) }}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <input type="hidden" class="column-size" name="gbb-columns[size][]" value="{{ column_size }}">
+      <input type="hidden" class="column-parent" name="column-parent[]" value="{{ row_id }}" />
+      <input type="hidden" class="column-type" name="gbb-columns[type][]" value="{{ column_type }}" />
+   </div>
+      
+     <div class="gbb-el-meta">
+        <div class="gbb-form">
+            {{ cpb_fields_twig(column_std, column) }}
+        </div>
+     </div>
+      
+  </div>

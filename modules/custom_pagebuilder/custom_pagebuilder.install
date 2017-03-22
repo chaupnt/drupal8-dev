@@ -1,0 +1,17 @@
+<?php
+function custom_pagebuilder_schema() {
+  $schema['custom_pagebuilder_content'] = array(
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'params' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id')
+  );
+  return $schema;
+}

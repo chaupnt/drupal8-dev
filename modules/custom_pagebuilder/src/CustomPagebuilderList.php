@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\custom_pagebuilder\Controller;
+namespace Drupal\custom_pagebuilder;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
@@ -51,6 +51,7 @@ class CustomPagebuilderList extends EntityListBuilder {
     /* @var $entity \Drupal\content_entity_example\Entity\Contact */
     $row['id'] = $entity->id();
     $row['title'] = $entity->link();
+    $row['operations']['data'] = $this->buildOperations($entity);
     return $row + parent::buildRow($entity);
   }
 

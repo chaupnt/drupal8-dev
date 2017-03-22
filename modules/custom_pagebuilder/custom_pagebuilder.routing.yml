@@ -41,3 +41,11 @@ entity.custom_pagebuilder.delete_form:
     _title: 'Delete Contact'
   requirements:
     _permission: 'administer pagebuilder'
+
+custom_pagebuilder.admin.save:
+  path: '/admin/structure/custom_pagebuilder/save'
+  defaults:
+    _title: 'Save configuration of Gavias BlockBuilder'
+    _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderAdminController::custom_pagebuilder_save'
+  requirements:
+    _permission: 'administer pagebuilder'

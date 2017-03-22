@@ -1,5 +1,5 @@
 <?php
-namespace Drupal\custom_pagebuilder\includes\core;
+namespace Drupal\custom_pagebuilder\Core;
 class ClassCustomPagebuilder {
 
   protected $cb_shortcodes = array();

@@ -73,7 +73,7 @@ use Drupal\user\UserInterface;
  *   label = @Translation("Custom Pagebuilder entity"),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\custom_pagebuilder\Controller\CustomPagebuilderList",
+ *     "list_builder" = "Drupal\custom_pagebuilder\CustomPagebuilderList",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "form" = {
  *       "add" = "Drupal\custom_pagebuilder\Form\CustomPagebuilderForm",
@@ -246,7 +246,7 @@ class CustomPagebuilder extends ContentEntityBase implements CustomPagebuilderIn
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-
+      
     
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('User Name'))
@@ -270,6 +270,8 @@ class CustomPagebuilder extends ContentEntityBase implements CustomPagebuilderIn
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+      
+      
 
     $fields['langcode'] = BaseFieldDefinition::create('language')
       ->setLabel(t('Language code'))

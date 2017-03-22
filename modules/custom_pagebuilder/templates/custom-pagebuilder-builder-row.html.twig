@@ -1,12 +1,12 @@
 <div class="gbb-element gbb-row">
    <div class="gavias-blockbuilder-content">
-      <input type="hidden" class="gbb-row-id" <?php print  $name_row_id ?> value="<?php print  $row_id  ?>" />
+      <input type="hidden" class="gbb-row-id" {{ row ? 'name="gbb-row-id[]"' : '' }} value="{{ row_id }}" />
       <div class="gbb-el-header header-row">
           <div class="gbb-add-element">
             <a class="bb-drap action" ><i class="fa fa-arrows"></i></a>
             
             <div class="action-add-column">
-               <a class="btn-hover">{{ 'Add column' | t }}</a>
+               <a class="btn-hover">{{ 'Add column'|t }}</a>
                <div class="hover-content">
                   <a class="gbb-add-column action" data-width="2">1/6</a>
                   <a class="gbb-add-column action" data-width="3">1/4</a>
@@ -34,37 +34,18 @@
       </div>
          
       <div class="gbb-droppable gbb-sortable gbb-droppable-row clearfix">
-         <?php 
-            if( $row && isset($row['columns']) && is_array($row['columns']) ){
-               $i=0;
-               foreach( $row['columns'] as $column ){
-                    gavias_admin_column( $item_std, $column_std, $column, $i+1, $row_id);
-                  $i++;
-               }
-            }
-         ?>
+        {% if row and row.columns %}
+          {% for key, value_col in row.columns %}
+              {{ custom_pagebuilder_column_twig(item_std, column_std, value_col, key + 1, row_id) }}
+          {% endfor %}
+        {% endif %}
       </div>
 
    </div>
       
      <div class="gbb-el-meta">
         <div class="gbb-form">
-            <?php    
-              foreach( $row_std as $field ){
-				      $val = false;
-                  if( $row && isset($row['attr'][$field['id']]) && $field['type'] !='info'){
-                     $val = $row['attr'][$field['id']];
-                  }
-                  if( !isset($field['std']) ) $field['std'] = false;
-                  $val = ( $val || $val=='0' ) ? $val : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES ));
-                  $field['id'] = 'gbb-rows['. $field['id'] .']';
-                  if( $field['type'] != 'tabs' ){
-                     $field['id'] .= '[]';
-                  }
-                  
-                  gavias_single_field( $field, $val );
-              }
-            ?> 
+            {{ cpb_fields_row_twig(row_std, row) }}
         </div>
      </div>
       

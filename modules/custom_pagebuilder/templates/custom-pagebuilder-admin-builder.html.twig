@@ -1,8 +1,12 @@
+
 <div id="gavias-blockbuilder-setting">
   <div id="gbb-builder">
   {# kint(custom_pagebuild_object) #}
    <div class="gbb-block-title">
-    <?php print 'Edit: ' ?>{{ cpb_title }} <span style="color:red;"><?php print "[gbb name=\"{$gbb_shortcode}\"]" ?></span> ( ID: <?php print $gbb_id ?> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.import', array('bid' => $gbb_id)) ?>">Import</a> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.export', array('bid' => $gbb_id)) ?>">Export</a> )
+    <?php print 'Edit: ' ?>{{ cpb_title }} <span style="color:red;">
+      <?php print "[gbb name=\"{$gbb_shortcode}\"]" ?></span> ( ID: <?php print $gbb_id ?> | 
+      <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.import', array('bid' => $gbb_id)) ?>">Import
+      </a> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.export', array('bid' => $gbb_id)) ?>">Export</a> )
    </div>
 
    <input type="hidden" id="gbb-row-id" value="{{ cbp_rows_count }}" />
@@ -12,26 +16,25 @@
       <div id="gbb-admin-wrap" class="clearfix">
         {% if cpb_gbb_els %}
           {% for key, value_els in cpb_gbb_els %}
-              <li>{{ key }}: {{ value_els.attr.bg_position|e }}</li>
-              {{ custom_pagebuilder_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts, value_els, key + 1) }}
+              {{ custom_pagebuilder_row_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts, value_els, key + 1) }}
           {% endfor %}
         {% endif %}
       </div>
       
       <div id="gbb-rows" class="clearfix">
-          {{ custom_pagebuilder_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts) }}
+          {{ custom_pagebuilder_row_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts) }}
       </div>
       
       <div id="gbb-columns" class="clearfix">
-        <?php gavias_admin_column( $gbb_els_ops, $gbb_columns_opts ); ?>
+        {{ custom_pagebuilder_column_twig(cpb_els_ops, cpb_columns_opts) }}
       </div>
 
       <div id="gbb-items" class="clearfix">
-         <?php
-           foreach( $gbb_els_ops as $item ){
-               gavias_admin_element( $item );
-           }
-         ?>        
+        {% if cpb_els_ops %}
+        {% for key, value_els_ops in cpb_els_ops %}
+            {{ custom_pagebuilder_column_elements(value_els_ops) }}
+        {% endfor %}
+        {% endif %}       
       </div>
 
       <div class="gbb-row-add">
@@ -44,6 +47,12 @@
       <div class="action">
         <a class="bb-btn-close gbb-form-setting-cancel">Cancel</a> 
         <a class="gbb-form-setting-save">Save changes</a> 
+      </div>  
+    </div>
+    <div id="gbb-form-setting--2">
+      <div class="action">
+        <a class="bb-btn-close gbb-form-setting-cancel">Cancel</a> 
+        <a class="cpb-form-setting-save">Save changes</a> 
       </div>  
     </div>
   </div>  

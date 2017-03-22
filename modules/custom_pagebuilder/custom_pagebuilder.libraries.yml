@@ -30,9 +30,10 @@ custom_pagebuilder.assets.admin:
     vendor/codemirror/mode/javascript/javascript.js: {cope: footer}
     vendor/codemirror/mode/css/css.js: {cope: footer}
     vendor/codemirror/mode/htmlmixed/htmlmixed.js: {cope: footer}
-
+    vendor/skrollr.min.js: {cope: footer}
+    vendor/main.js: {cope: footer}
     assets/js/admin.js: { scope: footer }
-
+    assets/js/myscript.js: { scope: footer }
   dependencies:
     - core/jquery
     - core/drupal
