@@ -46,6 +46,7 @@ function custom_pagebuilder_theme() {
   return array(
     'custom_pagebuilder_admin_builder' => array(
       'variables' => array(
+        'pid' => '',
         'cpb_title' => '',
         'cbp_rows_count' => '',
         'cpb_els_ops' => '',

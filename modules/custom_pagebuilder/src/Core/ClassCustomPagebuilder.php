@@ -3,22 +3,41 @@ namespace Drupal\custom_pagebuilder\Core;
 class ClassCustomPagebuilder {
 
   protected $cb_shortcodes = array();
+  protected $id = '';
   protected $title = '';
   protected $params = '';
   protected $rows_cound = 0;
   public function __construct($pid){
+    if($pid) {
+      /*
+      $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
+      $query->fields('cp');
+      $query->leftjoin('custom_pagebuilder_content', 'cpc', 'cp.id = cpc.id');
+      $query->fields('cpc');
+      $query->condition('cp.id', 1);
+      $result = $query->execute()->fetchObject();
+      if($result){
+        $this->id = $result->id;
+        $this->title =  $result->title;
+        $this->params = $result->params;  
+      }
+      */
+      
+    }
+    
     $result = db_select('{gavias_blockbuilder}', 'd')
           ->fields('d')
-          ->condition('id', $pid, '=')
+          ->condition('id', 1, '=')
           ->execute()
           ->fetchObject();
-    $pbd_single = new \stdClass();
     if($result){
+      $this->id = $result->id;
       $this->title =  $result->title;
       $this->params = $result->params;  
     }
+    
   }
-  
+  public function get_ID() {  return $this->id;}
   public function get_title() {  return $this->title;}
   public function get_params() { return $this->params;}
   public function get_json_decode() {
