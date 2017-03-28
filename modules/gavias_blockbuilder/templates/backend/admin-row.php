@@ -61,7 +61,7 @@
                   if( $field['type'] != 'tabs' ){
                      $field['id'] .= '[]';
                   }
-                  
+                  //print_r($field);die();
                   gavias_single_field( $field, $val );
               }
             ?> 

@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
     var result = $('#gavias-blockbuilder-setting input:not(.input-file-upload), #gavias-blockbuilder-setting select, #gavias-blockbuilder-setting textarea').serializeObject();
     result = $.extend({}, result);
     result = base64Encode(JSON.stringify(result));
-      //console.log(result);
+    console.log(result);
     var pid = $("input[name=custom_pagebuilder_page_id]").val();
     var data = {
        data: result,
@@ -16,6 +16,7 @@ jQuery(document).ready(function($){
          data: data,
          dataType: 'json',
          success: function (data) {
+             console.log(data);
           //$('#save').val('Save');
           //notify('success', 'Block Builder setting updated');
           //window.location = drupalSettings.gavias_blockbuilder.url_redirect;

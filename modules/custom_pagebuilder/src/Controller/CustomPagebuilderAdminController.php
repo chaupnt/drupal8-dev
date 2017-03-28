@@ -87,7 +87,6 @@ class CustomPagebuilderAdminController extends ControllerBase {
       $array_rows_id = array_flip( $data['gbb-row-id'] );
 
     } 
-  //print_r($gbb_els);die();
     $col_row_id = array();
    // print_r($data['gbb-column-id']);die();
     if( isset($data['gbb-column-id']) && is_array($data['gbb-column-id'])){

@@ -36,7 +36,7 @@
       <div class="gbb-droppable gbb-sortable gbb-droppable-row clearfix">
         {% if row and row.columns %}
           {% for key, value_col in row.columns %}
-              {{ custom_pagebuilder_column_twig(item_std, column_std, value_col, key + 1, row_id) }}
+              {{ custom_pagebuilder_column_twig(item_std, column_std, value_col, key, row_id) }}
           {% endfor %}
         {% endif %}
       </div>

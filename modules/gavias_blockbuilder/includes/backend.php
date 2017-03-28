@@ -23,6 +23,7 @@ function gavias_single_field( $field, $meta ){
 }
 
 function gavias_admin_element( $item_std, $item = false, $column_id = false, $row_id = false) {
+	//print_r($column_id."afasdsa");
 	$element_type 		= $item ? 'name="element-type[]"' : '';
 	$element_parent	= $item ? 'name="element-parent[]"' : '';
 	$element_row_parent = $item ? 'name="element-row-parent[]"' : '';

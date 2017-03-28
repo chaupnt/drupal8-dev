@@ -1,3 +1,4 @@
+<?php //print_r($column_id); ?>
 <div class="gbb-element gbb-item wb-12 gbb-type-<?php print $item_std['type'] ?>">            
   <div class="gavias-blockbuilder-content">
     <div class="gbb-el-header">

@@ -93,6 +93,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
   
   function custom_pagebuilder_column_elements( $item_std = false, $cpb_item = false, $column_id = false, $row_id = false ) {
     $t = '';
+    //kint($cpb_item[0]);
     if(!empty($item_std)) {
       $element_type 		= $cpb_item ? 'name="element-type[]"' : '';
     	$element_parent	= $cpb_item ? 'name="element-parent[]"' : '';
@@ -100,6 +101,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
     	$label = ( $cpb_item && key_exists('fields', $cpb_item) && key_exists('title_admin', $cpb_item['fields']) ) ? $cpb_item['fields']['title_admin'] : '';
     	if(!$label)
     	$label = ( $cpb_item && key_exists('fields', $cpb_item) && key_exists('title', $cpb_item['fields']) ) ? $cpb_item['fields']['title'] : '';
+      
       $template = array(
         '#type' => 'page',
         '#cache' => array('max-age' => 0),

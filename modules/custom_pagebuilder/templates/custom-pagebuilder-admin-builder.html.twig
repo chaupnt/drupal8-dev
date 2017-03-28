@@ -1,4 +1,4 @@
-<h1>Builder Page {{ cbp_title }}</h1>
+<h1>Builder Page {{ cpb_title }}</h1>
 <div id="gavias-blockbuilder-setting">
   <div id="gbb-builder">
   {# kint(custom_pagebuild_object) #}
@@ -31,7 +31,9 @@
 
       <div id="gbb-items" class="clearfix">
         {% if cpb_els_ops %}
+            {{ kint(cpb_els_ops) }}
         {% for key, value_els_ops in cpb_els_ops %}
+            
             {{ custom_pagebuilder_column_elements(value_els_ops) }}
         {% endfor %}
         {% endif %}       
