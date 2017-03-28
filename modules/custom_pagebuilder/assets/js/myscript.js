@@ -1,5 +1,8 @@
 jQuery(document).ready(function($){ 
-  console.log(drupalSettings.custom_pagebuilder.saveConfigURL);
+  var result = $('#gavias-blockbuilder-setting input:not(.input-file-upload), #gavias-blockbuilder-setting select, #gavias-blockbuilder-setting textarea').serializeObject();
+   result = $.extend({}, result);
+   console.log(JSON.stringify(result));
+   
   $('.cpb-form-setting-save').click(function(){
     var result = $('#gavias-blockbuilder-setting input:not(.input-file-upload), #gavias-blockbuilder-setting select, #gavias-blockbuilder-setting textarea').serializeObject();
     result = $.extend({}, result);

@@ -1,6 +1,4 @@
 <?php
-use Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder;
-use Drupal\custom_pagebuilder\Core\ClassCustomPagebuilder;
 /**
  * @file
  * Contains custom_pagebuilder.module.
@@ -19,9 +17,6 @@ define( 'CUSTOM_PAGEBUILDER_PATH', drupal_get_path('module', 'custom_pagebuilder
 //module_load_include('php','custom_pagebuilder', 'includes/frontend');
 //module_load_include('php','custom_pagebuilder', 'includes/oembed');
 //module_load_include('php','custom_pagebuilder', 'includes/shortcode_block');
-
-$cpb = new ClassCustomPagebuilder();
-$cpb->custom_pagebuilder_load_file_shortcodes();
 
 /**
  * Implements hook_help().
@@ -227,7 +222,8 @@ function custom_pagebuilder_render_block($key) {
   				 } 
   			$output .= '</div>';
   			$output .= '<div class="field-content">';
-        $bb_field = new ClassFieldsCustomPagebuilder();
+        //$bb_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
+        $bb_field = new Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
         $field_function = 'render_field_'. $field['type'];
         $output .= $bb_field->$field_function($field, $meta);
   			$output .= '</div>';

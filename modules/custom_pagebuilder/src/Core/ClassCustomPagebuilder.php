@@ -8,8 +8,9 @@ class ClassCustomPagebuilder {
   protected $params = '';
   protected $rows_cound = 0;
   public function __construct($pid){
+    //$cpb->custom_pagebuilder_load_file_shortcodes();
     if($pid) {
-      /*
+      
       $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
       $query->fields('cp');
       $query->leftjoin('custom_pagebuilder_content', 'cpc', 'cp.id = cpc.id');
@@ -21,15 +22,16 @@ class ClassCustomPagebuilder {
         $this->title =  $result->title;
         $this->params = $result->params;  
       }
-      */
-      
     }
     
+    /*
     $result = db_select('{gavias_blockbuilder}', 'd')
           ->fields('d')
           ->condition('id', 1, '=')
           ->execute()
           ->fetchObject();
+     * 
+     */
     if($result){
       $this->id = $result->id;
       $this->title =  $result->title;
@@ -109,8 +111,8 @@ class ClassCustomPagebuilder {
         $sc_path = '';
         if(file_exists($theme_path . '/gavias_shortcodes/' . $sc . '.php')){
           $sc_path = $theme_path . '/gavias_shortcodes/' . $sc . '.php';
-        }else if(file_exists(GAVIAS_BLOCKBUILDER_PATH . '/shortcodes/' . $sc . '.php')){
-          $sc_path = GAVIAS_BLOCKBUILDER_PATH . '/shortcodes/' . $sc . '.php';
+        }else if(file_exists(CUSTOM_PAGEBUILDER_PATH . '/shortcodes/' . $sc . '.php')){
+          $sc_path = CUSTOM_PAGEBUILDER_PATH . '/shortcodes/' . $sc . '.php';
         }
         if($sc_path){
           $class = $sc;

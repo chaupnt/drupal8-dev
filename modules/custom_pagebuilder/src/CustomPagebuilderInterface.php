@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityChangedInterface;
 
 /**
  * Provides an interface defining a Contact entity.
- * @ingroup content_entity_example
+ * @ingroup custom_pagebuilder
  */
 interface CustomPagebuilderInterface extends ContentEntityInterface, EntityOwnerInterface, EntityChangedInterface {
 

@@ -22,9 +22,7 @@ class CustomPagebuilderList extends EntityListBuilder {
    */
   public function render() {
     $build['description'] = array(
-      '#markup' => $this->t('Content Entity Example implements a Contacts model. These contacts are fieldable entities. You can manage the fields on the <a href="@adminlink">Contacts admin page</a>.', array(
-        '@adminlink' => \Drupal::urlGenerator()->generateFromRoute('content_entity_example.contact_settings'),
-      )),
+      '#markup' => $this->t('Content Entity Example implements a Contacts model. These contacts are fieldable entities. '),
     );
     $build['table'] = parent::render();
     return $build;

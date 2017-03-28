@@ -95,30 +95,7 @@ use Drupal\user\UserInterface;
  *     "collection" = "/admin/structure/custom_pagebuilder/custom_pagebuilder/list"
  *   }
  * )
- *
- * The 'links' above are defined by their path. For core to find the corresponding
- * route, the route name must follow the correct pattern:
- *
- * entity.<entity-name>.<link-name> (replace dashes with underscores)
- * Example: 'entity.content_entity_example_contact.canonical'
- *
- * See routing file above for the corresponding implementation
- *
- * The 'Contact' class defines methods and fields for the contact entity.
- *
- * Being derived from the ContentEntityBase class, we can override the methods
- * we want. In our case we want to provide access to the standard fields about
- * creation and changed time stamps.
- *
- * Our interface (see ContactInterface) also exposes the EntityOwnerInterface.
- * This allows us to provide methods for setting and providing ownership
- * information.
- *
- * The most important part is the definitions of the field properties for this
- * entity type. These are of the same type as fields added through the GUI, but
- * they can by changed in code. In the definition we can define if the user with
- * the rights privileges can influence the presentation (view, edit) of each
- * field.
+ * 
  */
 class CustomPagebuilder extends ContentEntityBase implements CustomPagebuilderInterface {
 
