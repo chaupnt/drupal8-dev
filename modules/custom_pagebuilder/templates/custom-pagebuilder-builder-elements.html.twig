@@ -20,9 +20,9 @@
      </div>
     {% endif %}
     
-    <input type="hidden" class="element-type" {{ element_type }} value="{{ item_std.type }}">
-    <input type="hidden" class="element-parent" {{ element_parent }} value="{{ column_id }}" />
-    <input type="hidden" class="element-row-parent" {{ element_row_parent }} value="{{ row_id }}" />
+    <input type="hidden" class="element-type" name="{{ element_type | trim }}" value="{{ item_std.type }}">
+    <input type="hidden" class="element-parent" name="{{ element_parent | trim }}" value="{{ column_id }}" />
+    <input type="hidden" class="element-row-parent" name="{{ element_row_parent | trim }}" value="{{ row_id }}" />
   </div>
     
     <div class="gbb-el-meta">

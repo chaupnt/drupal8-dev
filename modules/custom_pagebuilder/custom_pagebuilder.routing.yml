@@ -4,8 +4,11 @@ entity.custom_pagebuilder.canonical:
   path: '/custom_pagebuilder/{custom_pagebuilder}'
   defaults:
   # Calls the view controller, defined in the annotation of the contact entity
-    _entity_view: 'custom_pagebuilder'
+    #_entity_view: 'custom_pagebuilder'
+    _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderViewController::pageview'
     _title: 'Contact Content'
+  requirements:
+    _permission: 'access content'
 
 entity.custom_pagebuilder.collection:
   path: '/admin/structure/custom_pagebuilder/list'

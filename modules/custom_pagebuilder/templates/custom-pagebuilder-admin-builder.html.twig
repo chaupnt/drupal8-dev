@@ -9,13 +9,13 @@
       </a> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.export', array('bid' => $gbb_id)) ?>">Export</a> )
    </div>
 
-   <input type="hidden" id="gbb-row-id" value="{{ cbp_rows_count }}" />
+   <input type="hidden" id="gbb-row-id" value="{{ cpb_rows_count }}" />
    <input type="hidden" id="gbb-column-id" value="0" />
 
    <div id="gbb-content">
       <div id="gbb-admin-wrap" class="clearfix">
-        {% if cpb_gbb_els %}
-          {% for key, value_els in cpb_gbb_els %}
+        {% if cpb_page_els %}
+          {% for key, value_els in cpb_page_els %}
               {{ custom_pagebuilder_row_twig(cpb_els_ops,cpb_rows_opts, cpb_columns_opts, value_els, key + 1) }}
           {% endfor %}
         {% endif %}
@@ -33,7 +33,6 @@
         {% if cpb_els_ops %}
             {{ kint(cpb_els_ops) }}
         {% for key, value_els_ops in cpb_els_ops %}
-            
             {{ custom_pagebuilder_column_elements(value_els_ops) }}
         {% endfor %}
         {% endif %}       

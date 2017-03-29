@@ -95,9 +95,9 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
     $t = '';
     //kint($cpb_item[0]);
     if(!empty($item_std)) {
-      $element_type 		= $cpb_item ? 'name="element-type[]"' : '';
-    	$element_parent	= $cpb_item ? 'name="element-parent[]"' : '';
-    	$element_row_parent = $cpb_item ? 'name="element-row-parent[]"' : '';
+      $element_type 		= $cpb_item ? 'element-type[]' : '';
+    	$element_parent	= $cpb_item ? 'element-parent[]' : '';
+    	$element_row_parent = $cpb_item ? 'element-row-parent[]' : '';
     	$label = ( $cpb_item && key_exists('fields', $cpb_item) && key_exists('title_admin', $cpb_item['fields']) ) ? $cpb_item['fields']['title_admin'] : '';
     	if(!$label)
     	$label = ( $cpb_item && key_exists('fields', $cpb_item) && key_exists('title', $cpb_item['fields']) ) ? $cpb_item['fields']['title'] : '';
@@ -111,6 +111,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
         '#column_id' => $column_id,
         '#row_id' => $row_id,
         '#element_type' => $element_type,
+        '#element_parent' => $element_parent,
         '#element_row_parent' => $element_row_parent,
         '#label' => $label
       );

@@ -12,6 +12,7 @@
             for( $i = 0; $i < $gbb_rows_count; $i++ ) {
                gavias_admin_row( $gbb_els_ops, $gbb_rows_opts, $gbb_columns_opts, $gbb_els[$i], $i+1 );
             }
+            
          ?>
       </div>
       

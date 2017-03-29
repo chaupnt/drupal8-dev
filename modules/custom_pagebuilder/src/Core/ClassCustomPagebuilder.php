@@ -8,7 +8,8 @@ class ClassCustomPagebuilder {
   protected $params = '';
   protected $rows_cound = 0;
   public function __construct($pid){
-    //$cpb->custom_pagebuilder_load_file_shortcodes();
+    $this->custom_pagebuilder_load_file_shortcodes();
+    
     if($pid) {
       
       $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
@@ -23,7 +24,7 @@ class ClassCustomPagebuilder {
         $this->params = $result->params;  
       }
     }
-    
+     
     /*
     $result = db_select('{gavias_blockbuilder}', 'd')
           ->fields('d')

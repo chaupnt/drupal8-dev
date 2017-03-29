@@ -43,11 +43,11 @@ function custom_pagebuilder_theme() {
       'variables' => array(
         'pid' => '',
         'cpb_title' => '',
-        'cbp_rows_count' => '',
+        'cpb_rows_count' => '',
         'cpb_els_ops' => '',
         'cpb_rows_opts' => '',
         'cpb_columns_opts' => '',
-        'cpb_gbb_els' => '',
+        'cpb_page_els' => '',
       )
     ),
     'custom_pagebuilder_builder_row' => array(
@@ -223,7 +223,7 @@ function custom_pagebuilder_render_block($key) {
   			$output .= '</div>';
   			$output .= '<div class="field-content">';
         //$bb_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
-        $bb_field = new Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
+        $bb_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
         $field_function = 'render_field_'. $field['type'];
         $output .= $bb_field->$field_function($field, $meta);
   			$output .= '</div>';

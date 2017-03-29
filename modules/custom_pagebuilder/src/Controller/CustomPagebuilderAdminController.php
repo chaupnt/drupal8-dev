@@ -1,6 +1,6 @@
 <?php 
 namespace Drupal\custom_pagebuilder\Controller;
-use  Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +14,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
     $abs_url_config = \Drupal::url('custom_pagebuilder.admin.save', array(), array('absolute' => FALSE)); 
     $cpb = new ClassCustomPagebuilder($custom_pagebuilder);
     $cpb->custom_pagebuilder_load_shortcodes(true);
+    //$test_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
     
     $page = array(
       '#attached' => array( 
@@ -25,11 +26,11 @@ class CustomPagebuilderAdminController extends ControllerBase {
       '#theme' => 'custom_pagebuilder_admin_builder', 
       '#pid' => $cpb->get_ID(),
       '#cpb_title' => $cpb->get_title(),
-      '#cbp_rows_count' => $cpb->get_rows_count(),
+      '#cpb_rows_count' => $cpb->get_rows_count(),
       '#cpb_els_ops' => $cpb->custom_pagebuilder_shortcodes_forms(), 
       '#cpb_rows_opts' => $cpb->row_opts(),
       '#cpb_columns_opts' => $cpb->column_opts(),
-      '#cpb_gbb_els' => $cpb->get_json_decode(),
+      '#cpb_page_els' => $cpb->get_json_decode(),
     );
     return $page;
   }
