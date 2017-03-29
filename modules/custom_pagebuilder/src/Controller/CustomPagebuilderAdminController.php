@@ -24,7 +24,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
       '#type' => 'page',
       '#cache' => array('max-age' => 0),
       '#theme' => 'custom_pagebuilder_admin_builder', 
-      '#pid' => $cpb->get_ID(),
+      '#pid' => (!empty($cpb->get_ID())) ? $cpb->get_ID() : $custom_pagebuilder,
       '#cpb_title' => $cpb->get_title(),
       '#cpb_rows_count' => $cpb->get_rows_count(),
       '#cpb_els_ops' => $cpb->custom_pagebuilder_shortcodes_forms(), 
@@ -68,8 +68,8 @@ class CustomPagebuilderAdminController extends ControllerBase {
     exit(0);
   }
   
-  public function custom_pagebuilder_save_element($data) {
-    $gbb_els = array();
+  function custom_pagebuilder_save_element($data) {
+    $cpb_els = array();
     //$data['gbb-items'] = $data['gbb-items'];
     
     // row
@@ -81,12 +81,11 @@ class CustomPagebuilderAdminController extends ControllerBase {
             $row['attr'][$row_attr_k] = $row_attr[$rowID_k];
           }
         }
-        $row['columns'] = '';
-        $gbb_els[] = $row;
+        $row['columns'] = array();
+        $cpb_els[] = $row;
       }
     
       $array_rows_id = array_flip( $data['gbb-row-id'] );
-
     } 
     $col_row_id = array();
    // print_r($data['gbb-column-id']);die();
@@ -100,12 +99,13 @@ class CustomPagebuilderAdminController extends ControllerBase {
             }
           }
           $column['items'] = '';
-
           $parent_row_id = $data['column-parent'][$column_id_key];
+          //print_r($cpb_els);
           $new_parent_row_id = $array_rows_id[$parent_row_id];
-          if(isset($gbb_els[$new_parent_row_id])){
-            $gbb_els[$new_parent_row_id]['columns'][$column_id] = $column;
+          if(isset($cpb_els[$new_parent_row_id])){
+            $cpb_els[$new_parent_row_id]['columns'][$column_id] = $column;
           }
+          
           $col_row_id[$column_id] = $new_parent_row_id;
         }
       }  
@@ -154,13 +154,14 @@ class CustomPagebuilderAdminController extends ControllerBase {
 
         $new_parent_row_id = $array_rows_id[$parent_row_id];
         $new_column_id = $column_id;
-        $gbb_els[$new_parent_row_id]['columns'][$new_column_id]['items'][] = $item;
+        $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'] = array();
+        $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'][] = $item;
       }
     }
 
     // save
-    if( $gbb_els ){
-      $new = base64_encode(json_encode($gbb_els));    
+    if( $cpb_els ){
+      $new = base64_encode(json_encode($cpb_els));    
     }
     return $new;
   }
