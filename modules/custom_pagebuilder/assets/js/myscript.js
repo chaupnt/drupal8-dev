@@ -6,6 +6,7 @@ jQuery(document).ready(function($){
   $('.cpb-form-setting-save').click(function(){
     var result = $('#gavias-blockbuilder-setting input:not(.input-file-upload), #gavias-blockbuilder-setting select, #gavias-blockbuilder-setting textarea').serializeObject();
     result = $.extend({}, result);
+    console.log(JSON.stringify(result));
     result = base64Encode(JSON.stringify(result));
     
     var pid = $("#custom_pagebuilder_page_id").val();

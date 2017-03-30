@@ -130,8 +130,8 @@ class ClassFieldsCustomPagebuilder
 		$count = ($value) ? count($value) : 0;
 		ob_start();
 		?>
-		<a class="btn-add gbb-add-tab" rel-name="<?php print $name ?>">Add tab</a>
-		<input type="hidden" name="<?php print $name ?>[count][]" class="gbb-tabs-count" value="<?php print $count ?>" />
+		<a class="btn-add cpb-add-tab" rel-name="<?php print $name ?>">Add tab</a>
+		<input type="hidden" name="<?php print $name ?>[count][]" class="cpb-tabs-count" value="<?php print $count ?>" />
 		<br style="clear:both;" />
 		<ul class="tabs-ul">
 			<?php	
@@ -145,7 +145,7 @@ class ClassFieldsCustomPagebuilder
 						<input type="text" name="<?php print $name ?>[icon][]" value="<?php print htmlspecialchars(stripslashes($val['icon'])) ?>" />
 						<label>Content</label>
 						<textarea name="<?php print $name ?>[content][]" value="" ><?php print $val['content'] ?></textarea>
-						<a href="" class="bb-btn-close gbb-remove-tab"><em>delete</em></a>
+						<a href="" class="bb-btn-close cpb-remove-tab"><em>delete</em></a>
 					</li>
 			 <?php
 				}
@@ -159,7 +159,7 @@ class ClassFieldsCustomPagebuilder
 				<div class="description">This support display icon from FontAwsome, Please click here to <a href="http://fortawesome.github.io/Font-Awesome/icons/">see the list</a></div>
 				<label>Content</label>
 				<textarea name="" value=""></textarea>
-				<a href="" class="btn-delete bb-btn-close gbb-remove-tab">delete</a>
+				<a href="" class="btn-delete bb-btn-close cpb-remove-tab">delete</a>
 			</li>
 		</ul>
 

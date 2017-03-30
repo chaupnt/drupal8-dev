@@ -10,10 +10,10 @@ jQuery(document).ready(function($){
 	
 	
 	// add
-	$('.gbb-add-tab').click(function(){
+	$('.cpb-add-tab').click(function(){
 		
 		// increase tabs counter
-		var tabs_counter = $(this).siblings('.gbb-tabs-count');
+		var tabs_counter = $(this).siblings('.cpb-tabs-count');
 		tabs_counter.val(tabs_counter.val()*1 + 1);
 		
 		var name = $(this).attr('rel-name');
@@ -33,11 +33,11 @@ jQuery(document).ready(function($){
 	});
 	
 	// delete
-	$('.gbb-remove-tab').click(function(e){
+	$('.cpb-remove-tab').click(function(e){
 		e.preventDefault();
 		
 		// decrease tabs counter
-		var tabs_counter = $(this).parents('td').children('.gbb-tabs-count');
+		var tabs_counter = $(this).parents('td').children('.cpb-tabs-count');
 		tabs_counter.val(tabs_counter.val()*1 - 1);
 		
 		$(this).parent().fadeOut(300, function(){$(this).remove();});

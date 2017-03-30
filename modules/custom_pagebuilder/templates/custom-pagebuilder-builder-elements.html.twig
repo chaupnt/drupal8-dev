@@ -1,21 +1,21 @@
-<div class="gbb-element gbb-item wb-12 gbb-type-{{ item_std.type }}">            
+<div class="cpb-element cpb-item wb-12 cpb-type-{{ item_std.type }}">            
   <div class="gavias-blockbuilder-content">
-    <div class="gbb-el-header">
-      <div class="gbb-el-action">
-        <a class="bb-btn gbb-el-delete" title="Delete" ><i class="fa fa-times"></i></a>
+    <div class="cpb-el-header">
+      <div class="cpb-el-action">
+        <a class="bb-btn cpb-el-delete" title="Delete" ><i class="fa fa-times"></i></a>
       </div>
 	  <div class="element-size">
         <a class="bb-btn bb-el-drap action"><i class="fa fa-arrows"></i></a>
-        <a class="bb-btn gbb-edit border-none" title="Edit" ><i class="fa fa-pencil"></i></a>
-        <a class="bb-btn gbb-el-clone gbb-item-clone" title="Clone" ><i class="fa fa-clone"></i></a>
+        <a class="bb-btn cpb-edit border-none" title="Edit" ><i class="fa fa-pencil"></i></a>
+        <a class="bb-btn cpb-el-clone cpb-item-clone" title="Clone" ><i class="fa fa-clone"></i></a>
       </div>
     </div>
     
     {% if item_std.type == 'gsc_code' %}
-      <div class="gbb-item-colums gbb-droppable" style="min-height:200px;border: 1px solid #ccc;"></div>
+      <div class="cpb-item-colums cpb-droppable" style="min-height:200px;border: 1px solid #ccc;"></div>
     {% else %}
-    <div class="gbb-item-content">
-       <span class="gbb-item-title">{{ item_std.title }}</span>
+    <div class="cpb-item-content">
+       <span class="cpb-item-title">{{ item_std.title }}</span>
        <span class="item-bb-title">{{ label }}</span>
      </div>
     {% endif %}
@@ -25,8 +25,8 @@
     <input type="hidden" class="element-row-parent" name="{{ element_row_parent | trim }}" value="{{ row_id }}" />
   </div>
     
-    <div class="gbb-el-meta">
-      <div class="gbb-form"> 
+    <div class="cpb-el-meta">
+      <div class="cpb-form"> 
         {{ cpb_fields_element_twig(item_std, cpb_item) }} 
     </div>
   </div>

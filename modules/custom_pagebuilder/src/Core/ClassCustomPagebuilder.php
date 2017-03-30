@@ -11,12 +11,11 @@ class ClassCustomPagebuilder {
     $this->custom_pagebuilder_load_file_shortcodes();
     
     if($pid) {
-      
       $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
       $query->fields('cp');
       $query->leftjoin('custom_pagebuilder_content', 'cpc', 'cp.id = cpc.id');
       $query->fields('cpc');
-      $query->condition('cp.id', 1);
+      $query->condition('cp.id', $pid);
       $result = $query->execute()->fetchObject();
       if($result){
         $this->id = $result->id;
@@ -105,10 +104,12 @@ class ClassCustomPagebuilder {
 
   public function custom_pagebuilder_load_shortcodes( $backend=true ){
     if( empty($this->cb_shortcodes) ) {
-      $theme_default = \Drupal::config('system.theme')->get('default');
-      $theme_path =  $theme_name = drupal_get_path('theme', $theme_default);
+      //$theme_default = \Drupal::config('system.theme')->get('default');
+      //$theme_path =  $theme_name = drupal_get_path('theme', $theme_default);
       $shortcodes = $this->custom_pagebuilder_get_list_shortcodes();
+      //kint($shortcodes);
       foreach( $shortcodes as $sc ){
+        /*
         $sc_path = '';
         if(file_exists($theme_path . '/gavias_shortcodes/' . $sc . '.php')){
           $sc_path = $theme_path . '/gavias_shortcodes/' . $sc . '.php';
@@ -116,8 +117,12 @@ class ClassCustomPagebuilder {
           $sc_path = CUSTOM_PAGEBUILDER_PATH . '/shortcodes/' . $sc . '.php';
         }
         if($sc_path){
-          $class = $sc;
-          $_class = '\\Drupal\custom_pagebuilder\shortcodes\\'.$class;
+          
+        }
+         * 
+         */
+        $class = $sc;
+          $_class = '\\Drupal\custom_pagebuilder\Shortcodes\\'.$class;
           if( class_exists($_class) ){
             $s = new $_class;
             if($backend){ //Load form setting for shortcode backend
@@ -130,7 +135,6 @@ class ClassCustomPagebuilder {
               }
             }
           }
-        }
       }
     }
   }
@@ -415,4 +419,9 @@ class ClassCustomPagebuilder {
 
     );
   }
+  
+  function custom_pagebuilder_build_class_style($params) {
+    
+  }
+  
 }

@@ -14,8 +14,6 @@ class CustomPagebuilderAdminController extends ControllerBase {
     $abs_url_config = \Drupal::url('custom_pagebuilder.admin.save', array(), array('absolute' => FALSE)); 
     $cpb = new ClassCustomPagebuilder($custom_pagebuilder);
     $cpb->custom_pagebuilder_load_shortcodes(true);
-    //$test_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
-    
     $page = array(
       '#attached' => array( 
         'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' ) ,
@@ -70,14 +68,12 @@ class CustomPagebuilderAdminController extends ControllerBase {
   
   function custom_pagebuilder_save_element($data) {
     $cpb_els = array();
-    //$data['gbb-items'] = $data['gbb-items'];
-    
-    // row
-    if( isset($data['gbb-row-id']) && is_array($data['gbb-row-id'])){
-      foreach( $data['gbb-row-id'] as $rowID_k => $rowID ){
+    //$data['cpb-items'] = $data['cpb-items'];
+    if( isset($data['cpb-row-id']) && is_array($data['cpb-row-id'])){
+      foreach( $data['cpb-row-id'] as $rowID_k => $rowID ){
         $row = array();
-        if( isset($data['gbb-rows']) && is_array($data['gbb-rows'])){
-          foreach ( $data['gbb-rows'] as $row_attr_k => $row_attr ){
+        if( isset($data['cpb-rows']) && is_array($data['cpb-rows'])){
+          foreach ( $data['cpb-rows'] as $row_attr_k => $row_attr ){
             $row['attr'][$row_attr_k] = $row_attr[$rowID_k];
           }
         }
@@ -85,16 +81,16 @@ class CustomPagebuilderAdminController extends ControllerBase {
         $cpb_els[] = $row;
       }
     
-      $array_rows_id = array_flip( $data['gbb-row-id'] );
+      $array_rows_id = array_flip( $data['cpb-row-id'] );
     } 
     $col_row_id = array();
-   // print_r($data['gbb-column-id']);die();
-    if( isset($data['gbb-column-id']) && is_array($data['gbb-column-id'])){
-      foreach( $data['gbb-column-id'] as $column_id_key => $column_id ){
+   // print_r($data['cpb-column-id']);die();
+    if( isset($data['cpb-column-id']) && is_array($data['cpb-column-id'])){
+      foreach( $data['cpb-column-id'] as $column_id_key => $column_id ){
         if($column_id){
           $column = array();
-          if( isset($data['gbb-columns']) && is_array($data['gbb-columns'])){
-            foreach ( $data['gbb-columns'] as $col_attr_k => $col_attr ){
+          if( isset($data['cpb-columns']) && is_array($data['cpb-columns'])){
+            foreach ( $data['cpb-columns'] as $col_attr_k => $col_attr ){
               $column['attr'][$col_attr_k] = $col_attr[$column_id_key];
             }
           }
@@ -127,8 +123,8 @@ class CustomPagebuilderAdminController extends ControllerBase {
         if( ! key_exists($type, $count) ) $count[$type] = 0;
         if( ! key_exists($type, $count_tabs) ) $count_tabs[$type] = 0;
 
-        if( key_exists($type, $data['gbb-items']) ){ 
-          foreach(  $data['gbb-items'][$type] as $attr_k => $attr ){
+        if( key_exists($type, $data['cpb-items']) ){ 
+          foreach(  $data['cpb-items'][$type] as $attr_k => $attr ){
 
             if( $attr_k == 'tabs'){
               // field tabs fields
@@ -154,9 +150,13 @@ class CustomPagebuilderAdminController extends ControllerBase {
 
         $new_parent_row_id = $array_rows_id[$parent_row_id];
         $new_column_id = $column_id;
-        $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'] = array();
+        if(empty($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'])) {
+          $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'] = array();
+        }
+        print_r($item);
         $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'][] = $item;
       }
+      print_r($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items']);
     }
 
     // save

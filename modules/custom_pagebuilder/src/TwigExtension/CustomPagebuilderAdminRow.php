@@ -73,7 +73,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
     $t = '';
     $column_size = (isset($column['attr']['size']) && $column['attr']['size']) ? $column['attr']['size'] : '4';
   	$column_type = (isset($column['attr']['type']) && $column['attr']['type']) ? $column['attr']['type'] : '';
-  	$name_column_id = $column ? 'name="gbb-column-id[]"' : '';
+  	$name_column_id = $column ? 'name="cpb-column-id[]"' : '';
     $template = array(
       '#type' => 'page',
       '#cache' => array('max-age' => 0),
@@ -131,7 +131,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
           }
           if( !isset($field['std']) ) $field['std'] = false;
           $val = ( $val || $val=='0' ) ? $val : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES ));
-          $field['id'] = 'gbb-columns['. $field['id'] .']';
+          $field['id'] = 'cpb-columns['. $field['id'] .']';
           if( $field['type'] != 'tabs' ){
              $field['id'] .= '[]';
           }
@@ -151,7 +151,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
           }
           if( !isset($field['std']) ) $field['std'] = false;
           $val = ( $val || $val=='0' ) ? $val : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES ));
-          $field['id'] = 'gbb-rows['. $field['id'] .']';
+          $field['id'] = 'cpb-rows['. $field['id'] .']';
           if( $field['type'] != 'tabs' ){
              $field['id'] .= '[]';
           }
@@ -172,7 +172,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
         }
         if( ! isset($field['std']) ) $field['std'] = false;
         $val = ( $val || $val=='0' ) ? $val : stripslashes(htmlspecialchars(( $field['std']), ENT_QUOTES ));
-        $field['id'] = 'gbb-items['. $item_std['type'] .']['. $field['id'] .']';
+        $field['id'] = 'cpb-items['. $item_std['type'] .']['. $field['id'] .']';
         if( $field['type'] != 'tabs' ){
           $field['id'] .= '[]';         
         }
