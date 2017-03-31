@@ -94,7 +94,7 @@ function randomString(length) {
 
 
       $('#save').removeAttr('disabled');
-      $('#gavias-blockbuilder-setting').delegate('#save', 'click', function(){
+      $('#wrapper-custom-pagebuilder-setting-content').delegate('#save', 'click', function(){
         $(this).attr('disabled', 'true');
          custom_pagebuilder_save_cotnent();
          return false;
@@ -124,7 +124,7 @@ function randomString(length) {
    }
 
   function custom_pagebuilder_save_cotnent(){
-      var result = $('#gavias-blockbuilder-setting input:not(.input-file-upload), #gavias-blockbuilder-setting select, #gavias-blockbuilder-setting textarea').serializeObject();
+      var result = $('#wrapper-custom-pagebuilder-setting-content input:not(.input-file-upload), #wrapper-custom-pagebuilder-setting-content select, #wrapper-custom-pagebuilder-setting-content textarea').serializeObject();
       result = $.extend({}, result);
       result =base64Encode(JSON.stringify(result));
         //console.log(result);
@@ -345,8 +345,8 @@ function randomString(length) {
     // add row 
     var rowid = $('#cpb-row-id');
    	$('.bb-btn-row-add').click(function(){
-   		var clone = $('#cpb-rows .cpb-row').clone(true);
-         
+            console.log('dsfsdf');
+        var clone = $('#cpb-rows .cpb-row').clone(true);
         init_sortable_find(clone, _bb_sortable, _bb_item);
 
    		clone.hide().find('.gavias-blockbuilder-content > input').each(function() {
@@ -482,7 +482,7 @@ function randomString(length) {
    
    	$('.cpb-edit').click(function(){
       oresult = '';
-      $('#cpb-form-setting').parent().find('.gavias-overlay').first().addClass('active').parents('body').addClass('gavias-overflow-hidden');
+      $('#cpb-form-setting').parent().find('.custom-pagebuilder-overlay').first().addClass('active').parents('body').addClass('gavias-overflow-hidden');
    		iresult = $(this).closest('.cpb-element');    
    		var _clone = iresult.children('.cpb-el-meta').clone(true);
    	  oresult = iresult.children('.cpb-el-meta').clone(true);
@@ -501,7 +501,7 @@ function randomString(length) {
      iresult.append(_clone);
      iresult.find('>.gavias-blockbuilder-content>.cpb-item-content>.item-bb-title').html(iresult.find('.display-admin').first().val());
      popup.fadeOut(50, function(){
-        $(this).parent().find('.gavias-overlay').first().removeClass('active').parents('body').removeClass('gavias-overflow-hidden');
+        $(this).parent().find('.custom-pagebuilder-overlay').first().removeClass('active').parents('body').removeClass('gavias-overflow-hidden');
      })
 
      setTimeout(function(){
@@ -516,7 +516,7 @@ function randomString(length) {
       $('.tabs-ul.ui-sortable').sortable('destroy');
       var popup = $('#cpb-form-setting');
       iresult.append(oresult);
-      popup.fadeOut(50).parent().find('.gavias-overlay').first().removeClass('active').parents('body').removeClass('gavias-overflow-hidden');
+      popup.fadeOut(50).parent().find('.custom-pagebuilder-overlay').first().removeClass('active').parents('body').removeClass('gavias-overflow-hidden');
       setTimeout(function(){
         popup.find('.cpb-el-meta').remove();
       },50);
