@@ -143,7 +143,7 @@
   background: none !important;
   width: auto !important;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-row > .gavias-blockbuilder-content {
+#wrapper-custom-pagebuilder-setting-content .cpb-row > .custom-pagebuilder-content-page {
   margin: 0 !important;
 }
 #wrapper-custom-pagebuilder-setting-content .wb-1 {
@@ -197,12 +197,12 @@
 #wrapper-custom-pagebuilder-setting-content .cpb-element .cpb-el-meta {
   display: none;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-element .gavias-blockbuilder-content {
+#wrapper-custom-pagebuilder-setting-content .cpb-element .custom-pagebuilder-content-page {
   position: relative;
   background: none;
   margin-bottom: 35px;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-element .gavias-blockbuilder-content .cpb-droppable {
+#wrapper-custom-pagebuilder-setting-content .cpb-element .custom-pagebuilder-content-page .cpb-droppable {
   margin: 0;
   background: #F8F8F8;
   border: 1px dashed #e1e1e1;
@@ -220,7 +220,7 @@
   background-color: #000;
 }
 
-#wrapper-custom-pagebuilder-setting-content .cpb-element.cpb-columns > .gavias-blockbuilder-content > .cpb-el-header > .cpb-el-action{
+#wrapper-custom-pagebuilder-setting-content .cpb-element.cpb-columns > .custom-pagebuilder-content-page > .cpb-el-header > .cpb-el-action{
   width: 30px;
   left: 100%;
   background: #1093E4;
@@ -233,16 +233,16 @@
   -ms-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-element.cpb-columns > .gavias-blockbuilder-content > .cpb-el-header > .cpb-el-action > a{
+#wrapper-custom-pagebuilder-setting-content .cpb-element.cpb-columns > .custom-pagebuilder-content-page > .cpb-el-header > .cpb-el-action > a{
   border: none;
   color: #fff;
   width: 30px!important;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-element.cpb-columns:hover > .gavias-blockbuilder-content > .cpb-el-header > .cpb-el-action{
+#wrapper-custom-pagebuilder-setting-content .cpb-element.cpb-columns:hover > .custom-pagebuilder-content-page > .cpb-el-header > .cpb-el-action{
   display: block;
 }
 
-#wrapper-custom-pagebuilder-setting-content .gva-upload-image .loading {
+#wrapper-custom-pagebuilder-setting-content .cpbuilder-upload-image .loading {
   margin-top: 5px;
   padding: 5px 10px;
   background: #3A799D;
@@ -450,7 +450,7 @@
 #wrapper-custom-pagebuilder-setting-content .cpb-columns.fist-column {
   clear: left;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-columns .gavias-blockbuilder-content {
+#wrapper-custom-pagebuilder-setting-content .cpb-columns .custom-pagebuilder-content-page {
   margin: 15px 10px;
 }
 #wrapper-custom-pagebuilder-setting-content .cpb-columns .item-w-label {
@@ -463,7 +463,7 @@
   line-height: 32px;
   font-size: 10px;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-item .gavias-blockbuilder-content {
+#wrapper-custom-pagebuilder-setting-content .cpb-item .custom-pagebuilder-content-page {
   background: #fff;
   margin: 15px;
   border: none !important;
@@ -680,7 +680,7 @@
 .column-clear .cpb-el-header {
   display: none;
 }
-.column-clear .gavias-blockbuilder-content {
+.column-clear .custom-pagebuilder-content-page {
   display: none;
 }
 .column-clear .cpb-droppable-column {

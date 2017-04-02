@@ -2,12 +2,6 @@
 <div id="wrapper-custom-pagebuilder-setting-content">
   <div id="cpb-builder">
   {# kint(custom_pagebuild_object) #}
-   <div class="cpb-block-title">
-    <?php print 'Edit: ' ?>{{ cpb_title }} <span style="color:red;">
-      <?php print "[gbb name=\"{$gbb_shortcode}\"]" ?></span> ( ID: <?php print $gbb_id ?> | 
-      <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.import', array('bid' => $gbb_id)) ?>">Import
-      </a> | <a href="<?php print \Drupal::url('gavias_blockbuilder.admin.export', array('bid' => $gbb_id)) ?>">Export</a> )
-   </div>
 
    <input type="hidden" id="cpb-row-id" value="{{ cpb_rows_count }}" />
    <input type="hidden" id="cpb-column-id" value="0" />

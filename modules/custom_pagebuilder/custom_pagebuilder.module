@@ -3,24 +3,9 @@
  * @file
  * Contains custom_pagebuilder.module.
  */
-
+define( 'CUSTOM_PAGEBUILDER_PATH', drupal_get_path('module', 'custom_pagebuilder'));
 use Drupal\Core\Routing\RouteMatchInterface;
 
-define( 'CUSTOM_PAGEBUILDER_PATH', drupal_get_path('module', 'custom_pagebuilder') );
-//module_load_include('php','custom_pagebuilder', 'includes/core/model');
-//module_load_include('php','custom_pagebuilder', 'includes/core/shortcode');
-//module_load_include('php','custom_pagebuilder', 'includes/core/ClassCustomPagebuilder');
-//module_load_include('php','custom_pagebuilder', 'includes/define');
-//module_load_include('php','custom_pagebuilder', 'includes/utilities');
-//module_load_include('php','custom_pagebuilder', 'includes/general_shortcodes');
-//module_load_include('php','custom_pagebuilder', 'includes/core/fields');
-//module_load_include('php','custom_pagebuilder', 'includes/frontend');
-//module_load_include('php','custom_pagebuilder', 'includes/oembed');
-//module_load_include('php','custom_pagebuilder', 'includes/shortcode_block');
-
-/**
- * Implements hook_help().
- */
 function custom_pagebuilder_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     // Main module help for the custom_pagebuilder module.
@@ -87,6 +72,13 @@ function custom_pagebuilder_theme() {
       'variables' => array(
         'field' => false,
         'meta' => false,
+      )
+    ),
+    'cpb_frontend' => array(
+      'variables' => array(
+        'row' => false,
+        'row_class' => false,
+        'row_style' => false,
       )
     ),
   );

@@ -55,11 +55,9 @@ class ClassFieldsCustomPagebuilder
 		$class 	= isset( $field['class'] ) ? $field['class'] : '';
 		if(isset( $field['shortcodes'] ) && $field['shortcodes']) $class .= 'gerenal_sc';
 		$param 	= isset( $field['param'] ) ? $field['param'] : '';
-		//$general_shortcodes = gavias_blockbluider_general_shortcode();
 		ob_start();
 		?>
 		<div class="textarea-wrapper <?php print $class ?>">
-			
 			<textarea name="<?php print $field['id'] ?>" class="<?php print $param ?>" rows="8"><?php print($value) ?></textarea>
 			<?php if( isset($field['desc']) && !empty($field['desc']) ){ ?>
 				<br/><span class="description"><?php print $field['desc'] ?></span> 
@@ -82,15 +80,15 @@ class ClassFieldsCustomPagebuilder
 		$class = ( isset($field['class']) ) ? $field['class'] : 'image';
 		ob_start();
 		?> 
-		<div class="gva-upload-image" id="gva-upload-<?php print $_id; ?>">
-			<form class="upload" id="upload-<?php print $_id; ?>" method="post" action="<?php print (base_path() . 'admin/structure/gavias_blockbuilder/upload') ?>" enctype="multipart/form-data">
+		<div class="cpbuilder-upload-image" id="cpbuilder-upload-<?php print $_id; ?>">
+			<form class="upload" id="upload-<?php print $_id; ?>" method="post" action="<?php print (base_path() . 'admin/structure/custom_pagebuilder/upload') ?>" enctype="multipart/form-data">
 				<div class="drop">
 					<input type="file" name="upl" multiple class="input-file-upload"/>
 				</div>
 			</form>
 			<input readonly="true" type="text" name="<?php print $field['id'] ?>" value="<?php print $value ?>" class="<?php print $class ?> file-input" />
-			<img class="gavias-image-demo" src="<?php print $path_image_demo ?>" />
-			<a class="gavias-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
+			<img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
+			<a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
 			<span class="loading">Loading....</span>
 			<a class="btn-delete btn-get-images-upload">Choose image</a>
 			<div class="clearfix"></div>
@@ -98,8 +96,8 @@ class ClassFieldsCustomPagebuilder
 				<span class="description"><?php print $field['desc'] ?></span>
 			<?php } ?>
 			<div class="clearfix"></div>
-			<div class="gavias-box-images">
-				<div class="gavias-box-images-inner">
+			<div class="custompagebuilder-box-images">
+				<div class="custompagebuilder-box-images-inner">
 					<div class="header">
 						Images Upload
 						<a class="close">close</a>
@@ -110,7 +108,6 @@ class ClassFieldsCustomPagebuilder
 				</div>
 			</div>
 		</div>	
-			
 		<?php
 		$content = ob_get_clean(); 
 		return $content;
@@ -151,7 +148,7 @@ class ClassFieldsCustomPagebuilder
 				}
 			}
 			?>
-			<li class="tabs-default gavias-hidden">
+			<li class="tabs-default custompagebuilder-hidden">
 				<label>Title</label>
 				<input class="title" type="text" name="" value="" />
 				<label>Icon tab</label>

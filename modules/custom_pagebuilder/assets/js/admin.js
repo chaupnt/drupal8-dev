@@ -154,7 +154,7 @@ function randomString(length) {
    function init_sortable_find(wrap, find, items){
       wrap.find(find).sortable({ 
          start: function(e, ui){
-           ui.placeholder.width(ui.item.find('.gavias-blockbuilder-content').first().width() - 20);
+           ui.placeholder.width(ui.item.find('.custom-pagebuilder-content-page').first().width() - 20);
            ui.placeholder.height(ui.item.height() - 20);
          },
          connectWith          : find,
@@ -229,7 +229,7 @@ function randomString(length) {
      var id=0;
       wrap.find('.cpb-droppable-row').sortable({ 
       start: function(e, ui){
-           ui.placeholder.width(ui.item.find('.gavias-blockbuilder-content').first().width() - 20);
+           ui.placeholder.width(ui.item.find('.custom-pagebuilder-content-page').first().width() - 20);
            ui.placeholder.height(ui.item.height() - 20);
         },
         connectWith           : '.cpb-droppable-row',
@@ -292,7 +292,7 @@ function randomString(length) {
    	
     blockbuilder_admin.sortable({ 
       start: function(e, ui){
-           ui.placeholder.width(ui.item.find('.gavias-blockbuilder-content').first().width() - 20);
+           ui.placeholder.width(ui.item.find('.custom-pagebuilder-content-page').first().width() - 20);
            ui.placeholder.height(ui.item.height() - 20);
         },
         cursor          : 'move',
@@ -345,11 +345,10 @@ function randomString(length) {
     // add row 
     var rowid = $('#cpb-row-id');
    	$('.bb-btn-row-add').click(function(){
-            console.log('dsfsdf');
         var clone = $('#cpb-rows .cpb-row').clone(true);
         init_sortable_find(clone, _bb_sortable, _bb_item);
 
-   		clone.hide().find('.gavias-blockbuilder-content > input').each(function() {
+   		clone.hide().find('.custom-pagebuilder-content-page > input').each(function() {
    				$(this).attr('name',$(this).attr('class')+'[]');
    			});
    		
@@ -422,7 +421,7 @@ function randomString(length) {
    		var item = $(this).attr('class');
    		var clone = $(_bb_items).find('div.cpb-type-'+ item ).clone(true);
       
-   		clone.hide().find('.gavias-blockbuilder-content input').each(function() {
+   		clone.hide().find('.custom-pagebuilder-content-page input').each(function() {
    			$(this).attr('name',$(this).attr('class')+'[]');
    		});
 
@@ -499,7 +498,7 @@ function randomString(length) {
      var popup = $('#cpb-form-setting');
      var _clone = popup.find('.cpb-el-meta').clone(true);
      iresult.append(_clone);
-     iresult.find('>.gavias-blockbuilder-content>.cpb-item-content>.item-bb-title').html(iresult.find('.display-admin').first().val());
+     iresult.find('>.custom-pagebuilder-content-page>.cpb-item-content>.item-bb-title').html(iresult.find('.display-admin').first().val());
      popup.fadeOut(50, function(){
         $(this).parent().find('.custom-pagebuilder-overlay').first().removeClass('active').parents('body').removeClass('gavias-overflow-hidden');
      })

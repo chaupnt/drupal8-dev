@@ -12,12 +12,18 @@ class CustomPagebuilderAdminController extends ControllerBase {
     
     $page;
     $abs_url_config = \Drupal::url('custom_pagebuilder.admin.save', array(), array('absolute' => FALSE)); 
+    $_url_get_img = \Drupal::url('custom_pagebuilder.admin.get_images_upload', array(), array('absolute' => FALSE));
     $cpb = new ClassCustomPagebuilder($custom_pagebuilder);
     $cpb->custom_pagebuilder_load_shortcodes(true);
     $page = array(
       '#attached' => array( 
         'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' ) ,
-        'drupalSettings' => array('custom_pagebuilder'=> array('saveConfigURL' => $abs_url_config))
+        'drupalSettings' => array(
+          'custom_pagebuilder'=> array(
+            'saveConfigURL' => $abs_url_config,
+            'getImageUpload' => $_url_get_img
+          )
+         )
       ),
       '#type' => 'page',
       '#cache' => array('max-age' => 0),
@@ -176,7 +182,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
     exit;
   }
 
-  public function gavias_upload_file(){
+  public function custom_pagebuilder_upload_file(){
     // A list of permitted file extensions
     global $base_url;
     $allowed = array('png', 'jpg', 'gif','zip');
@@ -189,7 +195,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
         echo '{"status":"error extension"}';
         exit;
       }  
-      $path_folder = \Drupal::service('file_system')->realpath(file_default_scheme(). "://gbb-uploads");
+      $path_folder = \Drupal::service('file_system')->realpath(file_default_scheme(). "://cpb-uploads");
 
       $ext = end(explode('.', $_FILES['upl']['name']));
       $image_name =  basename($_FILES['upl']['name'], ".{$ext}");
@@ -197,7 +203,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
       //$file_path = $path_folder . '/' . $_id . '-' . $_FILES['upl']['name'];
       $file_path = $path_folder . '/' . $image_name . "-{$_id}" . ".{$ext}";
 
-      $file_url = str_replace($base_url, '',file_create_url(file_default_scheme(). "://gbb-uploads"). '/' .  $image_name . "-{$_id}" . ".{$ext}"); 
+      $file_url = str_replace($base_url, '',file_create_url(file_default_scheme(). "://cpb-uploads"). '/' .  $image_name . "-{$_id}" . ".{$ext}"); 
       if (!is_dir($path_folder)) {
         @mkdir($path_folder); 
       }
@@ -219,16 +225,16 @@ class CustomPagebuilderAdminController extends ControllerBase {
     header('Content-type: application/json');
     global $base_url; 
 
-    $file_path = \Drupal::service('file_system')->realpath(file_default_scheme(). "://gbb-uploads");
+    $file_path = \Drupal::service('file_system')->realpath(file_default_scheme(). "://cpb-uploads");
 
-    $file_url = file_create_url(file_default_scheme(). "://gbb-uploads"). '/';
+    $file_url = file_create_url(file_default_scheme(). "://cpb-uploads"). '/';
     $list_file = glob($file_path . '/*.{jpg,png,gif}', GLOB_BRACE);
     usort( $list_file, function( $a, $b ) { return filemtime($b) - filemtime($a); } );
     $files = array();
     $data = '';
     foreach ($list_file as $key => $file) {
       if(basename($file)){
-        $file_url = str_replace($base_url, '', file_create_url(file_default_scheme(). "://gbb-uploads"). '/' .  basename($file)); 
+        $file_url = str_replace($base_url, '', file_create_url(file_default_scheme(). "://cpb-uploads"). '/' .  basename($file)); 
         $files[$key]['file_url'] = $file_url;
         $files[$key]['file_url_full'] = $base_url . $file_url;
       }  

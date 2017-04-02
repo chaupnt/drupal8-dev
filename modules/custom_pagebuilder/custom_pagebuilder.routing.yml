@@ -4,8 +4,8 @@ entity.custom_pagebuilder.canonical:
   path: '/custom_pagebuilder/{custom_pagebuilder}'
   defaults:
   # Calls the view controller, defined in the annotation of the contact entity
-    _entity_view: 'custom_pagebuilder'
-    #_controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderViewController::pageview'
+    #_entity_view: 'custom_pagebuilder'
+    _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderViewController::pageview'
     _title: 'Contact Content'
   requirements:
     _permission: 'access content'
@@ -56,7 +56,23 @@ custom_pagebuilder.admin.config:
 custom_pagebuilder.admin.save:
   path: '/admin/structure/custom_pagebuilder/save'
   defaults:
-    _title: 'Save configuration of Gavias BlockBuilder'
+    _title: 'Save configuration of Custom PageBuilder'
     _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderAdminController::custom_pagebuilder_save'
+  requirements:
+    _permission: 'administer pagebuilder'
+ 
+custom_pagebuilder.admin.get_images_upload:
+  path: '/admin/structure/custom_pagebuilder/get_images_upload'
+  defaults:
+    _title: 'Save configuration of Custom PageBuilder'
+    _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderAdminController::get_images_upload'
+  requirements:
+    _permission: 'administer pagebuilder'
+
+gavias_blockbuilder.admin.upload:
+  path: '/admin/structure/custom_pagebuilder/upload'
+  defaults:
+    _title: 'Save configuration of Custom PageBuilder'
+    _controller: '\Drupal\custom_pagebuilder\Controller\CustomPagebuilderAdminController::custom_pagebuilder_upload_file'
   requirements:
     _permission: 'administer pagebuilder'

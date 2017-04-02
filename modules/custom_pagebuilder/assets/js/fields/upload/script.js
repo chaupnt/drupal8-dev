@@ -9,23 +9,23 @@
                     console.log(data.form.context.id);
                     var $_id = data.form.context.id;
                     //alert(data.form.context.id);
-                    $('#gva-' + $_id + ' .loading').each(function(){
+                    $('#cpbuilder-' + $_id + ' .loading').each(function(){
                             $(this).css('display', 'inline-block'); 
                     });
                     var jqXHR = data.submit().done(function(data){
                         data = JSON.parse(data);
-                        $('#gva-' + $_id + ' .loading').each(function(){
+                        $('#cpbuilder-' + $_id + ' .loading').each(function(){
                             $(this).css('display', 'none'); 
                         });
-                        $('#gva-' + $_id + ' input.file-input').each(function(){
+                        $('#cpbuilder-' + $_id + ' input.file-input').each(function(){
                             $(this).val(data['file_url']); 
                         });
 
-                        $('#gva-' + $_id + ' .gavias-image-demo').each(function(){
+                        $('#cpbuilder-' + $_id + ' .custompagebuilder-image-demo').each(function(){
                             $(this).attr('src', data['file_url_full']);
                         });
 
-                        $('#gva-' + $_id + ' .gavias-field-upload-remove').each(function(){
+                        $('#cpbuilder-' + $_id + ' .custompagebuilder-field-upload-remove').each(function(){
                             $(this).css('display', 'inline-block');
                         });
 
@@ -42,27 +42,26 @@
             });
         });
         $(document).ready(function () {
-             gavias_load_images();
-             gavias_choose_image();
+             custompagebuilder_load_images();
+             custompagebuilder_choose_image();
         });
 
-        function gavias_load_images(){
+        function custompagebuilder_load_images(){
             $('.btn-get-images-upload').click(function(){
                 $this = $(this);
                 $.ajax({
-                 url: drupalSettings.gavias_blockbuilder.get_images_upload_url,
+                 url: drupalSettings.custom_pagebuilder.getImageUpload,
                  type: 'POST',
                  success: function (data) {
-                    
                     var html = '';
                     $.each(data['data'], function( index, value ) {
                         if(value['file_url_full'] != 'undefined' || value['file_url_full']){
                             html += '<a data-image="'+value['file_url']+'" data-image-demo="'+value['file_url_full']+'" class="btn-choose-image-upload" ><img src="'+value['file_url_full']+'"/></a>';
                         }
                     });
-                   $this.parents('.gva-upload-image').find('.gavias-box-images .gavias-box-images-inner .list-images').each(function(){
+                   $this.parents('.cpbuilder-upload-image').find('.custompagebuilder-box-images .custompagebuilder-box-images-inner .list-images').each(function(){
                         $(this).html(html);
-                        $(this).parents('.gavias-box-images').addClass('open-popup');
+                        $(this).parents('.custompagebuilder-box-images').addClass('open-popup');
                     })
                 },
                  error: function (jqXHR, textStatus, errorThrown) {
@@ -72,28 +71,28 @@
             });  
         }
 
-        function gavias_choose_image(){
+        function custompagebuilder_choose_image(){
 
-            $( ".gva-upload-image" ).delegate( ".btn-choose-image-upload", "click", function() {
+            $( ".cpbuilder-upload-image" ).delegate( ".btn-choose-image-upload", "click", function() {
                 var file_url = $(this).attr('data-image');
                 var file_url_full = $(this).attr('data-image-demo');
-                $(this).parents('.gva-upload-image').find('input.file-input').each(function(){
+                $(this).parents('.cpbuilder-upload-image').find('input.file-input').each(function(){
                     $(this).val(file_url); 
                 });
 
-                $(this).parents('.gva-upload-image').find('.gavias-image-demo').each(function(){
+                $(this).parents('.cpbuilder-upload-image').find('.custompagebuilder-image-demo').each(function(){
                     $(this).attr('src', file_url_full);
                 });
 
-                $(this).parents('.gva-upload-image').find('.gavias-field-upload-remove').each(function(){
+                $(this).parents('.cpbuilder-upload-image').find('.custompagebuilder-field-upload-remove').each(function(){
                     $(this).css('display', 'inline-block');
                 });
 
-                $(this).parents('.gavias-box-images').removeClass('open-popup');
+                $(this).parents('.custompagebuilder-box-images').removeClass('open-popup');
             });
 
-            $('.gva-upload-image .close').click(function(){
-                $(this).parents('.gavias-box-images').removeClass('open-popup');
+            $('.cpbuilder-upload-image .close').click(function(){
+                $(this).parents('.custompagebuilder-box-images').removeClass('open-popup');
             });
         }
 
@@ -117,8 +116,8 @@
     });
 
     $(document).ready(function(){
-        $('.gavias-field-upload-remove').click(function(){
-          $(this).parent().find('.gavias-image-demo').attr('src', $(this).attr("data-src"));
+        $('.custompagebuilder-field-upload-remove').click(function(){
+          $(this).parent().find('.custompagebuilder-image-demo').attr('src', $(this).attr("data-src"));
           $(this).parent().find('input.file-input').val('');
         })
     });
