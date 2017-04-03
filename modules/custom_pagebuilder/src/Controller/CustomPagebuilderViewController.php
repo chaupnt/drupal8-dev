@@ -21,21 +21,64 @@ class CustomPagebuilderViewController extends EntityViewController{
   public function pageview($custom_pagebuilder) {
     $params = $this->get_json_content_page($custom_pagebuilder);
     //kint($params);
-    $contents = array();
+    $pages = array();
+    
+    
     foreach( $params as $row ){
       $row_attr = $this->get_attr_row_content($row);
-      $contents[] = array(
-        '#type' => 'page',
-        '#cache' => array('max-age' => 0),
-        '#theme' => 'cpb_frontend', 
-        '#row' => $row,
-        '#row_class' => $row_attr['row_class'],
-        '#row_style' => $row_attr['row_style'],
-      );
+      if(isset($row['columns']) && is_array($row['columns'])){
+        $cols = array();
+        foreach( $row['columns'] as $column ) {
+          
+          $cols_attr = $this->get_attr_column_content($column);
+          $column_id = '';
+          if(isset($col_attr['column_id']) && $col_attr['column_id']){
+            $column_id = $col_attr['column_id'];
+          }
+          
+          if (is_array($column['items'])) {
+            $fields = array();
+            foreach ($column['items'] as $item) {
+              $shortcode = '\\Drupal\custom_pagebuilder\Shortcodes\\' . $item['type'];
+              if (class_exists($shortcode)) {
+                $sc = new $shortcode;
+                if (method_exists($sc, 'render_content')) {
+                  $fields[] = array('#markup' => $sc->render_content($item));
+                }
+              }
+            }
+          }
+
+          $cols[] = array(
+            '#type' => 'html',
+            '#cache' => array('max-age' => 0),
+            '#theme' => 'cpb_frontend_col', 
+            '#column_id' => $cols_attr['col_id'],
+            '#col_class' => $cols_attr['col_class'],
+            '#col_style' => $cols_attr['col_style'],
+            '#field_items' => $fields,
+          );
+        }  
+        $pages[] = array(
+          '#type' => 'html',
+          '#cache' => array('max-age' => 0),
+          '#theme' => 'cpb_frontend', 
+          '#row' => $row,
+          '#row_class' => $row_attr['row_class'],
+          '#row_style' => $row_attr['row_style'],
+          '#columns' => $cols
+        );
+      }
     }
     //$_entity = \Drupal::entityTypeManager()->getStorage('custom_pagebuilder')->load($custom_pagebuilder);
     //return $this->view($_entity);
-    return $contents;
+    $content = array(
+      '#type' => 'page',
+      '#cache' => array('max-age' => 0),
+      '#theme' => 'page_custom_pagebuilder', 
+      //'#rows_content' => $pages,
+    );
+    return $pages;
   }
   
   public function view(EntityInterface $_entity, $view_mode = 'full') {
@@ -104,4 +147,66 @@ class CustomPagebuilderViewController extends EntityViewController{
       return array();
   }
   
+  public function get_attr_column_content($column) {
+    
+    $col_style = '';
+    
+    if(!empty($col['attr'])) {
+      $col_attr = $column['attr'];
+    }else{
+      $col_attr = null;
+    }
+    
+    $class = '';
+    if($col_attr && isset($classes[$col_attr['size']]) && $classes[$col_attr['size']]){
+      $class = $classes[$col_attr['size']];
+    }
+    
+    if(isset($col_attr['class']) && $col_attr['class']){
+      $class .= ' ' . $col_attr['class'];
+    }
+    
+    if(isset($col_attr['hidden_lg']) && $col_attr['hidden_lg'] == 'hidden'){
+      $class .= ' hidden-lg';
+    }
+    
+    if(isset($col_attr['hidden_md']) &&!$col_attr['hidden_md'] == 'hidden'){
+      $class .= ' hidden-md';
+    }
+    
+    if(isset($col_attr['hidden_sm']) &&!$col_attr['hidden_sm'] == 'hidden'){
+      $class .= ' hidden-sm';
+    }
+    
+    if(isset($col_attr['hidden_xs']) &&!$col_attr['hidden_xs'] == 'hidden'){
+      $class .= ' hidden-xs';
+    }
+
+    $column_id = '';
+    if(isset($col_attr['column_id']) && $col_attr['column_id']){
+      $column_id = $col_attr['column_id'];
+    }
+
+    $col_style_array = array();
+
+    // Background for row
+    if(isset($col_attr['bg_color']) && $col_attr['bg_color']){
+      $col_style_array[] = 'background-color:'. $col_attr['bg_color'];
+    }
+    if( isset($col_attr['bg_image']) && $col_attr['bg_image'] ){
+      $col_style_array[] = 'background-image:url('. $base_url . '/' . $col_attr['bg_image'] .')';
+      $col_style_array[] = 'background-repeat:' . $col_attr['bg_repeat'];
+      $col_style_array[] = 'background-attachment:' . $col_attr['bg_attachment'];
+      
+      if(isset($col_attr['bg_attachment']) && $col_attr['bg_attachment'] == 'fixed'){
+      $col_style_array[] = 'background-position: 50% 0';
+      $col_style_array[] = 'gavias-parallax';
+      }else{
+      $col_style_array[] = 'background-position:' . $col_attr['bg_position'];
+      }
+    }
+    $col_style = implode('; ', $col_style_array );
+    return array('col_id' => $column_id,'col_class' => $class, 'col_style' => $col_style);
+    
+  }
 }

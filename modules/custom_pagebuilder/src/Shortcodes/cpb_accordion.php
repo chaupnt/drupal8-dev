@@ -27,7 +27,7 @@ if(!class_exists('cpb_accordion')):
       }
 
       public function render_content( $item ) {
-         print self::sc_accordion( $item['fields'] );
+         return self::sc_accordion( $item['fields'] );
       }
 
       public static function sc_accordion( $attr, $content = null ){

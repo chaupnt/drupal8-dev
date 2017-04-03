@@ -79,7 +79,34 @@ function custom_pagebuilder_theme() {
         'row' => false,
         'row_class' => false,
         'row_style' => false,
+        'columns' => false,
       )
+    ),
+    'cpb_frontend_col' => array(
+      'variables' => array(
+        'column_id' => false,
+        'col_class' => false,
+        'col_style' => false,
+        'field_items' => false,
+      )
+    ),
+    'cpb_frontend_field' => array(
+      'variables' => array(
+        'field_item' => false,
+      )
+    ),
+    'page_custom_pagebuilder' => array(
+      'render element' => 'page',
+     // 'variables' => array(
+     //   'rows_content' => false,
+     // ),
+      'override preprocess functions' => false,
+      'preprocess functions' => array (
+        0 => 'template_preprocess',
+        1 => 'template_preprocess_page',
+        2 => 'template_preprocess_custom_pagebuilder',
+        3 => "contextual_preprocess",
+      ),
     ),
   );
 }
@@ -222,4 +249,36 @@ function custom_pagebuilder_render_block($key) {
   		$output .= '</div>';
   	}
     return $output;
+  }
+
+  
+  function template_preprocess_custom_pagebuilder(&$variables) {
+    $theme = \Drupal::theme()->getActiveTheme()->getName();
+    $available_regions = system_region_list($theme, 'REGIONS_ALL');
+    //kint($available_regions);
+    foreach ($available_regions as $key_region => $region) {
+      $blocks =  \Drupal::entityManager()->getStorage('block')->loadByProperties(array('theme' => $theme, 'region' => $region));
+      //uasort($blocks, 'Drupal\block\Entity\Block::sort');
+      $build = array();
+      foreach ($blocks as $key => $block) {
+        if ($block->access('view')) {
+          $view_builder = \Drupal::entityTypeManager()->getViewBuilder($block->getEntityTypeId());
+          $build[$key] = $view_builder->view($block, 'block');
+        }
+      }
+      //kint($region);
+     if(!empty($build)) {
+       $region_name = \Drupal\Component\Utility\Unicode::strtolower($key_region);
+       unset($variables['page'][$region_name]);
+       $variables['page'][$region_name] = $build;
+       $variables['page'][$region_name]['#region'] = $region_name;
+     }
+      
+      
+    }
+    kint($variables['page']);
+    //kint($variables);
+  } 
+  
+  function custom_pagebuilder_theme_registry_alter(&$theme_registry) {
   }

@@ -76,10 +76,11 @@ if(!class_exists('cpb_drupal_block')):
       }
 
       public function render_content( $item ) {
-         print self::sc_drupal_block( $item['fields'] );
+         return self::sc_drupal_block( $item['fields'] );
       }
 
       public function sc_drupal_block( $attr, $content = null ){
+        $ourput = '';
          extract(shortcode_atts(array(
             'title'              => '',
             'block_drupal'       => '',
@@ -100,10 +101,11 @@ if(!class_exists('cpb_drupal_block')):
          $class[] = $style_text;
 
          if($block_drupal){
-            print '<div class="widget gsc-block-drupal '.implode($class, ' ') .'">';
-              print custom_pagebuilder_render_block($block_drupal);
-            print '</div>';
-         }   
+            $ourput = '<div class="widget cpb-block-drupal '.implode($class, ' ') .'">';
+              $ourput .= custom_pagebuilder_render_block($block_drupal);
+            $ourput .= '</div>';
+         }  
+         return $ourput; 
       }
 
        public function load_shortcode(){

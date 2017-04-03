@@ -37,19 +37,21 @@ if(!class_exists('cpb_column')):
 
 
       public function render_content( $item ) {
-         print self::sc_column( $item['fields'] );
+         return self::sc_column( $item['fields'] );
       }
 
 
       public static function sc_column( $attr, $content = null ){
+        
          extract(shortcode_atts(array(
             'title'      => '',
             'content'    => '',
             'el_class'    => ''
          ), $attr));
-         print '<div class="column-content '.$el_class.'">';
-         print do_shortcode( $content );
-         print '</div>';
+         $ourput = '<div class="column-content '.$el_class.'">';
+         $ourput .= do_shortcode( $content );
+         $ourput .= '</div>';
+         return $ourput;
       }
 
       public function load_shortcode(){
