@@ -1,0 +1,14 @@
+theme:
+  css:
+    theme:
+      bootstrap/css/bootstrap.min.css: {}
+      css/style-basic.css: {}
+      css/style-content.css: {}
+      css/style-extra-pages.css: {}
+      css/style-headers.css: {}
+      css/style-navigation.css: {}
+      css/style-services.css: {}
+      css/style-team.css: {}
+      css/style.css: {}
+  js:
+    bootstrap/js/bootstrap.min.js: {}
