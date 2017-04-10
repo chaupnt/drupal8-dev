@@ -19,7 +19,7 @@ entity.custom_pagebuilder.collection:
   requirements:
     _permission: 'administer pagebuilder'
 
-custom_pagebuilder.contact_add:
+custom_pagebuilder.custom_pagebuilder:
   path: '/admin/structure/custom_pagebuilder/add'
   defaults:
     _entity_form: custom_pagebuilder.add

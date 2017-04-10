@@ -1,8 +1,8 @@
 <div class="{{ row_class }}" style="{{ row_style }}">
-  <div class="bb-inner {{ row.attr.style_space }}">
-    <div class="bb-container {{ row.attr.layout }}">
-      <div class="row">
-        <div class="row-wrapper clearfix">
+  <div class="cpb-inner {{ row.attr.style_space }}">
+    <div class="cpb-container {{ row.attr.layout }}">
+      <div class="row-wrapper clearfix">
+        <div class="row">
           {% for col in columns  %}
               {{ col }}
           {% endfor %}
@@ -11,6 +11,6 @@
     </div>
   </div>
   {% if row.attr.bg_attachment and row.attr.bg_attachment ==  'fixed' %}
-      <div class="gva-parallax-inner skrollable skrollable-between" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;"></div>
+      <div class="cpb-parallax-inner skrollable skrollable-between" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;"></div>
   {% endif %}
 </div>

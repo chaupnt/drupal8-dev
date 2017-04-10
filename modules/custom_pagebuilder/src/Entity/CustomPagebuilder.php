@@ -86,7 +86,8 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "title",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "langcode" = "langcode"
  *   },
  *   links = {
  *     "canonical" = "/custom_pagebuilder/{custom_pagebuilder}",
@@ -107,9 +108,6 @@ class CustomPagebuilder extends ContentEntityBase implements CustomPagebuilderIn
    */
   public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
     parent::preCreate($storage_controller, $values);
-    $values += array(
-      'user_id' => \Drupal::currentUser()->id(),
-    );
   }
 
   /**
@@ -223,36 +221,47 @@ class CustomPagebuilder extends ContentEntityBase implements CustomPagebuilderIn
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-      
     
-    $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('User Name'))
-      ->setDescription(t('The Name of the associated user.'))
-      ->setSetting('target_type', 'user')
-      ->setSetting('handler', 'default')
+    
+    $fields['path'] = BaseFieldDefinition::create('path')
+      ->setLabel(t('Path URL'))
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('form', array(
+        'type' => 'path',
+        'weight' => -6,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setComputed(TRUE);
+      
+    $fields['setting_block'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Enable Block'))
+      ->setDescription(t('The title of the Custom Page builder entity.'))
+      ->setSettings(array(
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ))
       ->setDisplayOptions('view', array(
         'label' => 'above',
-        'type' => 'entity_reference',
-        'weight' => -3,
+        'type' => 'string',
+        'weight' => -6,
       ))
       ->setDisplayOptions('form', array(
-        'type' => 'entity_reference_autocomplete',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'size' => 60,
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ),
-        'weight' => -3,
+        'type' => 'checkboxes',
+        'weight' => -6,
+        '#default_value' => 0,
+        '#options' => array(1 => 'Enable Block Content'),
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+    
       
       
 
     $fields['langcode'] = BaseFieldDefinition::create('language')
       ->setLabel(t('Language code'))
       ->setDescription(t('The language code of Contact entity.'));
+    
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'));
@@ -260,9 +269,22 @@ class CustomPagebuilder extends ContentEntityBase implements CustomPagebuilderIn
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
-
+    
     return $fields;
   }
+  
+  public function preSave(EntityStorageInterface $storage) {
+    // An entity requiring validation should not be saved if it has not been
+    // actually validated.
+    //kint($this->language()->getId()); die();
+    parent::preSave($storage);
+    
+    foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
+      $translation = $this->getTranslation($langcode);
+    }
+    
+  }
+  
 }
 
 ?>

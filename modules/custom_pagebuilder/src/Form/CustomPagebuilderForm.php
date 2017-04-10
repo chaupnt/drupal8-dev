@@ -18,7 +18,6 @@ class CustomPagebuilderForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
-    $entity = $this->entity;
     return $form;
   }
 

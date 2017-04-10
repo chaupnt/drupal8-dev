@@ -1,8 +1,8 @@
 # All action links for this module
 
-custom_pagebuilder.contact_add:
+custom_pagebuilder.custom_pagebuilder:
   # Which route will be called by the link
-  route_name: custom_pagebuilder.contact_add
+  route_name: custom_pagebuilder.custom_pagebuilder
   title: 'Add Page Content'
 
   # Where will the link appear, defined by route name.

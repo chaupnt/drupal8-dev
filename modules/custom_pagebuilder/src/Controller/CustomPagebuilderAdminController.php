@@ -25,7 +25,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
           )
          )
       ),
-      '#type' => 'page',
+      '#type' => 'html',
       '#cache' => array('max-age' => 0),
       '#theme' => 'custom_pagebuilder_admin_builder', 
       '#pid' => (!empty($cpb->get_ID())) ? $cpb->get_ID() : $custom_pagebuilder,

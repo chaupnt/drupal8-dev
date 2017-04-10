@@ -18,66 +18,76 @@ use Drupal\custom_pagebuilder\Core\ClassCustomPagebuilder;
 class CustomPagebuilderViewController extends EntityViewController{
   //put your code here
   
-  public function pageview($custom_pagebuilder) {
-    $params = $this->get_json_content_page($custom_pagebuilder);
-    //kint($params);
+  private $pid;
+  private $params = '';
+  
+  function __construct($pid) {
+    $this->pid = $pid;
+    $this->params = $this->get_json_content_page();
+  }
+  
+  public function get_pageid() {
+    return $this->pid;
+  }
+
+
+  public function get_params() {
+    return $this->params;
+  }
+  
+  public function pageview() {
+    $params = $this->get_params();
     $pages = array();
     
-    
-    foreach( $params as $row ){
-      $row_attr = $this->get_attr_row_content($row);
-      if(isset($row['columns']) && is_array($row['columns'])){
-        $cols = array();
-        foreach( $row['columns'] as $column ) {
-          
-          $cols_attr = $this->get_attr_column_content($column);
-          $column_id = '';
-          if(isset($col_attr['column_id']) && $col_attr['column_id']){
-            $column_id = $col_attr['column_id'];
-          }
-          
-          if (is_array($column['items'])) {
-            $fields = array();
-            foreach ($column['items'] as $item) {
-              $shortcode = '\\Drupal\custom_pagebuilder\Shortcodes\\' . $item['type'];
-              if (class_exists($shortcode)) {
-                $sc = new $shortcode;
-                if (method_exists($sc, 'render_content')) {
-                  $fields[] = array('#markup' => $sc->render_content($item));
+    if(!empty($params)) {
+       foreach( $params as $row ){
+          $row_attr = $this->get_attr_row_content($row);
+          if(isset($row['columns']) && is_array($row['columns'])){
+            $cols = array();
+            foreach( $row['columns'] as $column ) {
+
+              $cols_attr = $this->get_attr_column_content($column);
+              $column_id = '';
+              if(isset($col_attr['column_id']) && $col_attr['column_id']){
+                $column_id = $col_attr['column_id'];
+              }
+
+              if (is_array($column['items'])) {
+                $fields = array();
+                foreach ($column['items'] as $item) {
+                  $shortcode = '\\Drupal\custom_pagebuilder\Shortcodes\\' . $item['type'];
+                  if (class_exists($shortcode)) {
+                    $sc = new $shortcode;
+                    if (method_exists($sc, 'render_content')) {
+                      $fields[] = array('#markup' => $sc->render_content($item));
+                    }
+                  }
                 }
               }
-            }
-          }
 
-          $cols[] = array(
-            '#type' => 'html',
-            '#cache' => array('max-age' => 0),
-            '#theme' => 'cpb_frontend_col', 
-            '#column_id' => $cols_attr['col_id'],
-            '#col_class' => $cols_attr['col_class'],
-            '#col_style' => $cols_attr['col_style'],
-            '#field_items' => $fields,
-          );
-        }  
-        $pages[] = array(
-          '#type' => 'html',
-          '#cache' => array('max-age' => 0),
-          '#theme' => 'cpb_frontend', 
-          '#row' => $row,
-          '#row_class' => $row_attr['row_class'],
-          '#row_style' => $row_attr['row_style'],
-          '#columns' => $cols
-        );
-      }
+              $cols[] = array(
+                '#type' => 'html',
+                '#cache' => array('max-age' => 0),
+                '#theme' => 'cpb_frontend_col', 
+                '#column_id' => $cols_attr['col_id'],
+                '#col_class' => $cols_attr['col_class'],
+                '#col_style' => $cols_attr['col_style'],
+                '#field_items' => $fields,
+              );
+            }  
+            $pages[] = array(
+              '#type' => 'html',
+              '#cache' => array('max-age' => 0),
+              '#theme' => 'cpb_frontend', 
+              '#row' => $row,
+              '#row_class' => $row_attr['row_class'],
+              '#row_style' => $row_attr['row_style'],
+              '#columns' => $cols
+            );
+          }
+        }
     }
-    //$_entity = \Drupal::entityTypeManager()->getStorage('custom_pagebuilder')->load($custom_pagebuilder);
-    //return $this->view($_entity);
-    $content = array(
-      '#type' => 'page',
-      '#cache' => array('max-age' => 0),
-      '#theme' => 'page_custom_pagebuilder', 
-      //'#rows_content' => $pages,
-    );
+    
     return $pages;
   }
   
@@ -86,7 +96,8 @@ class CustomPagebuilderViewController extends EntityViewController{
     return $build;
   }
   
-  public function get_json_content_page($pid) {
+  public function get_json_content_page() {
+    $pid = $this->get_pageid();
     $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
     $query->fields('cp');
     $query->leftjoin('custom_pagebuilder_content', 'cpc', 'cp.id = cpc.id');
@@ -148,10 +159,25 @@ class CustomPagebuilderViewController extends EntityViewController{
   }
   
   public function get_attr_column_content($column) {
-    
+    //kint($column);
     $col_style = '';
     
-    if(!empty($col['attr'])) {
+    $classes = array(
+      '1' => 'col-lg-1 col-md-1 col-sm-2 col-xs-12',
+      '2' => 'col-lg-2 col-md-2 col-sm-4 col-xs-12',
+      '3' => 'col-lg-3 col-md-3 col-sm-6 col-xs-12',
+      '4' => 'col-lg-4 col-md-4 col-sm-12 col-xs-12',
+      '5' => 'col-lg-5 col-md-5 col-sm-12 col-xs-12',
+      '6' => 'col-lg-6 col-md-6 col-sm-12 col-xs-12',
+      '7' => 'col-lg-7 col-md-7 col-sm-12 col-xs-12',
+      '8' => 'col-lg-8 col-md-8 col-sm-12 col-xs-12',
+      '9' => 'col-lg-9 col-md-9 col-sm-12 col-xs-12',
+      '10' => 'col-lg-10 col-md-10 col-sm-12 col-xs-12',
+      '11' => 'col-lg-11 col-md-11 col-sm-12 col-xs-12',
+      '12' => 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+    );
+    
+    if(!empty($column['attr'])) {
       $col_attr = $column['attr'];
     }else{
       $col_attr = null;
@@ -206,7 +232,8 @@ class CustomPagebuilderViewController extends EntityViewController{
       }
     }
     $col_style = implode('; ', $col_style_array );
-    return array('col_id' => $column_id,'col_class' => $class, 'col_style' => $col_style);
+    $class_col = array('col_id' => $column_id,'col_class' => $class, 'col_style' => $col_style);
+    return $class_col;
     
   }
 }
