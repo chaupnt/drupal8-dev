@@ -8,16 +8,6 @@ if(!class_exists('cpb_textblock')):
             'title' => t('Text Block'),
             'size' => 2,
             'fields' => array(
-               
-              /*
-               array(
-                  'id'     => 'title',
-                  'type'      => 'text',
-                  'title'  => t('Title'),
-                   'class'     => 'display-admin'
-               ),
-               * 
-               */
 
                array(
                   'id'           => 'content',
@@ -33,6 +23,7 @@ if(!class_exists('cpb_textblock')):
                   'title'     => t('Extra class name'),
                   'desc'      => t('Style particular content element differently - add a class name and refer to it in custom CSS.'),
                ),   
+              
             ),                                     
          );
          return $fields;

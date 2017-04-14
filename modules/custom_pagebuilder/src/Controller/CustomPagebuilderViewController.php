@@ -104,6 +104,7 @@ class CustomPagebuilderViewController {
   }
   
   public function get_json_content_page() {
+    $params = '';
     $pid = $this->get_pageid();
     $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
     $query->fields('cp');
@@ -111,8 +112,10 @@ class CustomPagebuilderViewController {
     $query->fields('cpc');
     $query->condition('cp.id', $pid);
     $result = $query->execute()->fetchObject();
-    $params = base64_decode($result->params);
-    $params = json_decode($params, true);
+    if($result) {
+      $params = base64_decode($result->params);
+      $params = json_decode($params, true);
+    }
     return $params;
   }
   

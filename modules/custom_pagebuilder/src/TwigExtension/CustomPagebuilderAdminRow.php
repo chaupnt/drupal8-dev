@@ -144,6 +144,7 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
   function custom_pagebuilder_builder_fields_row_twig($row_std = false, $row = false) {
     $output = '';
     if(!empty($row_std)) {
+      
       foreach( $row_std as $field ){
           $val = false;
           if( $row && isset($row['attr'][$field['id']]) && $field['type'] !='info'){
@@ -165,6 +166,10 @@ class CustomPagebuilderAdminRow extends \Twig_Extension{
     //kint($cpb_item);
     $output = '';
     if(!empty($item_std)) {
+      //kint($item_std);
+      $form = new \Drupal\custom_pagebuilder\Form\CustomPagebuilderFormItems( $item_std['fields'] );
+      $form_render = \Drupal::formBuilder()->getForm($form);
+      $output .= drupal_render($form_render);
       foreach( $item_std['fields'] as $field ){
         $val = false;
         if( $cpb_item && key_exists( 'fields', $cpb_item ) && key_exists( $field['id'], $cpb_item['fields'] ) ){

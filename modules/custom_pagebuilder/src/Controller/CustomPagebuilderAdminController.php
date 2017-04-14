@@ -17,7 +17,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
     $cpb->custom_pagebuilder_load_shortcodes(true);
     $page = array(
       '#attached' => array( 
-        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' , 'drupal.ckeditor') ,
+        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' ) ,
         'drupalSettings' => array(
           'custom_pagebuilder'=> array(
             'saveConfigURL' => $abs_url_config,

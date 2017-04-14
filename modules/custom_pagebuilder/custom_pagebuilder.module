@@ -113,26 +113,26 @@ function custom_pagebuilder_theme() {
 
 function custom_pagebuilder_list_shortcodes(){
   return $shortcodes = array(
-    'cpb_accordion', 
-    'cpb_box_image',
-    'cpb_box_info',
-    'cpb_call_to_action',
-    'cpb_chart',
-    'cpb_code',
     'cpb_textblock',
-    'cpb_counter',
-    'cpb_divider',
-    'cpb_drupal_block',
-    'cpb_heading',
-    'cpb_hover_background',
-    'cpb_hover_box',
-    'cpb_icon_box',
-    'cpb_image',
-    'cpb_our_team',
-    'cpb_pricing_item',
-    'cpb_progress',
-    'cpb_tabs',
-    'cpb_video_box'
+    //'cpb_accordion', 
+    //'cpb_box_image',
+    //'cpb_box_info',
+    //'cpb_call_to_action',
+    //'cpb_chart',
+    //'cpb_code',
+    //'cpb_counter',
+    //'cpb_divider',
+    //'cpb_drupal_block',
+    //'cpb_heading',
+    //'cpb_hover_background',
+    //'cpb_hover_box',
+    //'cpb_icon_box',
+    //'cpb_image',
+    //'cpb_our_team',
+    //'cpb_pricing_item',
+    //'cpb_progress',
+    //'cpb_tabs',
+    //'cpb_video_box'
   );
 }
 
@@ -244,6 +244,10 @@ function custom_pagebuilder_render_block($key) {
         $bb_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
         $field_function = 'render_field_'. $field['type'];
         $output .= $bb_field->$field_function($field, $meta);
+        
+        
+        
+        
   			$output .= '</div>';
   		$output .= '</div>';
   	}
