@@ -66,10 +66,6 @@ class ClassCustomPagebuilder {
     if( empty($this->cb_shortcodes) ){
       
       $shortcodes_theme = array(); 
-      
-      if(function_exists('gavias_blockbuilder_override_shortcodes')){
-        $shortcodes_theme = gavias_blockbuilder_override_shortcodes(); //theme_name/includes/shortcodes.php
-      }
 
       $shortcodes_module = custom_pagebuilder_list_shortcodes(); //this module 
 

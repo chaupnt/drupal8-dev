@@ -41,18 +41,6 @@ class CustomPagebuilderList extends EntityListBuilder {
     $header['title'] = $this->t('Title');
     return $header + parent::buildHeader();
   }
-  
-  public function getOperations(EntityInterface $entity) {
-    $operations = parent::getOperations($entity);
-    
-    
-    $operations['Edit'] = array(
-      'title' => 'Edit',
-      'url' => \Drupal::url('entity.custom_pagebuilder.edit_form', array('custom_pagebuilder' => $entity->id())),
-    );
-    
-    return $operations;
-  }
 
   /**
    * {@inheritdoc}
@@ -60,10 +48,45 @@ class CustomPagebuilderList extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     $operations = '<a href="'. \Drupal::url('entity.custom_pagebuilder.edit_form', array('custom_pagebuilder' => $entity->id())) .'">Edit</a>';
     $operations .= '<a href="'. \Drupal::url('custom_pagebuilder.admin.config', array('custom_pagebuilder' => $entity->id())) .'">Config</a>';
+    
+    //kint($this->getOperations($entity));
+    
+    $build = array(
+      '#type' => 'operations',
+      '#links' => $this->getOperations($entity),
+    );
+    
     $row['id'] = $entity->id();
     $row['title'] = $entity->link();
-    $row['operations']['data'] = array('#markup' => $operations);
+    //$row['operations']['data'] = $build;//array('#markup' => $operations);
     return $row + parent::buildRow($entity);
+  }
+  
+  /**
+   * {@inheritdoc}
+   */
+  public function getDefaultOperations(EntityInterface $entity) {
+    $operations = parent::getDefaultOperations($entity);
+    
+    $operations['edit'] = array(
+      'title' => new \Drupal\Core\StringTranslation\TranslatableMarkup('Edit'),
+      'weight' => -10,
+      'url' => new \Drupal\Core\Url('entity.custom_pagebuilder.edit_form', array('custom_pagebuilder' => $entity->id())),
+    );
+    
+    $operations['config'] = array(
+      'title' => new \Drupal\Core\StringTranslation\TranslatableMarkup('Config'),
+      'weight' => -11,
+      'url' => new \Drupal\Core\Url('custom_pagebuilder.admin.config', array('custom_pagebuilder' => $entity->id())),
+    );
+    
+    $operations['delete'] = array(
+      'title' => new \Drupal\Core\StringTranslation\TranslatableMarkup('Delete'),
+      'weight' => -9,
+      'url' => new \Drupal\Core\Url('entity.custom_pagebuilder.delete_form', array('custom_pagebuilder' => $entity->id())),
+    );
+    
+    return $operations;
   }
 
 }

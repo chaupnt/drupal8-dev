@@ -1,13 +1,15 @@
  /**
   * $Desc
   *
-  * @author     Gavias <gaviasthemes@gmail.com>
-  * @copyright  Copyright (C) 2015. All Rights Reserved.
+  * @author     Chau Phan (truongchau007@gmail.com)
+  * @copyright  Copyright (C) 2017. All Rights Reserved.
   * @license    GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html
   * @addition this license does not allow theme provider using in themes to sell on marketplaces.
   * 
   */
 !function(e){function t(t,i){this.element=t,this.options=e.extend({},n,i),this._defaults=n,this._name=r}var r="serializeObject",n={requiredFormat:{}};t.prototype.toJsonObject=function(){var t=this,r=t.replaceEmptyBracketWithNumericBracket(e(t.element).serializeArray()),n=t.options.requiredFormat;return e.each(r,function(r,i){var a=i.name.replace(/]/g,"").split("["),o=t.stringArrayKeyToVariable(a,i.value);n=e.extend(!0,{},n,o)}),n},t.prototype.replaceEmptyBracketWithNumericBracket=function(t){var r={},n=t;return e.each(n,function(e,t){var i=t.name,a=i.indexOf("[]");a>-1&&(r[i]="undefined"==typeof r[i]?0:++r[i],n[e].name=t.name.replace("[]","["+r[i]+"]"))}),n},t.prototype.stringArrayKeyToVariable=function(e,t){var r,n=this;if(e.length>0){var i=e.shift().trim();r=isNaN(i)&&""!=i?{}:[],r[i]=e.length>0?n.stringArrayKeyToVariable(e,t):t}return r},e.fn[r]=function(e){return new t(this,e).toJsonObject()}}(jQuery,window,document);
+
+
 
 var keyString="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 base64Encode = function(c) {
@@ -80,7 +82,7 @@ function randomString(length) {
   $.fn.extend({insertcaret:function(t){return this.each(function(){if(document.selection){this.focus();var e=document.selection.createRange();e.text=t,this.focus()}else if(this.selectionStart||"0"==this.selectionStart){var s=this.selectionStart,i=this.selectionEnd,n=this.scrollTop;this.value=this.value.substring(0,s)+t+this.value.substring(i,this.value.length),this.focus(),this.selectionStart=s+t.length,this.selectionEnd=s+t.length,this.scrollTop=n}else this.value+=t,this.focus()})}});
 
    $(document).ready(function () {
-
+       
       $('#cpb-form-setting').delegate(".input_datetime", 'click', function(e){
           e.preventDefault();
           $(this).datepicker({
@@ -96,7 +98,7 @@ function randomString(length) {
       $('#save').removeAttr('disabled');
       $('#wrapper-custom-pagebuilder-setting-content').delegate('#save', 'click', function(){
         $(this).attr('disabled', 'true');
-         custom_pagebuilder_save_cotnent();
+         custom_pagebuilder_save_content();
          return false;
       })
 
@@ -106,24 +108,8 @@ function randomString(length) {
       });
 
    });
-
-   function notify(style, text) {
-      $.notify({
-          title: 'Notification',
-          text: text,
-          image: '<i class="fa fa-bell" style="font-size: 30px; color: #fff;"></i>',
-          hideAnimation: 'slideUp',
-
-      }, {
-          style: 'metro',
-          className: style,
-          autoHide: false,
-          clickToHide: true,
-          globalPosition: 'top center'
-      });
-   }
-
-  function custom_pagebuilder_save_cotnent(){
+   
+   function custom_pagebuilder_save_content(){
       var result = $('#wrapper-custom-pagebuilder-setting-content input:not(.input-file-upload), #wrapper-custom-pagebuilder-setting-content select, #wrapper-custom-pagebuilder-setting-content textarea').serializeObject();
       result = $.extend({}, result);
       result =base64Encode(JSON.stringify(result));
@@ -251,7 +237,7 @@ function randomString(length) {
    }
 
    function add_column(el, width, type){
-    var blockbuilder_admin = $('#cpb-admin-wrap');
+    var custompagebuilder_admin = $('#cpb-admin-wrap');
       var clone = $('#cpb-columns .cpb-columns').clone(true);
       clone.hide();
       var row_id = el.parents('.cpb-row').find('.cpb-row-id').val(); 
@@ -280,17 +266,17 @@ function randomString(length) {
    }
 
 
-   function gavias_block_builder(){
-        var blockbuilder_admin = $('#cpb-admin-wrap');
-      var _bb_sortable = '.cpb-sortable';
-      var _bb_item = '.cpb-item';
-      var _bb_items = '#cpb-items';
-      var _bb_row = '.cpb-row';
-      var _bb_column = '.cpb-columns';
+   function _mod_custom_pages_builder(){
+      var custompagebuilder_admin = $('#cpb-admin-wrap');
+      var _cpb_sortable = '.cpb-sortable';
+      var _cpb_item = '.cpb-item';
+      var _cpb_items = '#cpb-items';
+      var _cpb_row = '.cpb-row';
+      var _cpb_column = '.cpb-columns';
 
-   	if( ! blockbuilder_admin.length ) return false;	
+   	if( ! custompagebuilder_admin.length ) return false;	
    	
-    blockbuilder_admin.sortable({ 
+    custompagebuilder_admin.sortable({ 
       start: function(e, ui){
            ui.placeholder.width(ui.item.find('.custom-pagebuilder-content-page').first().width() - 20);
            ui.placeholder.height(ui.item.height() - 20);
@@ -346,7 +332,7 @@ function randomString(length) {
     var rowid = $('#cpb-row-id');
    	$('.bb-btn-row-add').click(function(){
         var clone = $('#cpb-rows .cpb-row').clone(true);
-        init_sortable_find(clone, _bb_sortable, _bb_item);
+        init_sortable_find(clone, _cpb_sortable, _cpb_item);
 
    		clone.hide().find('.custom-pagebuilder-content-page > input').each(function() {
    				$(this).attr('name',$(this).attr('class')+'[]');
@@ -355,7 +341,7 @@ function randomString(length) {
    		rowid.val(rowid.val()*1+1);
    		clone.find('.cpb-row-id').val(rowid.val());
    		
-   		blockbuilder_admin.append(clone).find(".cpb-row").fadeIn(500);
+   		custompagebuilder_admin.append(clone).find(".cpb-row").fadeIn(500);
       cpb_sort_rows();
    	});
 
@@ -373,7 +359,7 @@ function randomString(length) {
    	// clone row
    	$('.cpb-row .cpb-row-clone').click(function(){
    		var element = $(this).closest('.cpb-element');
-   		element.find(_bb_sortable).sortable('destroy');
+   		element.find(_cpb_sortable).sortable('destroy');
    		var clone = element.clone(true);
    		element.after(clone);
       cpb_sort_rows();
@@ -385,7 +371,7 @@ function randomString(length) {
     $('.cpb-columns .cpb-column-clone').click(function(){
       var wrap = $('#cpb-admin-wrap');
       var element = $(this).closest('.cpb-element');
-      element.find(_bb_sortable).sortable('destroy');
+      element.find(_cpb_sortable).sortable('destroy');
       row_id = $(this).parents('cpb-row').find('input.cpb-row-id').val();
       var clone = element.clone(true);
       clone.find('input.element-parent').val(row_id);
@@ -419,7 +405,7 @@ function randomString(length) {
       var row_id = $(this).parents('.cpb-row').find('.cpb-row-id').val(); 
       
    		var item = $(this).attr('class');
-   		var clone = $(_bb_items).find('div.cpb-type-'+ item ).clone(true);
+   		var clone = $(_cpb_items).find('div.cpb-type-'+ item ).clone(true);
       
    		clone.hide().find('.custom-pagebuilder-content-page input').each(function() {
    			$(this).attr('name',$(this).attr('class')+'[]');
@@ -480,17 +466,17 @@ function randomString(length) {
    	var iresult = ''; var oresult = '';
    
    	$('.cpb-edit').click(function(){
-      oresult = '';
-      $('#cpb-form-setting').parent().find('.custom-pagebuilder-overlay').first().addClass('active').parents('body').addClass('gavias-overflow-hidden');
-   		iresult = $(this).closest('.cpb-element');    
-   		var _clone = iresult.children('.cpb-el-meta').clone(true);
-   	  oresult = iresult.children('.cpb-el-meta').clone(true);
-      _clone.find('.CodeMirror').remove();
-      $('#cpb-form-setting').prepend(_clone).fadeIn(350, function(){});
-      $('#cpb-form-setting .cpb-el-meta').animate({scrollTop: 0}, 500);
-   		iresult.children('.cpb-el-meta').remove();
-      runRender('html');
-      return;
+            oresult = '';
+            //$('#cpb-form-setting').parent().find('.custom-pagebuilder-overlay').first().addClass('active').parents('body').addClass('gavias-overflow-hidden');
+            iresult = $(this).closest('.cpb-element');    
+            var _clone = iresult.children('.cpb-el-meta').clone(true);
+            oresult = iresult.children('.cpb-el-meta').clone(true);
+            _clone.find('.CodeMirror').remove();
+            $('#cpb-form-setting').prepend(_clone).fadeIn(350, function(){});
+            $('#cpb-form-setting .cpb-el-meta').animate({scrollTop: 0}, 500);
+                      iresult.children('.cpb-el-meta').remove();
+            runRender('html');
+            return;
    	});
 
     $('#cpb-form-setting .cpb-form-setting-save').click(function(){
@@ -544,7 +530,7 @@ function randomString(length) {
   }) (jQuery.fn.clone);
 
   $(document).ready(function(){
-    gavias_block_builder();
+    _mod_custom_pages_builder();
   });
 
   $(document).mouseup(function(e){
@@ -597,5 +583,45 @@ function randomString(length) {
         editor.on("blur", function() {editor.save()});
       }
     };
+    
+    //console.log(drupalSettings);
+    function notify(style, text) {
+            $.notify({
+                title: 'Notification',
+                text: text,
+                image: '<i class="fa fa-floppy-o" style="font-size: 30px; color: #fff;"></i>',
+
+            }, {
+                style: 'metro',
+                className: style,
+                autoHide: true,
+                clickToHide: true,
+            });
+         } 
+    
+    $('.cpb-form-setting-save').click(function(){
+        var result = $('#wrapper-custom-pagebuilder-setting-content input:not(.input-file-upload), #wrapper-custom-pagebuilder-setting-content select, #wrapper-custom-pagebuilder-setting-content textarea').serializeObject();
+        result = $.extend({}, result);
+        result = base64Encode(JSON.stringify(result));
+
+        var pid = $("#custom_pagebuilder_page_id").val();
+        var data = {
+           data: result,
+           pid: pid
+        };
+        $.ajax({
+             url: drupalSettings.custom_pagebuilder.saveConfigURL,
+             type: 'POST',
+             data: data,
+             dataType: 'json',
+             success: function (data) {
+                 notify('success', 'Page Builder setting updated');
+             },
+             error: function (jqXHR, textStatus, errorThrown) {
+               //alert(textStatus + ":" + jqXHR.responseText);
+               //notify('black', 'Block Builder setting not updated');
+             }
+          });
+     }) 
 
 })(jQuery);

@@ -13,7 +13,6 @@ custom_pagebuilder.assets.admin:
     #assets/js/jquery.ui.sortable.min.js: { scope: footer }
     assets/js/datepicker.min.js: { scope: footer }
     assets/js/admin.js: { scope: footer }
-
     assets/js/fields/upload/jquery.ui.widget.js: { scope: footer }
     assets/js/fields/upload/jquery.iframe-transport.js: { scope: footer }
     assets/js/fields/upload/jquery.fileupload.js: { scope: footer  }
@@ -21,7 +20,6 @@ custom_pagebuilder.assets.admin:
     assets/js/fields/tabs/tabs.js: { scope: footer }
     vendor/notify/notify.min.js: { scope: footer }
     vendor/notify/styles/metro/notify-metro.js: { scope: footer }
-
     vendor/codemirror/lib/codemirror.js: {cope: footer}
     vendor/codemirror/addon/hint/show-hint.js: {cope: footer}
     vendor/codemirror/addon/hint/xml-hint.js: {cope: footer}

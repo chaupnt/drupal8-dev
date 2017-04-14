@@ -7,23 +7,29 @@
  */
 
 namespace Drupal\custom_pagebuilder\Controller;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\Controller\EntityViewController;
-use Drupal\custom_pagebuilder\Core\ClassCustomPagebuilder;
 /**
  * Description of CustomPagebuilderViewController
  *
  * @author Chau Phan
  */
-class CustomPagebuilderViewController extends EntityViewController{
+class CustomPagebuilderViewController {
   //put your code here
   
   private $pid;
   private $params = '';
   
-  function __construct($pid) {
-    $this->pid = $pid;
-    $this->params = $this->get_json_content_page();
+  
+  function __construct($pid = null) {
+    //kint($pid);
+    
+    if(empty($pid)) {
+      $pid = \Drupal::routeMatch()->getParameter('custom_pagebuilder');
+    }
+    
+    if($pid) {
+      $this->pid = $pid;
+      $this->params = $this->get_json_content_page();
+    }
   }
   
   public function get_pageid() {
@@ -36,6 +42,7 @@ class CustomPagebuilderViewController extends EntityViewController{
   }
   
   public function pageview() {
+    //return array('#markup' => 'dasdasda');
     $params = $this->get_params();
     $pages = array();
     

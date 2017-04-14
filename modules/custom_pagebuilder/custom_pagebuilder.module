@@ -119,7 +119,7 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_call_to_action',
     'cpb_chart',
     'cpb_code',
-    'cpb_column',
+    'cpb_textblock',
     'cpb_counter',
     'cpb_divider',
     'cpb_drupal_block',
@@ -234,14 +234,13 @@ function custom_pagebuilder_render_block($key) {
   function custom_pagebuilder_single_field( $field, $meta ){
   	$output = '';
   	if( isset( $field['type'] ) ) { 
-  		$output .= '<div class="single-field clearfix">';
+  		$output .= '<div class="single-field '. $field['type'] .' clearfix">';
   			$output .= '<div class="field-title">';
   				 if( key_exists('title', $field) ) {
   					$output .= '<span class="label-field">'. $field['title'] .'</span>';
   				 } 
   			$output .= '</div>';
   			$output .= '<div class="field-content">';
-        //$bb_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
         $bb_field = new \Drupal\custom_pagebuilder\Core\ClassFieldsCustomPagebuilder();
         $field_function = 'render_field_'. $field['type'];
         $output .= $bb_field->$field_function($field, $meta);
@@ -281,4 +280,17 @@ function custom_pagebuilder_render_block($key) {
   } 
   
   function custom_pagebuilder_theme_registry_alter(&$theme_registry) {
+  }
+  
+  function custom_pagebuilder_local_tasks_alter(&$local_tasks) {
+    
+    $local_tasks['custom_pagebuilder.admin.config'] = [
+      'title' => new \Drupal\Core\StringTranslation\TranslatableMarkup('Config Page'),
+      'base_route' => 'entity.custom_pagebuilder.canonical',
+      'route_name' => 'custom_pagebuilder.admin.config',
+      //'route_parameters' => array('custom_pagebuilder' => 1),
+      'class' => 'Drupal\Core\Menu\LocalTaskDefault',
+      'options' => [],
+    ];
+    //kint($local_tasks);
   }

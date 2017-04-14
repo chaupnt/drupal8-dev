@@ -9,15 +9,15 @@ use Drupal\custom_pagebuilder\Core\ClassCustomPagebuilder;
 class CustomPagebuilderAdminController extends ControllerBase {
   
   public function custom_pagebuilder_config_page($custom_pagebuilder){
-    
-    $page;
+    //return array("#markup" => 'sadasdasdas');
+    $page = '';
     $abs_url_config = \Drupal::url('custom_pagebuilder.admin.save', array(), array('absolute' => FALSE)); 
     $_url_get_img = \Drupal::url('custom_pagebuilder.admin.get_images_upload', array(), array('absolute' => FALSE));
     $cpb = new ClassCustomPagebuilder($custom_pagebuilder);
     $cpb->custom_pagebuilder_load_shortcodes(true);
     $page = array(
       '#attached' => array( 
-        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' ) ,
+        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' , 'drupal.ckeditor') ,
         'drupalSettings' => array(
           'custom_pagebuilder'=> array(
             'saveConfigURL' => $abs_url_config,
@@ -159,10 +159,10 @@ class CustomPagebuilderAdminController extends ControllerBase {
         if(empty($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'])) {
           $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'] = array();
         }
-        print_r($item);
+        //print_r($item);
         $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'][] = $item;
       }
-      print_r($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items']);
+      //print_r($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items']);
     }
 
     // save
