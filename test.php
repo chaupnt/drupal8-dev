@@ -15,6 +15,16 @@ $response = $kernel->handle($request);
 //$user = Drupal\user\Entity\User::load($uid);
 //user_login_finalize($user);
 
+
+    $textarea = array(
+      '#type' => 'textarea',
+      '#title' => 'asdasdasd',
+      '#rows' => 4,
+      '#description' => 'Briefly describe the changes you have made.',
+    );
+		$content = drupal_render($textarea);
+    print $content;
+die();
 $query = \Drupal::database()->select('custom_pagebuilder', 'cp');
       $query->fields('cp');
       $query->leftjoin('custom_pagebuilder_content', 'cpc', 'cp.id = cpc.id');

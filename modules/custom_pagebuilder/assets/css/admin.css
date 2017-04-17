@@ -52,20 +52,20 @@ html
   width: 150px !important;
   margin: 5px 0;
 }
-#wrapper-custom-pagebuilder-setting-content .gavias-add-quick-shortcode {
+#wrapper-custom-pagebuilder-setting-content .custompagebuilder-add-quick-shortcode {
   margin: 5px 0;
   background: #72A3CE;
   color: #fff;
   padding: 8px 10px;
 }
-#wrapper-custom-pagebuilder-setting-content .gavias-add-quick-shortcode:hover {
+#wrapper-custom-pagebuilder-setting-content .custompagebuilder-add-quick-shortcode:hover {
   background: #222222;
 }
 #wrapper-custom-pagebuilder-setting-content textarea {
   width: 100%;
   height: 120px;
 }
-#wrapper-custom-pagebuilder-setting-content .gavias-hidden {
+#wrapper-custom-pagebuilder-setting-content .custompagebuilder-hidden {
   display: none;
 }
 #wrapper-custom-pagebuilder-setting-content .btn-add, #wrapper-custom-pagebuilder-setting-content .btn-delete {
@@ -79,7 +79,7 @@ html
 #wrapper-custom-pagebuilder-setting-content .btn-delete {
   background: #F45754;
 }
-#wrapper-custom-pagebuilder-setting-content body.gavias-overflow-hidden {
+#wrapper-custom-pagebuilder-setting-content body.custompagebuilder-overflow-hidden {
   overflow-y: hidden;
   padding-right: 15px;
 }
@@ -658,7 +658,7 @@ html
   background: #f5f5f5;
   margin-bottom: 20px;
 }
-#wrapper-custom-pagebuilder-setting-content .gavias-image-demo {
+#wrapper-custom-pagebuilder-setting-content .custompagebuilder-image-demo {
   max-width: 150px;
   height: auto;
   margin-top: 5px;
@@ -666,7 +666,7 @@ html
   border: 2px solid #ccc;
   margin-bottom: 10px;
 }
-#wrapper-custom-pagebuilder-setting-content .gavias-field-upload-remove {
+#wrapper-custom-pagebuilder-setting-content .custompagebuilder-field-upload-remove {
   margin-top: 5px;
   float: left;
 }
@@ -753,7 +753,7 @@ html
   background: #72A3CE !important;
 }
 
-.gavias-box-images {
+.custompagebuilder-box-images {
   background: #fff;
   margin: 0;
   padding: 0;
@@ -769,16 +769,16 @@ html
   z-index: 999;
 }
 @media (max-width: 1000px) {
-  .gavias-box-images {
+  .custompagebuilder-box-images {
     width: 80%;
     left: 10%;
     right: 10%;
   }
 }
-.gavias-box-images.open-popup {
+.custompagebuilder-box-images.open-popup {
   display: block;
 }
-.gavias-box-images .header {
+.custompagebuilder-box-images .header {
   background: #6293BE;
   color: #fff;
   font-weight: 700;
@@ -788,7 +788,7 @@ html
   display: block;
   position: relative;
 }
-.gavias-box-images .header .close {
+.custompagebuilder-box-images .header .close {
   font-size: 14px;
   top: 15px;
   position: absolute;
@@ -796,13 +796,13 @@ html
   color: #fff;
   z-index: 1;
 }
-.gavias-box-images .gavias-box-images-inner {
+.custompagebuilder-box-images .custompagebuilder-box-images-inner {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
   background: white;
 }
-.gavias-box-images .gavias-box-images-inner .btn-choose-image-upload {
+.custompagebuilder-box-images .custompagebuilder-box-images-inner .btn-choose-image-upload {
   position: relative;
   display: block;
   width: auto;
@@ -816,7 +816,7 @@ html
   border: 1px solid #222;
   background-color: #ccc!important;
 }
-.gavias-box-images .gavias-box-images-inner .btn-choose-image-upload img{
+.custompagebuilder-box-images .custompagebuilder-box-images-inner .btn-choose-image-upload img{
   max-height: 100%;  
   max-width: 100%; 
   width: auto;
@@ -830,7 +830,7 @@ html
   height: auto;
   display: inline-block;
 }
-.gavias-box-images .gavias-box-images-inner .btn-choose-image-upload:hover {
+.custompagebuilder-box-images .custompagebuilder-box-images-inner .btn-choose-image-upload:hover {
   cursor: pointer;
   border-color: red;
 }

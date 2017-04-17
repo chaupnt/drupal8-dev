@@ -93,6 +93,7 @@ function custom_pagebuilder_theme() {
     'cpb_frontend_field' => array(
       'variables' => array(
         'field_item' => false,
+        'field_type' => false,
       )
     ),
     'page_custom_pagebuilder' => array(
@@ -118,9 +119,10 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_heading',
     'cpb_custombutton',
     'cpb_image',
+    'cpb_box_info',
     //'cpb_accordion', 
     //'cpb_box_image',
-    //'cpb_box_info',
+    //
     //'cpb_call_to_action',
     //'cpb_chart',
     //'cpb_code',

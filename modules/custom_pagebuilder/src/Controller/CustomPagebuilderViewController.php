@@ -66,7 +66,12 @@ class CustomPagebuilderViewController {
                   if (class_exists($shortcode)) {
                     $sc = new $shortcode;
                     if (method_exists($sc, 'render_content')) {
-                      $fields[] = array('#markup' => $sc->render_content($item));
+                      $fields[] = array(
+                        '#type' => 'html',
+                        '#theme' => 'cpb_frontend_field',
+                        '#field_item' => array('#markup' => $sc->render_content($item)),
+                        '#field_type' => $item['type']
+                      );
                     }
                   }
                 }

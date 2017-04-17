@@ -38,7 +38,8 @@ class ClassFieldsCustomPagebuilder
         <div class="btn-group">
           <button class="btn btn-primary iconpicker-component" type="button">
               <i class="<?php print $value ?>"></i></button> 
-          <button class="icp icp-dd btn btn-primary dropdown-toggle" data-selected="fa-car" data-toggle="dropdown" type="button"><span class="caret"></span> <span class="sr-only">Toggle Dropdown</span></button>
+          <button class="icp icp-dd btn btn-primary dropdown-toggle" data-selected="fa-car" data-toggle="dropdown" type="button">
+              <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span></button>
           <div class="dropdown-menu"></div>
         </div>
       </div>
@@ -140,12 +141,14 @@ class ClassFieldsCustomPagebuilder
 			<img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
 			<a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
 			<span class="loading">Loading....</span>
-			<a class="btn-delete btn-get-images-upload">Choose image</a>
-			<div class="clearfix"></div>
+			
+			
 			<?php if(isset($field['desc']) && ! empty($field['desc'])){?>
 				<span class="description"><?php print $field['desc'] ?></span>
 			<?php } ?>
 			<div class="clearfix"></div>
+      <a class="btn-delete btn-get-images-upload">Browse images</a>
+      <div class="clearfix"></div>
 			<div class="custompagebuilder-box-images">
 				<div class="custompagebuilder-box-images-inner">
 					<div class="header">
