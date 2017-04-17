@@ -2,8 +2,9 @@ custom_pagebuilder.assets.admin:
   version: 1.x
   css:
     theme:
+      vendor/bootstrap/css/bootstrap.min.css: {}  
       assets/css/admin.css: {}
-      vendor/font-awesome/css/font-awesome.min.css: {}
+      vendor/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css: {}
       vendor/notify/styles/metro/notify-metro.css: {}
       assets/css/admin.css: {}
       vendor/codemirror/lib/codemirror.css: {}
@@ -11,14 +12,14 @@ custom_pagebuilder.assets.admin:
       vendor/codemirror/addon/hint/show-hint.css: {}
   js:
     #assets/js/jquery.ui.sortable.min.js: { scope: footer }
+    vendor/bootstrap/js/bootstrap.min.js: { scope: footer }
     assets/js/datepicker.min.js: { scope: footer }
-    assets/js/admin.js: { scope: footer }
     assets/js/fields/upload/jquery.ui.widget.js: { scope: footer }
     assets/js/fields/upload/jquery.iframe-transport.js: { scope: footer }
     assets/js/fields/upload/jquery.fileupload.js: { scope: footer  }
     assets/js/fields/upload/script.js: { scope: footer }
     assets/js/fields/tabs/tabs.js: { scope: footer }
-    vendor/notify/notify.min.js: { scope: footer }
+    vendor/notify/notify.js: { scope: footer }
     vendor/notify/styles/metro/notify-metro.js: { scope: footer }
     vendor/codemirror/lib/codemirror.js: {cope: footer}
     vendor/codemirror/addon/hint/show-hint.js: {cope: footer}
@@ -30,6 +31,7 @@ custom_pagebuilder.assets.admin:
     vendor/codemirror/mode/htmlmixed/htmlmixed.js: {cope: footer}
     vendor/skrollr.min.js: {cope: footer}
     vendor/main.js: {cope: footer}
+    vendor/fontawesome-iconpicker/js/fontawesome-iconpicker.min.js: { scope: footer }
     assets/js/admin.js: { scope: footer }
     assets/js/myscript.js: { scope: footer }
   dependencies:
@@ -40,13 +42,24 @@ custom_pagebuilder.assets.admin:
     - core/jquery.ui.draggable
     - core/jquery.ui.sortable
     - core/jquery.ui.dropable
-    - core/jquery.ui.dialog 
+    - core/jquery.ui.dialog  
 
 custom_pagebuilder.assets.frontend:
   version: 1.x
   css: 
-    theme:
+    theme: 
       assets/css/frontend.css: {}
   js:
     vendor/skrollr.min.js: {cope: footer}
     vendor/main.js: {cope: footer}
+    
+custom_pagebuilder.font-awesome:
+  remote: https://fortawesome.github.io/Font-Awesome/
+  version: 4.7.0
+  license:
+    name: MIT
+    url: https://fortawesome.github.io/Font-Awesome/license/
+    gpl-compatible: true
+  css:
+    theme:
+      https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css: { type: external, minified: true }

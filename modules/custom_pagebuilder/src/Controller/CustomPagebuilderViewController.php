@@ -51,8 +51,9 @@ class CustomPagebuilderViewController {
           $row_attr = $this->get_attr_row_content($row);
           if(isset($row['columns']) && is_array($row['columns'])){
             $cols = array();
+            
             foreach( $row['columns'] as $column ) {
-
+              $fields = array();
               $cols_attr = $this->get_attr_column_content($column);
               $column_id = '';
               if(isset($col_attr['column_id']) && $col_attr['column_id']){
@@ -60,7 +61,6 @@ class CustomPagebuilderViewController {
               }
 
               if (is_array($column['items'])) {
-                $fields = array();
                 foreach ($column['items'] as $item) {
                   $shortcode = '\\Drupal\custom_pagebuilder\Shortcodes\\' . $item['type'];
                   if (class_exists($shortcode)) {
@@ -71,9 +71,13 @@ class CustomPagebuilderViewController {
                   }
                 }
               }
-
               $cols[] = array(
                 '#type' => 'html',
+                '#attached' => array( 
+                  'library' => array( 
+                    'custom_pagebuilder/custom_pagebuilder.font-awesome'
+                  )
+                ),
                 '#cache' => array('max-age' => 0),
                 '#theme' => 'cpb_frontend_col', 
                 '#column_id' => $cols_attr['col_id'],
@@ -116,6 +120,7 @@ class CustomPagebuilderViewController {
       $params = base64_decode($result->params);
       $params = json_decode($params, true);
     }
+    
     return $params;
   }
   

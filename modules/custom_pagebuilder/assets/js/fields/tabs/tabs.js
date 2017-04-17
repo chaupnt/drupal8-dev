@@ -11,7 +11,6 @@ jQuery(document).ready(function($){
 	
 	// add
 	$('.cpb-add-tab').click(function(){
-		
 		// increase tabs counter
 		var tabs_counter = $(this).siblings('.cpb-tabs-count');
 		tabs_counter.val(tabs_counter.val()*1 + 1);
@@ -19,7 +18,6 @@ jQuery(document).ready(function($){
 		var name = $(this).attr('rel-name');
 		var tabs_wrapper = $(this).siblings('.tabs-ul');
 		var new_tab = tabs_wrapper.children('li.tabs-default').clone(true);
-
 		new_tab.removeClass('tabs-default');	
 		new_tab.children('input.title').attr('name',name+'[title][]');
 		new_tab.children('input.icon').attr('name',name+'[icon][]');
@@ -35,7 +33,6 @@ jQuery(document).ready(function($){
 	// delete
 	$('.cpb-remove-tab').click(function(e){
 		e.preventDefault();
-		
 		// decrease tabs counter
 		var tabs_counter = $(this).parents('td').children('.cpb-tabs-count');
 		tabs_counter.val(tabs_counter.val()*1 - 1);

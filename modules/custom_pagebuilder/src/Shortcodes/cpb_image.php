@@ -15,28 +15,14 @@ if(!class_exists('cpb_image')):
                   'title'     => t('Image'),
                ),
                array(
-                  'id'        => 'border',
-                  'type'      => 'select',
-                  'options'   => array( 'off' => 'No', 'on' => 'Yes' ),
-                  'title'     => t('Border'),
-                  'sub_desc'  => t('Show Image Border'),
-               ),
-               array(
                   'id'        => 'align',
                   'type'      => 'select',
                   'title'     => t('Align Image'),
                   'options'   => array( 
-                     ''          => 'None', 
-                     'left'      => 'Left', 
-                     'right'     => 'Right', 
-                     'center'    => 'Center', 
+                     'text-left'      => 'Left', 
+                     'text-right'     => 'Right', 
+                     'text-center'    => 'Center', 
                   ),
-               ),
-               array(
-                  'id'     => 'margin',
-                  'type'      => 'text',
-                  'title'  => t('Margin Top'),
-                  'desc'      => t('example: 30px'),
                ),
                array(
                   'id'     => 'alt',
@@ -74,63 +60,38 @@ if(!class_exists('cpb_image')):
       }
 
       public function render_content( $item ) {
-         print self::sc_image( $item['fields'] );
+         return self::sc_image( $item['fields'] );
       }
 
       public static function sc_image( $attr, $content = null ){
-         global $base_url, $base_path;
-
-         extract(shortcode_atts(array(
-            'image'        => '',
-            'border'       => 'off',
-            'alt'          => '',
-            'margin'       => '',
-            'align'        => 'none',
-            'link'         => '',
-            'target'       => 'off',
-            'animate'      => '',
-            'el_class'     => ''
-         ), $attr));
-            
-         $image = substr($base_path, 0, -1) . $image; 
-
-         if( $align ) $align = 'text-'. $align;
-         
-         if( $target=='on' ){
+         $output = '';
+         $class_array = array();
+         $class_array[] = 'wow ' . $attr['animate'];
+         $class_array[] = $attr['el_class'];
+         $class_array[] = $attr['align'];
+         $alt = (!empty($attr['alt'])) ? $attr['alt'] : '';
+         if( $attr['target'] =='on' ){
             $target = 'target="_blank"';
          } else {
             $target = '';
          }
-         
-         if( $margin ){
-            $margin = 'style="margin-top:'. intval( $margin ) .'px"';
-         } else {
-            $margin = '';
+         $image = '';
+         if(!empty($attr['image'])) {
+           $image = '<img src="'. $attr['image'] .'" />';
          }
-
-         $class_array = array();
-         if($border=='on') $class_array[] = 'border-1x';
-         $class_array[] = $align;
-         $class_array[] = $el_class;
- 
-         if( $animate ) print '<div class="animate" data-anim-type="'. $animate .'">';
-         ?>
-            <div class="widget gsc-image<?php if(count($class_array) > 0) print (' ' . implode($class_array, ' ')) ?>" <?php print $margin ?> >
-               <div class="widget-content">
-                  <?php if($link){ ?>
-                     <a href="<?php $link ?>" <?php print $target ?>>
-                  <?php } ?> 
-                    <img src="<?php print $image ?>" alt="<?php print $alt ?>" />
-                  <?php if($link){print '</a>'; } ?>
-               </div>
-            </div>      
-         <?php       
-         if( $animate ) print '</div>';
+         
+         $output .= '<div class="wrapper-custom-pagebuideer-image">';
+          $output .= '<div class="content-image '. implode(" ", $class_array) .' ">';
+            if($attr['link']) {
+              $output .= '<a '. $target .' alt="'. $alt .'" href="'. $attr['link'] .'">'. $image .'</a>';
+            } else {
+              $output .= $image;
+            }
+          $output .= '</div>';
+         $output .= '</div>';
+         return $output;
       }
-
-      public function load_shortcode(){
-         add_shortcode( 'image', array('cpb_image', 'sc_image') );
-      }
+      
    }
 endif;   
 

@@ -81,36 +81,21 @@ if(!class_exists('cpb_drupal_block')):
 
       public function sc_drupal_block( $attr, $content = null ){
         $ourput = '';
-         extract(shortcode_atts(array(
-            'title'              => '',
-            'block_drupal'       => '',
-            'hidden_title'       => 'on',
-            'align_title'        => 'title-align-center',
-            'el_class'           => '',
-            'style_text'         => '',
-            'remove_margin'      => 'off',
-            'animate'            => ''
-         ), $attr));
-         
          $output = '';
          $class = array();
-         $class[] = $align_title; 
-         $class[] = $el_class;
-         $class[] = 'hidden-title-' . $hidden_title;
-          $class[] = 'remove-margin-' . $remove_margin;
-         $class[] = $style_text;
+         $class[] = $attr['align_title']; 
+         $class[] = $attr['el_class'];
+         $class[] = 'hidden-title-' . $attr['hidden_title'];
+         $class[] = 'remove-margin-' . $attr['remove_margin'];
+         $class[] = $attr['style_text'];
 
-         if($block_drupal){
-            $ourput = '<div class="widget cpb-block-drupal '.implode($class, ' ') .'">';
-              $ourput .= custom_pagebuilder_render_block($block_drupal);
+         if($attr['block_drupal']){
+            $ourput = '<div class="wrapper-custom-pagebuild-item-elemet wrapper-custom-pagebuild-block-drupal '.implode($class, ' ') .'">';
+              $ourput .= custom_pagebuilder_render_block($attr['block_drupal']);
             $ourput .= '</div>';
          }  
          return $ourput; 
       }
-
-       public function load_shortcode(){
-         add_shortcode( 'block', array('cpb_drupal_block', 'sc_drupal_block' ));
-       }
    }
 endif;
    

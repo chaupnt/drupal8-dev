@@ -17,6 +17,37 @@ class ClassFieldsCustomPagebuilder
 		$output .= (isset($field['desc']) && !empty($field['desc']))?' <span class="description '.$class.'">'.$field['desc'].'</span>':'';	
 		return $output;
 	}
+  
+  public function render_field_urllink($field = array(), $value = ''){
+		$output = '';
+		$class = ( isset( $field['class']) ) ? $field['class'] : '';
+		$output .= '<input autocomplete="off" type="text" name="'. $field['id'] .'" value="'.($value).'" class="'.$class.' custom-link-button " />';
+		$output .= (isset($field['desc']) && !empty($field['desc']))?' <span class="description '.$class.'">'.$field['desc'].'</span>':'';	
+		return $output;
+	}
+  
+  public function render_field_icon_font($field = array(), $value = ''){
+    if(empty($value)) {
+      $value = 'fa fa-address-book';
+    }
+		$output = '';
+		$class = ( isset( $field['class']) ) ? $field['class'] : '';
+    ob_start();
+    ?>
+      <div class="form-group wrapper-custom-icon-fa">
+        <div class="btn-group">
+          <button class="btn btn-primary iconpicker-component" type="button">
+              <i class="<?php print $value ?>"></i></button> 
+          <button class="icp icp-dd btn btn-primary dropdown-toggle" data-selected="fa-car" data-toggle="dropdown" type="button"><span class="caret"></span> <span class="sr-only">Toggle Dropdown</span></button>
+          <div class="dropdown-menu"></div>
+        </div>
+      </div>
+      <input autocomplete="off" type="hidden" name="<?php print $field['id'] ?>" value="<?php print $value ?>" class="<?php print $class ?>" />
+    <?php
+    $output = ob_get_clean();
+		return $output;
+	}
+  
 	
 	public function render_field_select($field = array(), $value = ''){
 		$output = '';
@@ -29,6 +60,25 @@ class ClassFieldsCustomPagebuilder
 			}
 		$output .= '</select>';
 		$output .= (isset($field['desc']) && !empty($field['desc']))?' <span class="description">'.$field['desc'].'</span>':'';
+		return $output;
+	}
+  
+  public function render_field_checkboxs($field = array(), $value = ''){
+		$output = '';
+    $class = ( isset( $field['class']) ) ? 'class="'.$field['class'].'" ' : '';
+    $output = '<div class="wrapper-field-checkboxs '. $class .'">';
+      if( is_array( $field['options'] ) ){
+				foreach( $field['options'] as $k => $v ){
+          if( $value == $value ) {
+            $checked = 'checked';
+          } else {
+            $checked = '';
+          }
+					$output .= '<input type="checkbox" name="'. $field['id'] .'" value="'.$v.'" '. $checked .' />';
+				}
+			}
+		$output .= (isset($field['desc']) && !empty($field['desc']))?' <span class="description">'.$field['desc'].'</span>':'';
+    $output .= '</div>';
 		return $output;
 	}
 	
@@ -130,6 +180,7 @@ class ClassFieldsCustomPagebuilder
 		<a class="btn-add cpb-add-tab" rel-name="<?php print $name ?>">Add tab</a>
 		<input type="hidden" name="<?php print $name ?>[count][]" class="cpb-tabs-count" value="<?php print $count ?>" />
 		<br style="clear:both;" />
+    <div class="clearfix" style="height:20px"></div>
 		<ul class="tabs-ul">
 			<?php	
 				if(isset($value) && is_array($value)){
@@ -138,9 +189,8 @@ class ClassFieldsCustomPagebuilder
 					<li>
 						<label>Title</label>
 						<input type="text" name="<?php print $name ?>[title][]" value="<?php print htmlspecialchars(stripslashes($val['title'])) ?>" />
-						<label>Icon tab</label>
-						<input type="text" name="<?php print $name ?>[icon][]" value="<?php print htmlspecialchars(stripslashes($val['icon'])) ?>" />
-						<label>Content</label>
+            
+            <label>Content</label>
 						<textarea name="<?php print $name ?>[content][]" value="" ><?php print $val['content'] ?></textarea>
 						<a href="" class="bb-btn-close cpb-remove-tab"><em>delete</em></a>
 					</li>

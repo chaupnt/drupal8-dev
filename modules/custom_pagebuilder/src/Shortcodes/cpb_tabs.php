@@ -1,13 +1,12 @@
 <?php 
 namespace Drupal\custom_pagebuilder\Shortcodes;
 if(!class_exists('cpb_tabs')):
-   global $tabs_array, $tabs_count;
    class cpb_tabs{
 
       public function render_form(){
          $fields = array(
             'type'   => 'cpb_tabs',
-            'title'  => t('Tabs'), 
+            'title'  => t('Tabs Or Accordion'), 
             'size'   => 3, 
             
             'fields' => array(
@@ -18,7 +17,17 @@ if(!class_exists('cpb_tabs')):
                   'title'     => t('Title'),
                   'class'     => 'display-admin'
                ),
-            
+               
+              array(
+                  'id'        => 'type',
+                  'type'      => 'select',
+                  'title'     => t('Type'),
+                  'options'   => array(
+                    'tabs'  => 'Tabs',
+                    'accordion' => 'Accordion',
+                  )
+              ),
+              
                array(
                   'id'        => 'tabs',
                   'type'      => 'tabs',
@@ -27,101 +36,82 @@ if(!class_exists('cpb_tabs')):
                   'desc'      => t('You can use Drag & Drop to set the order.'),
                ),
                
-               array(
-                  'id'        => 'type',
-                  'type'      => 'select',
-                  'options'   => array(
-                     'horizontal'   => 'Horizontal',
-                     'vertical'     => 'Vertical', 
-                  ),
-                  'title'  => t('Style'),
-                  'desc'      => t('Vertical tabs works only for column widths: 1/2, 3/4 & 1/1'),
-               ),
-               
             ),                                          
          );
          return $fields;
       }
 
       public function render_content( $item ) {
-         print self::sc_tabs( $item['fields'] );
+         return self::sc_tabs( $item['fields'] );
       }
 
 
       public static function sc_tabs( $attr, $content = null ){
-         global $tabs_array, $tabs_count;
-         
-         extract(shortcode_atts(array(
-            'title'  => '',
-            'uid' => 'tab-',
-            'tabs'   => '',
-            'type'   => '',
-         ), $attr)); 
-         do_shortcode( $content );
-         $_id = custom_pagebuilder_makeid();
-         $uid .= $_id;
-         // content builder
-         if( $tabs ){
-            $tabs_array = $tabs;
-         }
-         
-         $output = '<div class="gsc-tabs">';
-         if( is_array( $tabs_array ) )
-         {
-            if( $title ) $output .= '<h4 class="title">'. $title .'</h4>';
-            
-            $output .= '<div class="tabs_wrapper tabs_'. $type .'">';
-     
-               // content
-               $output .= '<ul class="nav nav-tabs">';
-                  $i = 1;
-                  $output_tabs = '';
-                  foreach( $tabs_array as $tab )
-                  {
-                     $icon = '';
-                     if(isset($tab['icon']) && $tab['icon']){
-                        $icon = '<i class="fa ' . $tab['icon'] . '"></i>';
-                     }
-                     $output .= '<li '.($i==1?'class="active"':'').'><a data-toggle="tab" href="#'. $uid .'-'. $i .'">' . $icon . $tab['title'] .'</a></li>';
-                     $output_tabs .= '<div id="'. $uid .'-'. $i .'" class="tab-pane fade in '.($i==1?'active':'').'">'. do_shortcode( $tab['content'] ) .'</div>';
-                     $i++;
+        //kint($attr['tabs'][2]);
+        
+        $output = '';
+        
+        if($attr['type'] == 'tabs') {
+          $_id = 'tab-'.custom_pagebuilder_makeid();
+          if(is_array($attr['tabs'])) {
+            $output .= '<div class="wraper-custom-pagebuilder-tabs">';
+            $output .= '<ul class="nav nav-tabs" role="tablist">';
+
+                foreach($attr['tabs'] as $key=>$value) {
+                  if($key == 0) {
+                    $output .= '<li role="presentation" class="active">'
+                        . '<a href="#'. $_id .'_.'. $key .'" aria-controls="'. $_id .'_.'. $key .'" role="tab" data-toggle="tab">
+                      '. $value['title'] .'</a></li>' ;
+                  } else {
+                    $output .= '<li role="presentation" >'
+                        . '<a href="#'. $_id .'_.'. $key .'" aria-controls="'. $_id .'_.'. $key .'" role="tab" data-toggle="tab">
+                      '. $value['title'] .'</a></li>' ;
                   }
-               $output .= '</ul>';
-               
-               // titles
-               $output .= '<div class="tab-content">';
-                  $output .= $output_tabs;
-               $output .= '</div>';
+                }
+            $output .= '</ul>';
+
+            $output .= '<div class="tab-content">';
+
+            foreach($attr['tabs'] as $key=>$value) {
+                  if($key == 0) {
+                    $output .= '<div role="tabpanel" class="tab-pane active" id="'. $_id .'_'. $key .'">'. $value['content'] .'</div>' ;
+                  } else {
+                    $output .= '<div role="tabpanel" class="tab-pane" id="'. $_id .'_'. $key .'">'. $value['content'] .'</div>' ;
+                  }
+            }
             $output .= '</div>';
-            
-            $tabs_array = '';
-            $tabs_count = 0;  
-         }
-         $output .= '</div>';
-         print $output;
-      }
-
-
-
-      public static function sc_tab( $attr, $content = null ){
-         global $tabs_array, $tabs_count;
-         
-         extract(shortcode_atts(array(
-            'title' => 'Tab title',
-         ), $attr));
-         
-         $tabs_array[] = array(
-            'title' => $title,
-            'content' => do_shortcode( $content )
-         ); 
-         $tabs_count++;
-      
-         return true;
-      }
-
-      public function load_shortcode(){
-         add_shortcode( 'tabs', array('cpb_tabs', 'sc_tabs') );
-         add_shortcode( 'tab', array('cpb_tabs', 'sc_tab') );
+            $output .= '</div>';
+          }
+        } else {
+          $_id = 'tab-'.custom_pagebuilder_makeid();
+          if(is_array($attr['tabs'])) {
+            $output .= '<div class="panel-group" id="wrapper-custom-pagebuider-'. $_id .'" role="tablist" aria-multiselectable="true">';
+              $output .= '<div class="panel panel-default">';
+                  foreach ($attr['tabs'] as $key=>$value) {
+                    $output .= '<div class="panel-heading" role="tab" id="heading'. $_id .'-'. $key .'">';
+                    $output .= '<h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#wrapper-custom-pagebuider-'. $_id .'" 
+                                  href="#collapse-'. $_id .'-'. $key .'" aria-expanded="true" aria-controls="collapse-'. $_id .'-'. $key .'">
+                                  ' . $value['title'] . '
+                                </a>
+                              </h4>';
+                    $output .= '</div>';
+                    
+                    $output .= '<div id="collapse-'. $_id .'-'. $key .'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'. $_id .'-'. $key .'">';
+                      
+                      $output .= '<div class="panel-body">';
+                        $output .=$value['content'];
+                      $output .= '</div>';
+                    $output .= '</div>';
+                    
+                  }
+              $output .= '</div>';
+            $output .= '</div>';
+          }
+        }
+        
+        return $output;
+        
       }
    }
 endif;

@@ -17,7 +17,7 @@ class CustomPagebuilderAdminController extends ControllerBase {
     $cpb->custom_pagebuilder_load_shortcodes(true);
     $page = array(
       '#attached' => array( 
-        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' ) ,
+        'library' => array( 'custom_pagebuilder/custom_pagebuilder.assets.admin' , 'custom_pagebuilder/custom_pagebuilder.font-awesome') ,
         'drupalSettings' => array(
           'custom_pagebuilder'=> array(
             'saveConfigURL' => $abs_url_config,
@@ -107,7 +107,6 @@ class CustomPagebuilderAdminController extends ControllerBase {
           if(isset($cpb_els[$new_parent_row_id])){
             $cpb_els[$new_parent_row_id]['columns'][$column_id] = $column;
           }
-          
           $col_row_id[$column_id] = $new_parent_row_id;
         }
       }  

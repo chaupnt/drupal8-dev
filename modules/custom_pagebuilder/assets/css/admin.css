@@ -1,5 +1,7 @@
-.gavias-overflow-hidden {
-  overflow: hidden;
+body ,
+html
+{
+  font-size: 14px;
 }
 
 #wrapper-custom-pagebuilder-setting-content {
@@ -431,13 +433,18 @@
 #wrapper-custom-pagebuilder-setting-content .cpb-add-element .cpb-items ul li:nth-child(4n+4) a {
   border-right-style: transparent;
 }
-#wrapper-custom-pagebuilder-setting-content .cpb-add-element .cpb-items .hedding {
+#wrapper-custom-pagebuilder-setting-content .cpb-add-element .cpb-items .hedding ,
+#cpb-form-setting .hedding
+{
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 700;
   background: #2B4B80;
   padding: 20px;
   color: #fff;
+}
+#cpb-form-setting .hedding {
+    margin-top:-60px;
 }
 #wrapper-custom-pagebuilder-setting-content .cpb-add-element.focus div.cpb-items {
   display: block;
@@ -485,10 +492,11 @@
   height: 50px;
   text-align: center;
   overflow: hidden;
-  padding: 15px 10px 0;
+  padding: 15px 10px 10px;
   background: #FCFCFC;
   border: 1px solid #e1e1e1;
   border-top: 0;
+  clear:both;
 }
 #wrapper-custom-pagebuilder-setting-content .cpb-item .cpb-item-content .cpb-item-title {
   display: block;
@@ -519,7 +527,7 @@
   display: none;
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
   position: fixed;
-  top: 100px;
+  top: 150px;
   bottom: 50px;
   width: 60%;
   left: 20%;
@@ -829,4 +837,8 @@
 
 .type-column-clearfix .cpb-el-action .cpb-edit{
   display: none!important;
+}
+
+.custompagebuilder-hidden {
+    display:none;
 }
