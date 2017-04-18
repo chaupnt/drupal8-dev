@@ -36,12 +36,12 @@ if(!class_exists('cpb_textblock')):
 
 
       public static function sc_column( $attr, $content = null ){
-         $ourput = '<div class="wrapper-custom-pagebuild-item-elemet wrapper-custom-pagebuild-textblock '. $attr['el_class'] .'">';
-         $ourput .= '<div class="inner-column-content">';
-         $ourput .= '<div class="content">' . $attr['content'] . '</div>';
-         $ourput .= '</div>';
-         $ourput .= '</div>';
-         return $ourput;
+         $output = '<div class="wrapper-custom-pagebuild-item-elemet wrapper-custom-pagebuild-textblock '. $attr['el_class'] .'">';
+         $output .= '<div class="inner-column-content">';
+         $output .= '<div class="content">' . $attr['content'] . '</div>';
+         $output .= '</div>';
+         $output .= '</div>';
+         return array('#markup' => $output);
       }
    }
  endif;  

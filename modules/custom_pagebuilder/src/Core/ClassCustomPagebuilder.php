@@ -181,7 +181,7 @@ class ClassCustomPagebuilder {
       array(
         'id'         => 'bg_repeat',
         'type'       => 'select',
-        'title'      => t('Background Position'),
+        'title'      => t('Background Repeat'),
         'options'    => array(
           'no-repeat' => 'no-repeat',
           'repeat' => 'repeat',
@@ -199,6 +199,38 @@ class ClassCustomPagebuilder {
           'fixed'  => 'Fixed - Parallax',
           ),
         'std'         => 'scroll'
+      ),
+     
+      array(
+        'id'         => 'bg_size',
+        'type'       => 'text',
+        'title'      => t('Background Size'),
+        'desc'         => 'The background-size property specifies the size of the background images (length,percentage,cover,contain)'
+      ),
+     
+     
+      array(
+        'id'        => 'animate',
+        'type'      => 'select',
+        'title'     => t('Animation'),
+        'desc'      => t('Entrance animation for element'),
+        'options'   => custom_pagebuilder_animate(),
+      ),
+     
+      array(
+        'id'    => 'duration',
+        'type'    => 'text',
+        'title'   => ('Anumate Duration'),
+        'desc'    => ('Change the animation duration'),
+        'class'   => 'small-text',
+      ),
+     
+     array(
+        'id'    => 'delay',
+        'type'    => 'text',
+        'title'   => ('Anumate Delay'),
+        'desc'    => ('Delay before the animation starts'),
+        'class'   => 'small-text',
       ),
 
       array(
@@ -332,7 +364,7 @@ class ClassCustomPagebuilder {
       array(
         'id'         => 'bg_repeat',
         'type'       => 'select',
-        'title'      => t('Background Position'),
+        'title'      => t('Background Repeat'),
         'options'    => array(
           'no-repeat' => 'no-repeat',
           'repeat' => 'repeat',
@@ -350,6 +382,13 @@ class ClassCustomPagebuilder {
           'fixed'  => 'Fixed - Parallax',
           ),
         'std'         => 'scroll'
+      ),
+     
+      array(
+        'id'         => 'bg_size',
+        'type'       => 'text',
+        'title'      => t('Background Size'),
+        'desc'         => 'The background-size property specifies the size of the background images (length,percentage,cover,contain)'
       ),
 
       array(
@@ -370,6 +409,30 @@ class ClassCustomPagebuilder {
         'type'    => 'text',
         'title'   => ('Custom ID'),
         'desc'    => ('For example: Your Custom ID for column'),
+        'class'   => 'small-text',
+      ),
+     
+      array(
+        'id'        => 'animate',
+        'type'      => 'select',
+        'title'     => t('Animation'),
+        'desc'      => t('Entrance animation for element'),
+        'options'   => custom_pagebuilder_animate(),
+      ),
+     
+      array(
+        'id'    => 'duration',
+        'type'    => 'text',
+        'title'   => ('Anumate Duration'),
+        'desc'    => ('Change the animation duration'),
+        'class'   => 'small-text',
+      ),
+     
+     array(
+        'id'    => 'delay',
+        'type'    => 'text',
+        'title'   => ('Anumate Delay'),
+        'desc'    => ('Delay before the animation starts'),
         'class'   => 'small-text',
       ),
       

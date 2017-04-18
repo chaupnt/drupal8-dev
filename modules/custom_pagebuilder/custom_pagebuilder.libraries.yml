@@ -7,13 +7,15 @@ custom_pagebuilder.assets.admin:
       vendor/fontawesome-iconpicker/css/fontawesome-iconpicker.min.css: {}
       vendor/notify/styles/metro/notify-metro.css: {}
       assets/css/admin.css: {}
-      vendor/codemirror/lib/codemirror.css: {}
-      vendor/codemirror/lib/codemirror.css: {}
-      vendor/codemirror/addon/hint/show-hint.css: {}
+      #vendor/codemirror/lib/codemirror.css: {}
+      #vendor/codemirror/lib/codemirror.css: {}
+      #vendor/codemirror/addon/hint/show-hint.css: {}
   js:
     #assets/js/jquery.ui.sortable.min.js: { scope: footer }
     vendor/bootstrap/js/bootstrap.min.js: { scope: footer }
     assets/js/datepicker.min.js: { scope: footer }
+    assets/js/colors.js: { scope: footer }
+    assets/js/jqColorPicker.min.js: { scope: footer }
     assets/js/fields/upload/jquery.ui.widget.js: { scope: footer }
     assets/js/fields/upload/jquery.iframe-transport.js: { scope: footer }
     assets/js/fields/upload/jquery.fileupload.js: { scope: footer  }
@@ -21,17 +23,18 @@ custom_pagebuilder.assets.admin:
     assets/js/fields/tabs/tabs.js: { scope: footer }
     vendor/notify/notify.js: { scope: footer }
     vendor/notify/styles/metro/notify-metro.js: { scope: footer }
-    vendor/codemirror/lib/codemirror.js: {cope: footer}
-    vendor/codemirror/addon/hint/show-hint.js: {cope: footer}
-    vendor/codemirror/addon/hint/xml-hint.js: {cope: footer}
-    vendor/codemirror/addon/hint/html-hint.js: {cope: footer}
-    vendor/codemirror/mode/xml/xml.js: {cope: footer}
-    vendor/codemirror/mode/javascript/javascript.js: {cope: footer}
-    vendor/codemirror/mode/css/css.js: {cope: footer}
-    vendor/codemirror/mode/htmlmixed/htmlmixed.js: {cope: footer}
+    #vendor/codemirror/lib/codemirror.js: {cope: footer}
+    #vendor/codemirror/addon/hint/show-hint.js: {cope: footer}
+    #vendor/codemirror/addon/hint/xml-hint.js: {cope: footer}
+    #vendor/codemirror/addon/hint/html-hint.js: {cope: footer}
+    #vendor/codemirror/mode/xml/xml.js: {cope: footer}
+    #vendor/codemirror/mode/javascript/javascript.js: {cope: footer}
+    #vendor/codemirror/mode/css/css.js: {cope: footer}
+    #vendor/codemirror/mode/htmlmixed/htmlmixed.js: {cope: footer}
     vendor/skrollr.min.js: {cope: footer}
     vendor/main.js: {cope: footer}
     vendor/fontawesome-iconpicker/js/fontawesome-iconpicker.min.js: { scope: footer }
+    
     assets/js/admin.js: { scope: footer }
     assets/js/myscript.js: { scope: footer }
   dependencies:
@@ -48,8 +51,10 @@ custom_pagebuilder.assets.frontend:
   version: 1.x
   css: 
     theme: 
+      vendor/animate/css/animate.css: {}
       assets/css/frontend.css: {}
   js:
+    vendor/animate/js/wow.min.js: {}
     vendor/skrollr.min.js: {cope: footer}
     vendor/main.js: {cope: footer}
     

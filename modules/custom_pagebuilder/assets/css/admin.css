@@ -842,3 +842,7 @@ html
 .custompagebuilder-hidden {
     display:none;
 }
+
+.cp-color-picker {
+    z-index: 9999 !important;
+}

@@ -19,6 +19,7 @@ if(!class_exists('cpb_box_info')):
                   'type'      => 'text',
                   'title'     => t('Sub Title')
                ),
+              
                array(
                   'id'        => 'image',
                   'type'      => 'upload',
@@ -70,19 +71,19 @@ if(!class_exists('cpb_box_info')):
          $output = '';
          $image_bg = '';
          if($attr['image']) {
-           $image_bg = 'background-image:url('.$attr['image'].')';
+           $image_bg = 'background-image:url('.$attr['image'].');';
          }
-
-         $style_content = '';
-         $height = (!empty($attr['height'])) ? 'min-height:' . $attr['height'] : '';
+         $height = (!empty($attr['height'])) ? 'min-height:' . $attr['height'] .';' : '';
+         $style_content = $height .''. $image_bg;
+         
          //kint($height);
          $class_aray = array();
          $class_aray[] = ($attr['el_class']) ? $attr['el_class']:'';
          $class_aray[] = $attr['content_align'];
          
-         $output .= '<div class="widget wrapper-custom-pagebuild-box-info '.implode(" ", $class_aray).'" style="'. $height .'">';
+         $output .= '<div class="widget wrapper-custom-pagebuild-box-info '.implode(" ", $class_aray).'" >';
             $output .= '<div class="clearfix">';
-              $output .= '<div class="image" style="'. $image_bg .'"></div>';
+              $output .= '<div class="image" style="{{ style_content }}"></div>';
                 $output .= '<div class="content" >';
                   $output .= '<div class="content-inner">';
                     if($attr['title']){
@@ -95,8 +96,13 @@ if(!class_exists('cpb_box_info')):
                       $output .= '<div class="desc">'. $attr['content'] .'</div>';
                     }
           $output .= '</div></div></div></div>';
-          kint($output);
-          return $output;
+          return array(
+                    '#type' => 'inline_template',
+                    '#template' => $output,
+                    '#context' => array(
+                      'style_content' => $style_content,
+                    ),
+                  );
       } 
    }
 endif;   

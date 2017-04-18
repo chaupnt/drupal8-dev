@@ -23,20 +23,30 @@ if(!class_exists('cpb_icon_box')):
                ),
          
                array(
-                  'id'        => 'icon',
-                  'type'      => 'text',
-                  'title'     => t('Icon class'),
-                  'std'       => '',
+                  'id'           => 'add_icon',
+                  'type'         => 'checkboxs',
+                  'title'        => t('Add icon?'),
+                  'options'      => array(
+                    'add_icon'  => 'add_icon', 
+                  ), 
                ),
+              
+              array(
+                  'id'           => 'chose_icon',
+                  'type'         => 'icon_font',
+                  'title'        => t('Chose Icon'), 
+              ),
+              
                array(
                   'id'        => 'icon_size',
                   'type'      => 'select',
                   'title'     => 'Icon font size',
                   'options'   => array(''=>'Default', 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60)
                ),
+              
                array(
                   'id'        => 'icon_color',
-                  'type'      => 'text',
+                  'type'      => 'color',
                   'title'     => t('Icon Color'),
                   'desc'      => t('Color for icon, e.g: #000'),
                   'std'       => '',
@@ -72,7 +82,7 @@ if(!class_exists('cpb_icon_box')):
 
                array(
                   'id'        => 'bg_color',
-                  'type'      => 'text',
+                  'type'      => 'color',
                   'title'     => t('Background color'),
                   'desc'      => t('Background for icon box, e.g: #f5f5f5')
                ),
@@ -98,7 +108,7 @@ if(!class_exists('cpb_icon_box')):
                array(
                   'id'        => 'animate',
                   'type'      => 'select',
-                  'title'     => t('Animation'),
+                  'title'     => t('Animation Icon'),
                   'desc'      => t('Entrance animation for element'),
                   'options'   => custom_pagebuilder_animate(),
                ),

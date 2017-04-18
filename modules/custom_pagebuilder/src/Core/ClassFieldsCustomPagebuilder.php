@@ -18,6 +18,14 @@ class ClassFieldsCustomPagebuilder
 		return $output;
 	}
   
+  public function render_field_color($field = array(), $value = '#000000'){
+		$output = '';
+		$class = ( isset( $field['class']) ) ? $field['class'] : '';
+		$output .= '<input name="'. $field['id'] .'" value="'.($value).'" class="color no-alpha" />';
+		$output .= (isset($field['desc']) && !empty($field['desc']))?' <span class="description '.$class.'">'.$field['desc'].'</span>':'';	
+		return $output;
+	}
+  
   public function render_field_urllink($field = array(), $value = ''){
 		$output = '';
 		$class = ( isset( $field['class']) ) ? $field['class'] : '';

@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){ 
     
-    
+    $('.color').colorPicker();
     
                 // Live binding of buttons
     $(document).on('click', '.action-placement', function(e) {
