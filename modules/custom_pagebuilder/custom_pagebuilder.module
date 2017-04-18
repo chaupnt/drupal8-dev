@@ -118,6 +118,8 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_heading',
     'cpb_custombutton',
     'cpb_image',
+    'cpb_icon_box',
+    'cpb_box_info',
     //'cpb_accordion', 
     //'cpb_box_image',
     //'cpb_box_info',
