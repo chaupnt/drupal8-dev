@@ -1,0 +1,17 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 18, 2017, 9:11:14 PM
+    Author     : Chau Phan
+*/
+.cbp-row + .cbp-row 
+{
+    margin-top:50px;
+}
+
+.cpb-field-element + cpb-field-element {
+    margin-top:30px;
+}
