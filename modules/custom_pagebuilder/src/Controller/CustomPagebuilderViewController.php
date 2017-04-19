@@ -61,18 +61,12 @@ class CustomPagebuilderViewController {
               }
 
               if (is_array($column['items'])) {
-                foreach ($column['items'] as $key_i=>$item) {
-                  
+                foreach ($column['items'] as $item) {
                   $shortcode = '\\Drupal\custom_pagebuilder\Shortcodes\\' . $item['type'];
                   if (class_exists($shortcode)) {
                     $sc = new $shortcode;
                     if (method_exists($sc, 'render_content')) {
-                      $fields[] = array(
-                        '#type' => 'html',
-                        '#theme' => 'cpb_frontend_field',
-                        '#field_item' => $sc->render_content($item),
-                        '#field_type' => $item['type']
-                      );
+                      $fields[] = array('#markup' => $sc->render_content($item));
                     }
                   }
                 }
@@ -81,8 +75,7 @@ class CustomPagebuilderViewController {
                 '#type' => 'html',
                 '#attached' => array( 
                   'library' => array( 
-                    'custom_pagebuilder/custom_pagebuilder.font-awesome',
-                    'custom_pagebuilder/custom_pagebuilder.assets.frontend'
+                    'custom_pagebuilder/custom_pagebuilder.font-awesome'
                   )
                 ),
                 '#cache' => array('max-age' => 0),
@@ -90,11 +83,9 @@ class CustomPagebuilderViewController {
                 '#column_id' => $cols_attr['col_id'],
                 '#col_class' => $cols_attr['col_class'],
                 '#col_style' => $cols_attr['col_style'],
-                '#col_animate' => ($cols_attr['col_animate']) ? $cols_attr['col_animate']:'',
                 '#field_items' => $fields,
               );
             }  
-            $col_style = '';
             $pages[] = array(
               '#type' => 'html',
               '#cache' => array('max-age' => 0),
@@ -102,7 +93,6 @@ class CustomPagebuilderViewController {
               '#row' => $row,
               '#row_class' => $row_attr['row_class'],
               '#row_style' => $row_attr['row_style'],
-              '#row_animate' => $row_attr['row_animate'],
               '#columns' => $cols
             );
           }
@@ -135,8 +125,6 @@ class CustomPagebuilderViewController {
   }
   
   public function get_attr_row_content($row) {
-    
-    $animate_opt = array();
     if(isset($row['attr'])){
 				$row_attr = $row['attr'];
 				$array_class 		= array();
@@ -167,38 +155,28 @@ class CustomPagebuilderViewController {
 				}
 				 $attr_parallax = "";
 				if( $row_attr['bg_image'] ){
-					$array_style[] 	= 'background-image:url('. $row_attr['bg_image'] .')';
+					$array_style[] 	= 'background-image:url(\''. substr($base_path, 0, -1) . $row_attr['bg_image'] .'\')';
 					$array_style[] 	= 'background-repeat:' . $row_attr['bg_repeat'];
 					$array_style[]    = 'background-attachment:' . $row_attr['bg_attachment']; 
-          $bg_size = ($row_attr['bg_size']) ? $row_attr['bg_size'] : 'auto';
-          $array_style[] = 'background-size:' . $bg_size;
 					if(isset($row_attr['bg_attachment']) && $row_attr['bg_attachment']=='fixed'){
 						$array_style[] 	= 'background-position: 50% 0';
-						$array_class[] = 'custom-pagebuilder-parallax-background ';
+						$array_class[] = 'gva-parallax-background ';
 						
 					}else{
 						$array_style[] 	= 'background-position:' . $row_attr['bg_position'];
 					}
 				}
-        if( isset($row_attr['animate']) && $row_attr['animate'] ){
-          $array_class[] = ' wow '.$row_attr['animate'];
-          if($row_attr['duration']) {
-            $animate_opt['duration'] = 'data-wow-duration="'. $row_attr['duration'] .'s"';
-          }
-          if($row_attr['delay']) {
-            $animate_opt['delay'] = 'data-wow-delay="'. $row_attr['delay'] .'s"';
-          }
-        }
 				$row_class = implode($array_class, ' ');
 				$row_style 	= implode('; ', $array_style );
-        return array('row_class' => $row_class,'row_style' => $row_style, 'row_animate' => $animate_opt);
+        return array('row_class' => $row_class,'row_style' => $row_style);
 			}	
       return array();
   }
   
   public function get_attr_column_content($column) {
+    //kint($column);
     $col_style = '';
-    $animate_opt = array();
+    
     $classes = array(
       '1' => 'col-lg-1 col-md-1 col-sm-2 col-xs-12',
       '2' => 'col-lg-2 col-md-2 col-sm-4 col-xs-12',
@@ -260,28 +238,16 @@ class CustomPagebuilderViewController {
       $col_style_array[] = 'background-image:url('. $base_url . '/' . $col_attr['bg_image'] .')';
       $col_style_array[] = 'background-repeat:' . $col_attr['bg_repeat'];
       $col_style_array[] = 'background-attachment:' . $col_attr['bg_attachment'];
-      $bg_size = ($col_attr['bg_size']) ? $col_attr['bg_size'] : 'auto';
-      $col_style_array[] = 'background-size:' . $bg_size;
+      
       if(isset($col_attr['bg_attachment']) && $col_attr['bg_attachment'] == 'fixed'){
-        $col_style_array[] = 'background-position: 50% 0';
-        $col_style_array[] = 'custom-pagebuilder-parallax';
+      $col_style_array[] = 'background-position: 50% 0';
+      $col_style_array[] = 'gavias-parallax';
       }else{
-        $col_style_array[] = 'background-position:' . $col_attr['bg_position'];
+      $col_style_array[] = 'background-position:' . $col_attr['bg_position'];
       }
     }
-    
-    if( isset($col_attr['animate']) && $col_attr['animate'] ){
-      $class .= ' wow '.$col_attr['animate'];
-      if($col_attr['duration']) {
-        $animate_opt['duration'] = 'data-wow-duration="'. $col_attr['duration'] .'s"';
-      }
-      if($col_attr['delay']) {
-        $animate_opt['delay'] = 'data-wow-delay="'. $col_attr['delay'] .'s"';
-      }
-    }
-    
     $col_style = implode('; ', $col_style_array );
-    $class_col = array('col_id' => $column_id,'col_class' => $class, 'col_style' => $col_style, 'col_animate' => $animate_opt);
+    $class_col = array('col_id' => $column_id,'col_class' => $class, 'col_style' => $col_style);
     return $class_col;
     
   }

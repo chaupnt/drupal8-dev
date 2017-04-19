@@ -180,7 +180,7 @@ if(!class_exists('cpb_custombutton')):
              '</a></div>';
         $ourput .= '</div>';
         $ourput .= '</div>';
-        return array("#markup" => $output);
+        return $ourput;
       }
    }
  endif;  

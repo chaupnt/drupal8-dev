@@ -19,7 +19,6 @@ if(!class_exists('cpb_box_info')):
                   'type'      => 'text',
                   'title'     => t('Sub Title')
                ),
-              
                array(
                   'id'        => 'image',
                   'type'      => 'upload',
@@ -43,12 +42,41 @@ if(!class_exists('cpb_box_info')):
                   'type'      => 'select',
                   'title'     => t('Content Align'),
                   'desc'      => t('Align Content for box info'),
-                  'options'   => array( 
-                    'text-left' => 'Left', 
-                    'text-right' => 'Right',
-                    'text-center' => 'Center'
-                   ),
-                  'std'       => 'text-left'
+                  'options'   => array( 'left' => 'Left', 'right' => 'Right' ),
+                  'std'       => 'left'
+               ),
+               array(
+                  'id'        => 'content_bg',
+                  'type'      => 'text',
+                  'title'     => t('Background content'),
+                  'desc'      => t('Background color for content. e.g. #f5f5f5'),
+               ),
+               array(
+                  'id'        => 'content_color',
+                  'type'      => 'select',
+                  'title'     => t('Skin content'),
+                  'desc'      => t('Skin color for text content'),
+                  'options'   => array( 'dark' => 'Dark', 'light' => 'Light'  ),
+                  'std'       => 'left'
+               ),
+               array(
+                  'id'        => 'link',
+                  'type'      => 'text',
+                  'title'     => t('Link'),
+               ),
+               array(
+                  'id'        => 'link_title',
+                  'type'      => 'text',
+                  'title'     => t('Link Title'),
+                  'std'       => 'Read more'
+               ),
+               array(
+                  'id'        => 'target',
+                  'type'      => 'select',
+                  'title'     => t('Open in new window'),
+                  'desc'      => t('Adds a target="_blank" attribute to the link'),
+                  'options'   => array( 'off' => 'No', 'on' => 'Yes' ),
+                  'std'       => 'on'
                ),
                array(
                   'id'        => 'el_class',
@@ -62,47 +90,69 @@ if(!class_exists('cpb_box_info')):
 
       public function render_content( $item ) {
          if( ! key_exists('content', $item['fields']) ) $item['fields']['content'] = '';
-            return self::sc_box_info( $item['fields'], $item['fields']['content'] );
+            print self::sc_box_info( $item['fields'], $item['fields']['content'] );
       }
 
       public static function sc_box_info( $attr, $content = null ){
-         global $base_path;
-         //kint($attr['height']);
-         $output = '';
-         $image_bg = '';
-         if($attr['image']) {
-           $image_bg = 'background-image:url('.$attr['image'].');';
+         global $base_url, $base_path;
+         extract(shortcode_atts(array(
+            'title'              => '',
+            'subtitle'           => '',
+            'image'              => '',
+            'height'             => '1px',
+            'content_align'      => '',
+            'content_bg'         => '',
+            'content_color'      => 'dark',
+            'link'               => '',
+            'link_title'         => 'Readmore',
+            'target'             => '',
+            'el_class'           => ''
+         ), $attr));
+
+         // target
+         if( $target ){
+            $target = 'target="_blank"';
+         } else {
+            $target = false;
          }
-         $height = (!empty($attr['height'])) ? 'min-height:' . $attr['height'] .';' : '';
-         $style_content = $height .''. $image_bg;
-         
-         //kint($height);
-         $class_aray = array();
-         $class_aray[] = ($attr['el_class']) ? $attr['el_class']:'';
-         $class_aray[] = $attr['content_align'];
-         
-         $output .= '<div class="widget wrapper-custom-pagebuild-box-info '.implode(" ", $class_aray).'" >';
-            $output .= '<div class="clearfix">';
-              $output .= '<div class="image" style="{{ style_content }}"></div>';
-                $output .= '<div class="content" >';
-                  $output .= '<div class="content-inner">';
-                    if($attr['title']){
-                      $output .= '<div class="title"><h2>'. $attr['title'] .'</h2></div>';
-                    }
-                    if($attr['subtitle']){
-                      $output .= '<div class="subtitle"><span>'. $attr['subtitle'] .'</span></div>';
-                    }
-                    if($attr['content']){
-                      $output .= '<div class="desc">'. $attr['content'] .'</div>';
-                    }
-          $output .= '</div></div></div></div>';
-          return array(
-                    '#type' => 'inline_template',
-                    '#template' => $output,
-                    '#context' => array(
-                      'style_content' => $style_content,
-                    ),
-                  );
+         if($image) $image = substr($base_path, 0, -1) . $image;
+
+         $style_content = '';
+         if($content_bg){
+            $style_content = 'style="background-color: ' . $content_bg . '"';
+         }
+
+         ?>
+            <div class="widget gsc-box-info <?php print $el_class ?> content-align-<?php print $content_align ?>" style="min-height: <?php print $height; ?>">
+               <div class="clearfix">
+                  <div class="image" style="background-image:url('<?php print $image ?>')"></div>   
+                  <div class="content text-<?php print $content_color ?>" <?php print $style_content ?>>
+                     <div class="content-bg" <?php print $style_content ?>></div>
+                     <div class="content-inner">
+                        <?php if($subtitle){ ?>
+                           <div class="subtitle"><span><?php print $subtitle; ?></span></div>
+                        <?php } ?>  
+
+                        <?php if($title){ ?>
+                           <div class="title"><h2><?php print $title; ?></h2></div>
+                         <?php } ?>      
+
+                        <?php if($content){ ?>
+                           <div class="desc"><?php print $content; ?></div>
+                        <?php } ?>   
+
+                        <?php if($link){ ?>
+                           <div class="readmore"><a class="btn-theme btn btn-sm" href="<?php print $link ?>"><?php print $link_title ?></a></div>
+                        <?php } ?>
+                     </div>
+                  </div>
+               </div>   
+           </div>
+      <?php
       } 
+
+      public function load_shortcode(){
+         add_shortcode( 'box_info', array('cpb_box_info', 'sc_box_info'));
+      }
    }
 endif;   

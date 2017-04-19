@@ -1,7 +1,7 @@
-<div id="{{ column_id }}" class="cpb-column {{ col_class }}" style="{{ col_style }}" {{ col_animate.duration }} {{ col_animate.delay }}>
+<div id="{{ column_id }}" class="cpb-column {{ col_class }}">
     <div class="column-inner" style="{{ col_style }}">
         {% for item in field_items %}
-            {{ item | render }}
+            {{ item }}
         {% endfor %}
     </div>
 </div>

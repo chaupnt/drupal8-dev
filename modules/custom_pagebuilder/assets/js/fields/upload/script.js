@@ -6,30 +6,30 @@
             var $_id = $(this).attr('data-id');
             $(this).fileupload({
                 add: function (e, data) {
-                    if( typeof(data.form.context.id) != "undefined" ) {
-                        var $_id = data.form.context.id;
-                        //alert(data.form.context.id);
+                    console.log(data.form.context.id);
+                    var $_id = data.form.context.id;
+                    //alert(data.form.context.id);
+                    $('#cpbuilder-' + $_id + ' .loading').each(function(){
+                            $(this).css('display', 'inline-block'); 
+                    });
+                    var jqXHR = data.submit().done(function(data){
+                        data = JSON.parse(data);
                         $('#cpbuilder-' + $_id + ' .loading').each(function(){
-                                $(this).css('display', 'inline-block'); 
+                            $(this).css('display', 'none'); 
                         });
-                        var jqXHR = data.submit().done(function(data){
-                            data = JSON.parse(data);
-                            $('#cpbuilder-' + $_id + ' .loading').each(function(){
-                                $(this).css('display', 'none'); 
-                            });
-                            $('#cpbuilder-' + $_id + ' input.file-input').each(function(){
-                                $(this).val(data['file_url']); 
-                            });
-
-                            $('#cpbuilder-' + $_id + ' .custompagebuilder-image-demo').each(function(){
-                                $(this).attr('src', data['file_url_full']);
-                            });
-
-                            $('#cpbuilder-' + $_id + ' .custompagebuilder-field-upload-remove').each(function(){
-                                $(this).css('display', 'inline-block');
-                            });
+                        $('#cpbuilder-' + $_id + ' input.file-input').each(function(){
+                            $(this).val(data['file_url']); 
                         });
-                    }
+
+                        $('#cpbuilder-' + $_id + ' .custompagebuilder-image-demo').each(function(){
+                            $(this).attr('src', data['file_url_full']);
+                        });
+
+                        $('#cpbuilder-' + $_id + ' .custompagebuilder-field-upload-remove').each(function(){
+                            $(this).css('display', 'inline-block');
+                        });
+
+                    });
                 },
 
                 progress: function(e, data){

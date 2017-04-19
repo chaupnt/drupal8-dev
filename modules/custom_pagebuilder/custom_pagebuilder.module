@@ -79,7 +79,6 @@ function custom_pagebuilder_theme() {
         'row' => false,
         'row_class' => false,
         'row_style' => false,
-        'row_animate' => false,
         'columns' => false,
       )
     ),
@@ -89,13 +88,11 @@ function custom_pagebuilder_theme() {
         'col_class' => false,
         'col_style' => false,
         'field_items' => false,
-        'col_animate' => false,
       )
     ),
     'cpb_frontend_field' => array(
       'variables' => array(
         'field_item' => false,
-        'field_type' => false,
       )
     ),
     'page_custom_pagebuilder' => array(
@@ -121,13 +118,11 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_heading',
     'cpb_custombutton',
     'cpb_image',
-    'cpb_box_info',
-    'cpb_message_box',
     'cpb_icon_box',
-    //'cpb_hover_box',
+    'cpb_box_info',
     //'cpb_accordion', 
     //'cpb_box_image',
-    //
+    //'cpb_box_info',
     //'cpb_call_to_action',
     //'cpb_chart',
     //'cpb_code',

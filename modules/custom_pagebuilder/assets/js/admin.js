@@ -499,7 +499,7 @@ function randomString(length) {
         }  
             $('#cpb-form-setting .cpb-el-meta').animate({scrollTop: 0}, 500);
             iresult.children('.cpb-el-meta').remove();
-            //runRender('html');
+            runRender('html');
             return;
    	});
 
@@ -591,7 +591,7 @@ function randomString(length) {
       return aResult;
     };
 
-    /*
+
     function runRender(type){
       var aBox=getByClass("code_"+type);
       for(var i=0;i < aBox.length; i++){
@@ -605,8 +605,6 @@ function randomString(length) {
         editor.on("blur", function() {editor.save()});
       }
     };
-    */
-   
     
     //console.log(drupalSettings);
     function notify(style, text) {

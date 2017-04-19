@@ -94,11 +94,7 @@ if(!class_exists('cpb_drupal_block')):
               $ourput .= custom_pagebuilder_render_block($attr['block_drupal']);
             $ourput .= '</div>';
          }  
-         return array(
-                    '#type' => 'inline_template',
-                    '#template' => $ourput,
-                    '#context' => array(),
-                  );
+         return $ourput; 
       }
    }
 endif;

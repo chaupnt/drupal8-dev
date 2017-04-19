@@ -89,7 +89,7 @@ if(!class_exists('cpb_image')):
             }
           $output .= '</div>';
          $output .= '</div>';
-         return array('#markup' => $output);
+         return $output;
       }
       
    }
