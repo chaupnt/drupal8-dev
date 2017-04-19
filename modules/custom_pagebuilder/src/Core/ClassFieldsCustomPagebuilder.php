@@ -18,6 +18,14 @@ class ClassFieldsCustomPagebuilder
 		return $output;
 	}
   
+  public function render_field_color($field = array(), $value = '#000000'){
+		$output = '';
+		$class = ( isset( $field['class']) ) ? $field['class'] : '';
+		$output .= '<input name="'. $field['id'] .'" value="'.($value).'" class="field-color no-alpha" />';
+		$output .= (isset($field['desc']) && !empty($field['desc']))?' <span class="description '.$class.'">'.$field['desc'].'</span>':'';	
+		return $output;
+	}
+  
   public function render_field_urllink($field = array(), $value = ''){
 		$output = '';
 		$class = ( isset( $field['class']) ) ? $field['class'] : '';
@@ -69,7 +77,7 @@ class ClassFieldsCustomPagebuilder
     $output = '<div class="wrapper-field-checkboxs '. $class .'">';
       if( is_array( $field['options'] ) ){
 				foreach( $field['options'] as $k => $v ){
-          if( $value == $value ) {
+          if( $value == $v ) {
             $checked = 'checked';
           } else {
             $checked = '';
@@ -146,6 +154,8 @@ class ClassFieldsCustomPagebuilder
 				<span class="description"><?php print $field['desc'] ?></span>
 			<?php } ?>
 			<div class="clearfix"></div>
+      <a class="btn-delete btn-get-images-upload">Browse images</a>
+      <div class="clearfix"></div>
 			<div class="custompagebuilder-box-images">
 				<div class="custompagebuilder-box-images-inner">
 					<div class="header">

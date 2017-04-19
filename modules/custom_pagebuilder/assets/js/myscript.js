@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){ 
     
-    $('.color').colorPicker({
+    $('.field-color').colorPicker({
         customBG: '#222',
 	margin: '4px -2px 0',
         doRender: 'div div',

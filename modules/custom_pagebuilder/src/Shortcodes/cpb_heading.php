@@ -63,7 +63,7 @@ if(!class_exists('cpb_heading')):
          $class[] = $attr['el_class'];
          $class[] = $attr['align'];
          $output = '<div class="wrapper-custom-pagebuild-item-elemet wrapper-custom-pagebuilder-heading">';
-         $output .= '<div class="widget custom-pagebuilder-heading '. implode($class, ' ') .'">';
+         $output .= '<div class="widget custom-pagebuilder-heading '. implode(' ', $class) .'">';
          
          if($attr['title']) {
            switch ($attr['element_tag']) {
@@ -108,7 +108,7 @@ if(!class_exists('cpb_heading')):
          
          $output .= '</div><div class="clearfix"></div>';
          $output .= '</div>';
-         return $output;
+         return array('#markup' => $output);
       }
       
    }

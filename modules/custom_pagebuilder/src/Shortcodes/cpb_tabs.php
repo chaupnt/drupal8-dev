@@ -110,7 +110,7 @@ if(!class_exists('cpb_tabs')):
           }
         }
         
-        return $output;
+        return array('#markup' => $output);
         
       }
    }
