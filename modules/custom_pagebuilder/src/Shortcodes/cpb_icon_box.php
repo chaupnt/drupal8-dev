@@ -7,8 +7,8 @@ if(!class_exists('cpb_icon_box')):
          $fields = array(
             'type' => 'cpb_icon_box',
             'title' => ('Icon Box'), 
-            'size' => 3,'fields' => array(
-         
+            'size' => 3,
+            'fields' => array(
                array(
                   'id'        => 'title',
                   'type'      => 'text',
@@ -226,6 +226,7 @@ if(!class_exists('cpb_icon_box')):
                       'style_icon' => implode(";", $style_icon),
                       'duration' => $duration,
                       'style_box' => implode(";", $style),
+                      'delay' => $delay,
                     ),
                   ); 
          

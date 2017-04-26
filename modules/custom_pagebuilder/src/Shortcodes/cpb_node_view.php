@@ -1,39 +1,42 @@
-<?php 
-namespace Drupal\custom_pagebuilder\Shortcodes;
-use Drupal\custom_pagebuilder\Core\ClassVideoEmbed;
-if(!class_exists('cpb_video_box')):
-   class cpb_video_box{
+<?php
 
-      public function render_form(){
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace Drupal\custom_pagebuilder\Shortcodes;
+
+/**
+ * Description of cpb_node_view
+ *
+ * @author Chau Phan
+ */
+if(!class_exists('cpb_node_view')) {
+  class cpb_node_view {
+    //put your code here
+    public function render_form(){
          $fields = array(
-            'type' => 'cpb_video_box',
-            'title' => ('Video Box'), 
+            'type' => 'cpb_node_view',
+            'title' => ('Node View'), 
             'size' => 3,
             'fields' => array(
-                  
                array(
-                  'id'        => 'content',
+                  'id'        => 'node_id',
                   'type'      => 'text',
-                  'title'     => t('Data Url'),
-                  'desc'      => t('example: //player.vimeo.com/video/88558878?color=ffffff&title=0&byline=0&portrait=0'),
+                 'title'     => t('Node ID'),
+                  'class'     => 'display-admin'
                ),
-              
-              array(
-                  'id'        => 'auto_play',
-                  'type'      => 'select',
-                  'title'     => t('Auto Play'),
-                  'desc'      => t(''),
-                  'options'   => array('yes' => 'Yes', 'no' => 'No'),
-              ),
-              
+               
                array(
                   'id'        => 'animate',
                   'type'      => 'select',
-                  'title'     => t('Animation'),
+                  'title'     => t('Animation Icon'),
                   'desc'      => t('Entrance animation for element'),
                   'options'   => custom_pagebuilder_animate(),
                ),
-              
+               
               array(
                 'id'    => 'duration',
                 'type'    => 'text',
@@ -42,18 +45,18 @@ if(!class_exists('cpb_video_box')):
                 'class'   => 'small-text',
               ),
 
-              array(
+             array(
                 'id'    => 'delay',
                 'type'    => 'text',
                 'title'   => ('Anumate Delay'),
                 'desc'    => ('Delay before the animation starts'),
                 'class'   => 'small-text',
               ),
-               
+              
                array(
-                  'id'        => 'el_class',
+                  'id'     => 'el_class',
                   'type'      => 'text',
-                  'title'     => t('Extra class name'),
+                  'title'  => t('Extra class name'),
                   'desc'      => t('Style particular content element differently - add a class name and refer to it in custom CSS.'),
                ),
 
@@ -61,17 +64,18 @@ if(!class_exists('cpb_video_box')):
          );
          return $fields;
       }
-
+      
       public function render_content( $item ) {
          if( ! key_exists('content', $item['fields']) ) $item['fields']['content'] = '';
-         return self::sc_video_box( $item['fields'], $item['fields']['content'] );
+         return self::sc_node_view( $item['fields'], $item['fields']['content'] );
       }
 
 
-      public static function sc_video_box( $attr, $content = null ){
-         $output = '';
-         
-         // Amination Box
+      public static function sc_node_view( $attr, $content = null ){
+        
+        $output = '';
+        
+        // Amination Box
          $class_animate = '';
          $duration = '';
          $delay = '';
@@ -80,12 +84,23 @@ if(!class_exists('cpb_video_box')):
            $duration = !empty($attr['duration']) ? 'data-wow-duration='.$attr['duration'].'s' : '';
            $delay = !empty($attr['delay']) ? 'data-wow-delay='.$attr['delay'].'s' : '';
          }
-         
-         $autoembed = new ClassVideoEmbed($attr['auto_play']);
-         $video = trim($autoembed->getEmbedVideo($attr['content']));
-         $output .= '<div class="wrapper-custom-pagebuilder-videoembed '. $attr['el_class'] .' '. $class_animate .' " {{ duration }} {{ delay }} >';
+        
+        $nid = $attr['node_id'];
+        $entity_type = 'node';
+        $view_mode = 'full';
+
+        $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entity_type);
+        $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
+        $node = $storage->load($nid);
+        $_view = '';
+        if(!empty($node)) {
+          $build = $view_builder->view($node, $view_mode);
+          $_view = render($build);
+        }
+        
+        $output .= '<div class="wrapper-custom-pagebuilder-node-view '. $attr['el_class'] .' '. $class_animate .' " {{ duration }} {{ delay }} >';
             $output .= '<div class="inner-content">';
-              $output .= $video;
+              $output .= $_view;
             $output .= '</div>';
          $output .= '</div>';
          
@@ -98,11 +113,7 @@ if(!class_exists('cpb_video_box')):
                       'delay' => $delay,
                     ),
                   ); 
-      
       }
-   }
-endif;   
-
-
-
-
+      
+  }
+}

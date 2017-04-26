@@ -121,6 +121,9 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_icon_box',
     'cpb_box_info',
     'cpb_progress_bar', 
+    'cpb_tabs',
+    'cpb_video_box',
+    'cpb_node_view'
     //'cpb_box_image',
     //'cpb_box_info',
     //'cpb_call_to_action',
@@ -135,8 +138,7 @@ function custom_pagebuilder_list_shortcodes(){
     //'cpb_our_team',
     //'cpb_pricing_item',
     //'cpb_progress',
-    'cpb_tabs',
-    //'cpb_video_box'
+    
   );
 }
 
