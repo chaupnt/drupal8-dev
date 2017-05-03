@@ -149,11 +149,11 @@ if(!class_exists('cpb_custombutton')):
 
 
       public function render_content( $item ) {
-         return self::sc_column( $item['fields'] );
+         return self::sc_custombutton( $item['fields'] );
       }
 
 
-      public static function sc_column( $attr, $content = null ){
+      public static function sc_custombutton( $attr, $content = null ){
         $target = '';
         if( isset($attr['target']) && '_blank' == $attr['target'] ) {
           $target = 'target="_blank"';

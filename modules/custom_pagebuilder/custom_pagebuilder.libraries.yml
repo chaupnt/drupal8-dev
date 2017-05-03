@@ -16,6 +16,7 @@ custom_pagebuilder.assets.admin:
     assets/js/fields/upload/jquery.iframe-transport.js: { scope: footer }
     assets/js/fields/upload/jquery.fileupload.js: { scope: footer  }
     assets/js/fields/upload/script.js: { scope: footer }
+    assets/js/fields/upload/multiple_upload.js: { scope: footer }
     assets/js/fields/tabs/tabs.js: { scope: footer }
     vendor/notify/notify.js: { scope: footer }
     vendor/notify/styles/metro/notify-metro.js: { scope: footer }

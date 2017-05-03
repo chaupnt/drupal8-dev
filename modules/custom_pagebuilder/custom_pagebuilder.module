@@ -123,7 +123,8 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_progress_bar', 
     'cpb_tabs',
     'cpb_video_box',
-    'cpb_node_view'
+    'cpb_node_view',
+    'cpb_carousel',
     //'cpb_box_image',
     //'cpb_box_info',
     //'cpb_call_to_action',
