@@ -1,0 +1,8 @@
+/**
+ * @file
+ * The visual styles for Bootstrap Xinh VNN's search form(s).
+ */
+
+input[type="search"] {
+    box-sizing: border-box;
+}

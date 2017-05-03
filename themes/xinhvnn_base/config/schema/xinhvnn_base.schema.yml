@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Bootstrap Xinh VNN theme.
+
+xinhvnn_base.settings:
+  type: theme_settings
+  label: 'Xinh VNN settings'
