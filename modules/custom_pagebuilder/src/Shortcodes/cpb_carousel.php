@@ -20,10 +20,11 @@ if(!class_exists('cpb_carousel')) {
             'type' => 'cpb_carousel',
             'title' => t('Custom Carousel'),
             'size' => 2,
+            'multiple_field' => array('images'),
             'fields' => array(
               
               array(
-                  'id'        => 'Image',
+                  'id'        => 'images',
                   'type'      => 'multiple_upload',
                   'title'     => t('Image'),
               ),
@@ -71,6 +72,7 @@ if(!class_exists('cpb_carousel')) {
 
 
       public static function sc_carousel( $attr, $content = null ){
+        kint($attr);
         return array("#markup" => "xxx");
       }
   }

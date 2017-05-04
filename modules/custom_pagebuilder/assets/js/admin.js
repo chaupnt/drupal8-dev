@@ -627,8 +627,9 @@ function randomString(length) {
     $('#cpb-form-setting--2 .cpb-form-setting-save').click(function(){
         var result = $('#wrapper-custom-pagebuilder-setting-content input:not(.input-file-upload), #wrapper-custom-pagebuilder-setting-content select, #wrapper-custom-pagebuilder-setting-content textarea').serializeObject();
         result = $.extend({}, result);
+        
         result = base64Encode(JSON.stringify(result));
-
+        console.log(result);
         var pid = $("#custom_pagebuilder_page_id").val();
         var data = {
            data: result,

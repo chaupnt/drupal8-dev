@@ -35,6 +35,37 @@ if(!class_exists('cpb_tabs')):
                   'sub_desc'  => t('To add an <strong>icon</strong> in Title field, please use the following code:<br/><br/>&lt;i class=" icon-lamp"&gt;&lt;/i&gt; Tab Title'),
                   'desc'      => t('You can use Drag & Drop to set the order.'),
                ),
+              
+              array(
+                  'id'        => 'animate',
+                  'type'      => 'select',
+                  'title'     => t('Animation Icon'),
+                  'desc'      => t('Entrance animation for element'),
+                  'options'   => custom_pagebuilder_animate(),
+              ),
+               
+              array(
+                'id'    => 'duration',
+                'type'    => 'text',
+                'title'   => ('Anumate Duration'),
+                'desc'    => ('Change the animation duration'),
+                'class'   => 'small-text',
+              ),
+
+             array(
+                'id'    => 'delay',
+                'type'    => 'text',
+                'title'   => ('Anumate Delay'),
+                'desc'    => ('Delay before the animation starts'),
+                'class'   => 'small-text',
+              ),
+              
+              array(
+                  'id'        => 'el_class',
+                  'type'      => 'text',
+                  'title'     => t('Extra class name'),
+                  'desc'      => t('Style particular content element differently - add a class name and refer to it in custom CSS.'),
+              ),  
                
             ),                                          
          );

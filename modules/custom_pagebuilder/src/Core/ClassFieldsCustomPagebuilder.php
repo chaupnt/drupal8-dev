@@ -180,13 +180,12 @@ class ClassFieldsCustomPagebuilder
 		$class = ( isset($field['class']) ) ? $field['class'] : 'image';
 		ob_start();
 		?> 
-		<div class="cpbuilder-upload-image" id="cpbuilder-upload-<?php print $_id; ?>">
-			<form class="upload" id="upload-<?php print $_id; ?>" method="post" action="<?php print (base_path() . 'admin/structure/custom_pagebuilder/upload') ?>" enctype="multipart/form-data">
-				<div class="drop">
-					<input type="file" name="upl" multiple class="input-file-upload"/>
-				</div>
-			</form>
-      <?php if(empty($values)) $values = array(array('url_image' => $default_image)); ?>
+		<div class="cpbuilder-upload-image" data-id_gen="<?php print $_id; ?>" >
+			
+      <?php 
+        if(empty($values)) $values = array(array('title' => '', 'sub_title' => '' ,'url_image' => '')); 
+        $i = 1;
+      ?>
       <?php foreach($values as $value): ?>
         <?php 
         
@@ -199,29 +198,65 @@ class ClassFieldsCustomPagebuilder
         ?>
         <div class="wrapper-fields-images-upload">
             <div class="field-group">
-              <input readonly="true" type="text" name="<?php print $field['id'].'[]url_image]' ?>" value="<?php print $value['url_image'] ?>" class="<?php print $class ?> file-input" />
-              <img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
-              <a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
-              <span class="loading">Loading....</span>
-              <a class="btn-delete btn-get-images-upload">Choose image</a>
-              <div class="clearfix"></div>
+                <div class="wrapper-content-fields" id="cpbuilder-upload-carousel-<?php print $i; ?>-<?php print $_id; ?>">
+                  
+                    <div class="form-group">
+                      <label for="title_slider">Title</label>
+                      <input class="title-carousel" type="text" class="form-control" value="<?php print $value['title'] ?>" name="<?php print $field['id'].'[title]' ?>">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="title_slider">Subtitle</label>
+                      <input class="subtitle-carousel" type="text" value="<?php print $value['sub_title'] ?>" class="form-control" name="<?php print $field['id'].'[sub_title]' ?>">
+                    </div>
+                    
+                  <form class="upload" data-count="<?php print $i ?>" id="upload-carousel-<?php print $i; ?>-<?php print $_id; ?>" method="post" action="<?php print (base_path() . 'admin/structure/custom_pagebuilder/upload') ?>" enctype="multipart/form-data">
+                    <div class="drop">
+                      <input type="file" name="upl" multiple class="input-file-upload"/>
+                    </div>
+                  </form>
+                    <p>
+                      <input readonly="true" type="text" name="<?php print $field['id'].'[url_image]' ?>" value="<?php print $value['url_image'] ?>" class="<?php print $class ?> file-input" />
+                    </p>
+                  <img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
+                  <a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
+                  <span class="loading">Loading....</span>
+                  <a class="btn-delete btn-get-images-upload">Choose image</a>
+                  <div class="clearfix"></div>
+                </div>
             </div>
         </div>
-			<?php if(isset($field['desc']) && ! empty($field['desc'])){?>
-				<span class="description"><?php print $field['desc'] ?></span>
-			<?php } ?>
+      <?php $i++; ?>  
       <?php endforeach; ?>
       <div class="multiple-image-uploads-default custompagebuilder-hidden">
           <div class="field-group">
-            <input readonly="true" type="text" name="<?php print $field['id'].'[]["url_image"]' ?>" value="" class="<?php print $class ?> file-input" />
-            <img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
-            <a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
-            <span class="loading">Loading....</span>
-            <a class="btn-delete btn-get-images-upload">Choose image</a>
-            <div class="clearfix"></div>
+              <div class="wrapper-content-fields">
+                  
+                  <div class="form-group">
+                      <label for="title_slider">Title</label>
+                      <input class="title-carousel" type="text" class="form-control" value="" name="">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="title_slider">Subtitle</label>
+                      <input class="subtitle-carousel" type="text" value="" class="form-control" name="">
+                    </div>
+                  
+                <form class="upload" method="post" action="<?php print (base_path() . 'admin/structure/custom_pagebuilder/upload') ?>" enctype="multipart/form-data">
+                  <div class="drop">
+                      <input type="file" name="upl" multiple class="input-file-upload"/>
+                  </div>
+                </form>
+                <input readonly="true" type="text" value="" class="<?php print $class ?> file-input" />
+                <img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
+                <a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
+                <span class="loading">Loading....</span>
+                <a class="btn-delete btn-get-images-upload">Choose image</a>
+                <div class="clearfix"></div>
+              </div>
           </div>
       </div>  
-      <a class="btn-add cpb-add-image-field" rel-name="<?php print $field['id']; ?>">Add Image</a>
+      <div class="text-right"><a class="btn-add cpb-add-images-field" rel-name="<?php print $field['id']; ?>">Add Image</a></div>
       <div class="clearfix"></div>
       <a class="btn-delete btn-get-images-upload">Browse images</a>
       <div class="clearfix"></div>
