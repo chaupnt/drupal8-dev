@@ -175,6 +175,7 @@ class ClassFieldsCustomPagebuilder
   
   public function render_field_multiple_upload($field = array(), $values = ''){
 		global $base_url;
+    $count = ($values) ? count($values) : 0;
 		$_id = custom_pagebuilder_makeid(10);
 		$default_image = base_path() . CUSTOM_PAGEBUILDER_PATH . '/assets/images/default.png';
 		$class = ( isset($field['class']) ) ? $field['class'] : 'image';
@@ -186,6 +187,7 @@ class ClassFieldsCustomPagebuilder
         if(empty($values)) $values = array(array('title' => '', 'sub_title' => '' ,'url_image' => '')); 
         $i = 1;
       ?>
+      <input type="hidden" name="cpb-items[cpb_carousel][count]" class="cpb-carousel-count" value="<?php print $count ?>" />
       <?php foreach($values as $value): ?>
         <?php 
         
@@ -196,6 +198,7 @@ class ClassFieldsCustomPagebuilder
         } 
         
         ?>
+        
         <div class="wrapper-fields-images-upload">
             <div class="field-group">
                 <div class="wrapper-content-fields" id="cpbuilder-upload-carousel-<?php print $i; ?>-<?php print $_id; ?>">

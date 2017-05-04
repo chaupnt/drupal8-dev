@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 		var name = $(this).attr('rel-name');
 		var field_wrapper = $(this).parent().prev('.multiple-image-uploads-default');//$('.multiple-image-uploads-default');
 		var new_image = field_wrapper.children('.field-group').clone();
-                
+                wrapper.find('input.cpb-carousel-count').val(image_count);
                 new_image.find('input.title-carousel').attr('name', name+'[title]');
                 new_image.find('input.subtitle-carousel').attr('name', name+'[sub_title]');
 		new_image.find('input.file-input').attr('name',name+'[url_image]');
