@@ -79,23 +79,25 @@ if(!class_exists('cpb_tabs')):
 
       public static function sc_tabs( $attr, $content = null ){
         //kint($attr['tabs'][2]);
-        
+        $script = '';
         $output = '';
         
         if($attr['type'] == 'tabs') {
           $_id = 'tab-'.custom_pagebuilder_makeid();
           if(is_array($attr['tabs'])) {
-            $output .= '<div class="wraper-custom-pagebuilder-tabs">';
+            $script = '<script>(function ($) { $("#builder-tabs-'. $_id .' a").click(function (e) { e.preventDefault() $(this).tab("show") })  }(jQuery))</script>';
+            $output .= $script;
+            $output .= '<div id="builder-tabs-'. $_id .'" class="wraper-custom-pagebuilder-tabs">';
             $output .= '<ul class="nav nav-tabs" role="tablist">';
 
                 foreach($attr['tabs'] as $key=>$value) {
                   if($key == 0) {
-                    $output .= '<li role="presentation" class="active">'
-                        . '<a href="#'. $_id .'_.'. $key .'" aria-controls="'. $_id .'_.'. $key .'" role="tab" data-toggle="tab">
+                    $output .= '<li role="presentation" class="active nav-item">'
+                        . '<a class="nav-link" href="#'. $_id .'_.'. $key .'" aria-controls="'. $_id .'_.'. $key .'" role="tab" data-toggle="tab">
                       '. $value['title'] .'</a></li>' ;
                   } else {
-                    $output .= '<li role="presentation" >'
-                        . '<a href="#'. $_id .'_.'. $key .'" aria-controls="'. $_id .'_.'. $key .'" role="tab" data-toggle="tab">
+                    $output .= '<li role="presentation" class="nav-item" >'
+                        . '<a class="nav-link" href="#'. $_id .'_.'. $key .'" aria-controls="'. $_id .'_.'. $key .'" role="tab" data-toggle="tab">
                       '. $value['title'] .'</a></li>' ;
                   }
                 }
@@ -141,7 +143,14 @@ if(!class_exists('cpb_tabs')):
           }
         }
         
-        return array('#markup' => $output);
+        //return array('#markup' => $output);
+        return array(
+                    '#type' => 'inline_template',
+                    '#template' => $output,
+                    '#context' => array(
+                      'script' => $script,
+                    ),
+                  );
         
       }
    }

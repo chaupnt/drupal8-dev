@@ -1,0 +1,9 @@
+uuid: 5c498e53-820c-4bbd-b500-e0fa209b554a
+langcode: en
+status: true
+dependencies: {  }
+name: 'Portfolio Tags'
+vid: portfolio_tags
+description: ''
+hierarchy: 0
+weight: 0

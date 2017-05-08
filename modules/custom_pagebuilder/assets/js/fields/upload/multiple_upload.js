@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
 		new_image.find('input.file-input').attr('name',name+'[url_image]');
                 new_image.children('.wrapper-content-fields').attr('id', "cpbuilder-upload-carousel-"+ image_count +"-"+id_wrapper);
                 new_image.find('form.upload').attr('id', "upload-carousel-"+ image_count +"-"+id_wrapper);
-		new_image.appendTo('.wrapper-fields-images-upload');
+		new_image.appendTo(wrapper.find('.wrapper-fields-images-upload'));
 		
 	}); 
 });

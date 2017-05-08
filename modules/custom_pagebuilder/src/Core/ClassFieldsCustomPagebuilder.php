@@ -187,7 +187,8 @@ class ClassFieldsCustomPagebuilder
         if(empty($values)) $values = array(array('title' => '', 'sub_title' => '' ,'url_image' => '')); 
         $i = 1;
       ?>
-      <input type="hidden" name="cpb-items[cpb_carousel][count]" class="cpb-carousel-count" value="<?php print $count ?>" />
+      <input type="hidden" name="cpb-items[cpb_carousel][count][]" class="cpb-carousel-count" value="<?php print $count ?>" />
+      <div class="wrapper-fields-images-upload">
       <?php foreach($values as $value): ?>
         <?php 
         
@@ -198,11 +199,8 @@ class ClassFieldsCustomPagebuilder
         } 
         
         ?>
-        
-        <div class="wrapper-fields-images-upload">
-            <div class="field-group">
-                <div class="wrapper-content-fields" id="cpbuilder-upload-carousel-<?php print $i; ?>-<?php print $_id; ?>">
-                  
+          <div class="field-group">
+                <div class="wrapper-content-fields images-field-uplaods" id="cpbuilder-upload-carousel-<?php print $i; ?>-<?php print $_id; ?>">
                     <div class="form-group">
                       <label for="title_slider">Title</label>
                       <input class="title-carousel" type="text" class="form-control" value="<?php print $value['title'] ?>" name="<?php print $field['id'].'[title]' ?>">
@@ -228,9 +226,10 @@ class ClassFieldsCustomPagebuilder
                   <div class="clearfix"></div>
                 </div>
             </div>
-        </div>
+        
       <?php $i++; ?>  
       <?php endforeach; ?>
+      </div>
       <div class="multiple-image-uploads-default custompagebuilder-hidden">
           <div class="field-group">
               <div class="wrapper-content-fields">
@@ -251,7 +250,7 @@ class ClassFieldsCustomPagebuilder
                   </div>
                 </form>
                 <input readonly="true" type="text" value="" class="<?php print $class ?> file-input" />
-                <img class="custompagebuilder-image-demo" src="<?php print $path_image_demo ?>" />
+                <img class="custompagebuilder-image-demo" src="<?php print $default_image ?>" />
                 <a class="custompagebuilder-field-upload-remove btn-delete" data-src="<?php print $default_image ?>" style="<?php print (($value) ? 'display:inline-block;' : 'display:none;') ?>">Remove</a>
                 <span class="loading">Loading....</span>
                 <a class="btn-delete btn-get-images-upload">Choose image</a>
@@ -260,8 +259,6 @@ class ClassFieldsCustomPagebuilder
           </div>
       </div>  
       <div class="text-right"><a class="btn-add cpb-add-images-field" rel-name="<?php print $field['id']; ?>">Add Image</a></div>
-      <div class="clearfix"></div>
-      <a class="btn-delete btn-get-images-upload">Browse images</a>
       <div class="clearfix"></div>
 			<div class="custompagebuilder-box-images">
 				<div class="custompagebuilder-box-images-inner">

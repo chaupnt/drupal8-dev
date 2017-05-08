@@ -20,13 +20,13 @@ if(!class_exists('cpb_carousel')) {
             'type' => 'cpb_carousel',
             'title' => t('Custom Carousel'),
             'size' => 2,
-            'multiple_field' => array('images'),
+            'multiple_field' => array('multiple_images'),
             'fields' => array(
               
               array(
-                  'id'        => 'images',
+                  'id'        => 'multiple_images',
                   'type'      => 'multiple_upload',
-                  'title'     => t('Image'),
+                  'title'     => t(''),
               ),
               
               array(
@@ -72,8 +72,44 @@ if(!class_exists('cpb_carousel')) {
 
 
       public static function sc_carousel( $attr, $content = null ){
-        kint($attr);
-        return array("#markup" => "xxx");
+        $_id = custom_pagebuilder_makeid(10);
+        $output = '';
+        if(count($attr['multiple_images']) > 0 && !empty($attr['multiple_images'][0]['url_image'])) {
+          $output .= '<div id="custom-pagebuider-carousel-'. $_id .'" class="carousel slide" data-ride="carousel">';
+          $output .= '<div class="carousel-inner" role="listbox">';
+              foreach($attr['multiple_images'] as $key=>$images) {
+                $active = '';
+                if($key == 0) {
+                  $active = 'active';
+                }
+                if(!empty($images['url_image'])) {
+                  $output .= '<div class="carousel-item '. $active .'">';
+                  $output .= '<img class="d-block img-fluid" src="'. $images['url_image'] .'" alt="First slide">';
+                  if(!empty($images['title'])) {
+                    $output .= '<div class="carousel-caption d-none d-md-block">';
+                      $output .= '<h3>'. $images['title'] .'</h3>';
+                      $output .= (!empty($images['sub_title'])) ? '<p>'. $images['sub_title'] .'</p>':'';
+                    $output .= '</div>';
+                  }
+                  $output .= '</div>';
+                }
+              }
+          $output .= '</div>';
+          $output .= '<a class="carousel-control-prev" href="#custom-pagebuider-carousel-'. $_id .'" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>';
+          $output .= '<a class="carousel-control-next" href="#custom-pagebuider-carousel-'. $_id .'" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>';
+          $output .= '</div>';
+        }
+        return array(
+                    '#type' => 'inline_template',
+                    '#template' => $output,
+                    '#context' => array(),
+                  );
       }
   }
 

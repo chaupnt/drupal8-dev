@@ -74,7 +74,6 @@ class CustomPagebuilderAdminController extends ControllerBase {
   
   function custom_pagebuilder_save_element($data) {
     $cpb_els = array();
-    //$data['cpb-items'] = $data['cpb-items'];
     if( isset($data['cpb-row-id']) && is_array($data['cpb-row-id'])){
       foreach( $data['cpb-row-id'] as $rowID_k => $rowID ){
         $row = array();
@@ -90,7 +89,6 @@ class CustomPagebuilderAdminController extends ControllerBase {
       $array_rows_id = array_flip( $data['cpb-row-id'] );
     } 
     $col_row_id = array();
-   // print_r($data['cpb-column-id']);die();
     if( isset($data['cpb-column-id']) && is_array($data['cpb-column-id'])){
       foreach( $data['cpb-column-id'] as $column_id_key => $column_id ){
         if($column_id){
@@ -116,37 +114,59 @@ class CustomPagebuilderAdminController extends ControllerBase {
     if( key_exists('element-type', $data) && is_array($data['element-type'])){
       $count = array();
       $count_tabs = array();
-      
+      $i_c = 0;
+      $c_count = 0;
       foreach( $data['element-type'] as $type_k => $type ){ 
         $item = array();
         $item['type'] = $type;
         $item['size'] = 12;
+        
         if(isset($data['element-size'][$type_k]) && $data['element-size'][$type_k]){
           $item['size'] = $data['element-size'][$type_k];
         }
 
         if( ! key_exists($type, $count) ) $count[$type] = 0;
         if( ! key_exists($type, $count_tabs) ) $count_tabs[$type] = 0;
-
+        
+        if($type == 'cpb_carousel') {
+          $c_count = ( !empty($data['cpb-items']['cpb_carousel']['count'][$i_c]) ) ? $data['cpb-items']['cpb_carousel']['count'][$i_c] + $c_count:0;
+          $count_carousel = ( $c_count == 0 ) ? 0 : $c_count - $data['cpb-items']['cpb_carousel']['count'][$i_c];
+        }
+        
         if( key_exists($type, $data['cpb-items']) ){ 
           foreach(  $data['cpb-items'][$type] as $attr_k => $attr ){
-
+            
             if( $attr_k == 'tabs'){
               // field tabs fields
               $item['fields']['count'] = $attr['count'][$count[$type]];
-              if( $item['fields']['count'] ){
+              if( !empty($item['fields']['count']) ){
                 for ($i = 0; $i < $item['fields']['count']; $i++) {
                   $tab = array();
-                  $tab['icon'] = stripslashes($attr['icon'][$count_tabs[$type]]);
-                  $tab['title'] = stripslashes($attr['title'][$count_tabs[$type]]);
-                  $tab['content'] = stripslashes($attr['content'][$count_tabs[$type]]);
+                  $tab['icon'] = (!empty($attr['icon'][$count_tabs[$type]])) ? stripslashes($attr['icon'][$count_tabs[$type]]) : '';
+                  $tab['title'] = (!empty($attr['title'][$count_tabs[$type]])) ? stripslashes($attr['title'][$count_tabs[$type]]) : '';
+                  $tab['content'] = (!empty($attr['content'][$count_tabs[$type]])) ? stripslashes($attr['content'][$count_tabs[$type]]) : '';
                   $item['fields']['tabs'][] = $tab;
                   $count_tabs[$type]++;
                 }
               }
+              //$count_c = $count_c + $item['fields']['count'];
+            } elseif( $attr_k == 'multiple_images' ) {
+              //debug_print($attr);
+              if( $c_count != 0 ) {
+                for ($i = $count_carousel; $i < $c_count; $i++) {
+                  //if(!empty($attr[$i]['url_image'])) {
+                    $carousel['title'] = (!empty($attr[$i]['title'])) ? stripslashes($attr[$i]['title']) : '';
+                    $carousel['sub_title'] = (!empty($attr[$i]['sub_title'])) ? stripslashes($attr[$i]['sub_title']) : '';
+                    $carousel['url_image'] = (!empty($attr[$i]['url_image'])) ? stripslashes($attr[$i]['url_image']) : '';
+                    $item['fields']['multiple_images'][] = $carousel;
+                  //}
+                }
+              }
+              $i_c++;
             } else {
-              $item['fields'][$attr_k] = stripslashes($attr[$count[$type]]);            
+              $item['fields'][$attr_k] = (!empty($attr[$count[$type]])) ? stripslashes($attr[$count[$type]]) : '';            
             }
+            
           }
         }
         $count[$type] ++;
@@ -158,13 +178,10 @@ class CustomPagebuilderAdminController extends ControllerBase {
         if(empty($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'])) {
           $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'] = array();
         }
-        //print_r($item);
         $cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items'][] = $item;
       }
-      //print_r($cpb_els[$new_parent_row_id]['columns'][$new_column_id]['items']);
+     
     }
-
-    // save
     if( $cpb_els ){
       $new = base64_encode(json_encode($cpb_els));    
     }

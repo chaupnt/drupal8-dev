@@ -54,7 +54,7 @@ html
 }
 #wrapper-custom-pagebuilder-setting-content .custompagebuilder-add-quick-shortcode {
   margin: 5px 0;
-  background: #72A3CE;
+  background: #2369a6;
   color: #fff;
   padding: 8px 10px;
 }
@@ -68,13 +68,15 @@ html
 #wrapper-custom-pagebuilder-setting-content .custompagebuilder-hidden {
   display: none;
 }
-#wrapper-custom-pagebuilder-setting-content .btn-add, #wrapper-custom-pagebuilder-setting-content .btn-delete {
-  background: #72A3CE;
-  padding: 5px 10px;
+#wrapper-custom-pagebuilder-setting-content .btn-add, 
+#wrapper-custom-pagebuilder-setting-content .btn-delete {
+  background: #2369a6;
+  padding: 2px 1em;
   color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
   display: inline-block;
+  margin:0px 5px;
+  border: 1px solid #a6a6a6;
+  border-radius: 20em;
 }
 #wrapper-custom-pagebuilder-setting-content .btn-delete {
   background: #F45754;
@@ -573,7 +575,7 @@ html
 }
 #wrapper-custom-pagebuilder-setting-content #cpb-form-setting .action {
   padding: 10px 0;
-  border-top: 2px solid #72A3CE;
+  border-top: 2px solid #2369a6;
   background: #fff;
   position: absolute;
   z-index: 99;
@@ -582,16 +584,7 @@ html
   width: 100%;
 }
 #wrapper-custom-pagebuilder-setting-content #cpb-form-setting .action a.cpb-form-setting-save, #wrapper-custom-pagebuilder-setting-content #cpb-form-setting .action a.cpb-form-setting-cancel {
-  display: inline-block;
-  background: #72A3CE;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  padding: 8px 10px;
   margin-left: 20px;
-  font-size: 12px;
 }
 #wrapper-custom-pagebuilder-setting-content #cpb-migrate {
   padding: 0 10px;
@@ -653,7 +646,7 @@ html
   margin: 0;
 }
 #wrapper-custom-pagebuilder-setting-content .tabs-ul.ui-sortable > li {
-  border: 1px solid #72A3CE;
+  border: 1px solid #2369a6;
   padding: 20px;
   background: #f5f5f5;
   margin-bottom: 20px;
@@ -667,7 +660,6 @@ html
   margin-bottom: 10px;
 }
 #wrapper-custom-pagebuilder-setting-content .custompagebuilder-field-upload-remove {
-  margin-top: 5px;
   float: left;
 }
 #wrapper-custom-pagebuilder-setting-content .info-des {
@@ -675,9 +667,9 @@ html
   font-weight: 700;
   width: 100%;
   display: block;
-  border-bottom: 1px solid #72A3CE;
+  border-bottom: 1px solid #2369a6;
   margin: 5px 0;
-  color: #72A3CE;
+  color: #2369a6;
 }
 
 .column-clear {
@@ -750,7 +742,7 @@ html
 .btn-get-images-upload {
   margin-top: 5px;
   float: left;
-  background: #72A3CE !important;
+  background: #2369a6 !important;
 }
 
 .custompagebuilder-box-images {
@@ -845,4 +837,10 @@ html
 
 .cp-color-picker {
     z-index: 9999 !important;
+}
+
+.wrapper-content-fields.images-field-uplaods {
+    padding:20px;
+    border:1px solid #2369a6;
+    margin-bottom:20px;
 }

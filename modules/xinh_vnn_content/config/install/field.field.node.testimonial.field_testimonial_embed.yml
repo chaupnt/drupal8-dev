@@ -1,0 +1,19 @@
+uuid: 3e67c2ff-113f-43b1-a208-8ce95d127119
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_testimonial_embed
+    - node.type.testimonial
+id: node.testimonial.field_testimonial_embed
+field_name: field_testimonial_embed
+entity_type: node
+bundle: testimonial
+label: 'Testimonial Embed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
