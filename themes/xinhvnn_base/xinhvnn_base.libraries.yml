@@ -3,6 +3,7 @@ global-styling:
   js:
     js/global.js: {}
     js/affix.js: {}
+    js/main.js: {}
   css:
     component:
       css/components/affix.css: {}
@@ -34,6 +35,7 @@ global-styling:
       css/components/vertical-tabs.css: {}
       css/components/views.css: {}
       css/components/ui-dialog.css: {}
+      css/components/imagehover.min.css: {}
     theme:
       css/print.css: { media: print }
 
@@ -285,3 +287,15 @@ bootstrapcdn:
   dependencies:
     - xinhvnn_base/material_design_icons    
 
+
+xinhvnn_owl_carousel:
+  css:
+    theme:
+      js/libs/owl-carousel/assets/owl.carousel.min.css: {}
+      js/libs/owl-carousel/assets/owl.theme.default.min.css: {}
+  js:
+    js/libs/owl-carousel/owl.carousel.min.js: {}
+    
+xinhvnn_isotope:
+  js:
+    js/libs/isotope/isotope.pkgd.min.js: {}
