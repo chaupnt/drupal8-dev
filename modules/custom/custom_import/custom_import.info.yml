@@ -1,0 +1,5 @@
+name: Custom Import
+type: module
+description: Custom Import
+core: 8.x
+package: Custom

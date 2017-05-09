@@ -1,0 +1,6 @@
+custom_import.batch:
+  title: 'Import Content'
+  route_name: custom_import.batch
+  description: 'Import Content'
+  weight: 10
+  parent: system.admin_structure

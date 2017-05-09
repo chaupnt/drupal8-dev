@@ -95,18 +95,13 @@ function custom_pagebuilder_theme() {
         'field_item' => false,
       )
     ),
-    'page_custom_pagebuilder' => array(
-      'render element' => 'page',
-     // 'variables' => array(
-     //   'rows_content' => false,
-     // ),
-      'override preprocess functions' => false,
-      'preprocess functions' => array (
-        0 => 'template_preprocess',
-        1 => 'template_preprocess_page',
-        2 => 'template_preprocess_custom_pagebuilder',
-        3 => "contextual_preprocess",
+    'page_portfolio_content' => array(
+      'variables' => array(
+        'portfolio_catagory' => false,
+        'portfolios' => false,
+        'hover_effect' => false,
       ),
+      'path' => drupal_get_path('module', 'custom_pagebuilder') . '/templates/portfolio',
     ),
   );
 }
@@ -125,6 +120,7 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_video_box',
     'cpb_node_view',
     'cpb_carousel',
+    'cpb_portfolio_content',
     //'cpb_box_image',
     //'cpb_box_info',
     //'cpb_call_to_action',
@@ -169,6 +165,55 @@ function custom_pagebuilder_animate(){
         'bounceInLeft'    => 'Bounce In Left',
         'bounceInRight'   => 'Bounce In Right',
     );
+}
+
+function custom_pagebuilder_image_hover() {
+  return array(
+    'imghvr-fade ' => 'imghvr-fade ',
+    'imghvr-push-up ' => 'imghvr-push-up ',
+    'imghvr-push-down ' => 'imghvr-push-down ',
+    'imghvr-push-left ' => 'imghvr-push-left ',
+    'imghvr-push-right ' => 'imghvr-push-right ',
+    'imghvr-slide-up ' => 'imghvr-slide-up ',
+    'imghvr-slide-down ' => 'imghvr-slide-down ',
+    'imghvr-slide-left ' => 'imghvr-slide-left ',
+    'imghvr-slide-right ' => 'imghvr-slide-right ',
+    'imghvr-reveal-up ' => 'imghvr-reveal-up ',
+    'imghvr-reveal-down ' => 'imghvr-reveal-down ',
+    'imghvr-reveal-left ' => 'imghvr-reveal-left ',
+    'imghvr-reveal-right ' => 'imghvr-reveal-right ',
+    'imghvr-hinge-up ' => 'imghvr-hinge-up ',
+    'imghvr-hinge-down ' => 'imghvr-hinge-down ',
+    'imghvr-hinge-left ' => 'imghvr-hinge-left ',
+    'imghvr-hinge-right ' => 'imghvr-hinge-right ',
+    'imghvr-flip-horiz ' => 'imghvr-flip-horiz ',
+    'imghvr-flip-vert ' => 'imghvr-flip-vert ',
+    'imghvr-flip-diag-1 ' => 'imghvr-flip-diag-1 ',
+    'imghvr-flip-diag-2 ' => 'imghvr-flip-diag-2 ',
+    'imghvr-shutter-out-horiz ' => 'imghvr-shutter-out-horiz ',
+    'imghvr-shutter-out-vert ' => 'imghvr-shutter-out-vert ',
+    'imghvr-shutter-out-diag-1 ' => 'imghvr-shutter-out-diag-1 ',
+    'imghvr-shutter-out-diag-2 ' => 'imghvr-shutter-out-diag-2 ',
+    'imghvr-shutter-in-horiz ' => 'imghvr-shutter-in-horiz ',
+    'imghvr-shutter-in-vert ' => 'imghvr-shutter-in-vert ',
+    'imghvr-shutter-in-out-horiz ' => 'imghvr-shutter-in-out-horiz ',
+    'imghvr-shutter-in-out-vert ' => 'imghvr-shutter-in-out-vert ',
+    'imghvr-shutter-in-out-diag-1 ' => 'imghvr-shutter-in-out-diag-1 ',
+    'imghvr-shutter-in-out-diag-2 ' => 'imghvr-shutter-in-out-diag-2 ',
+    'imghvr-fold-up ' => 'imghvr-fold-up ',
+    'imghvr-fold-down ' => 'imghvr-fold-down ',
+    'imghvr-fold-left ' => 'imghvr-fold-left ',
+    'imghvr-fold-right ' => 'imghvr-fold-right ',
+    'imghvr-zoom-in ' => 'imghvr-zoom-in ',
+    'imghvr-zoom-out ' => 'imghvr-zoom-out ',
+    'imghvr-zoom-out-up ' => 'imghvr-zoom-out-up ',
+    'imghvr-zoom-out-down ' => 'imghvr-zoom-out-down ',
+    'imghvr-zoom-out-left ' => 'imghvr-zoom-out-left ',
+    'imghvr-zoom-out-right ' => 'imghvr-zoom-out-right ',
+    'imghvr-zoom-out-flip-horiz ' => 'imghvr-zoom-out-flip-horiz ',
+    'imghvr-zoom-out-flip-vert ' => 'imghvr-zoom-out-flip-vert ',
+    'imghvr-blur' => 'imghvr-blur',
+  );
 }
 
 //function variable_get($name, $default = NULL) {

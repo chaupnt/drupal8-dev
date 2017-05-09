@@ -41,6 +41,7 @@ custom_pagebuilder.assets.frontend:
   css: 
     theme: 
       vendor/animate/css/animate.css: {}
+      assets/css/page-portfolio.css: {}
       assets/css/frontend.css: {}
   js:
     vendor/animate/js/wow.min.js: {}

@@ -1,0 +1,7 @@
+custom_import.batch:
+  path: '/admin/content/import/import_portfolio'
+  defaults:
+    _controller: '\Drupal\custom_import\Controller\CustomImportBatchController::content'
+    _title: 'Disc Batch'
+  requirements:
+    _permission: 'administer content'
