@@ -11,11 +11,21 @@ namespace Drupal\custom_pagebuilder\Shortcodes;
 if(!class_exists('cpb_portfolio_content')):
    class cpb_portfolio_content{
   
-      
      public function get_portfolio_categories() {
        //$term = new \Drupal\taxonomy\Entity\Term();
        $tree = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('portfolio_category', 0, NULL, TRUE);
        //kint($tree);
+       $array_term = array();
+       foreach($tree as $value) {
+          $new_value = strtolower($value->name->value);
+          $new_value = preg_replace('/[^a-z0-9_]+/', '_', $new_value);
+          $new_value = preg_replace('/_+/', '_', $new_value);
+          $array_term[] = array(
+            'name' => $value->name->value,
+            'machine_name' => $new_value,
+          );
+       }
+       return $array_term;
      }  
   
       public function render_form(){
@@ -62,16 +72,41 @@ if(!class_exists('cpb_portfolio_content')):
       }
 
       public function sc_portfolio_content( $attr, $content = null ){
-        $this->get_portfolio_categories();
-        return array(
-          '#type' => 'html',
-          '#cache' => array('max-age' => 0),
-          '#theme' => 'page_portfolio_content',
-          '#portfolio_catagory' => 'asdasdasdsa',
-          '#portfolios' => 'asdasdas',
-          '#hover_effect' => 'asdasdasdasda',
-          '#el_class' => (!empty($attr['el_class'])) ? $attr['el_class'] : '',
-      );
+        $terms = $this->get_portfolio_categories();
+        $nids = \Drupal::entityQuery('node')->condition('type','portfolio')->execute();
+        $portfolios =  \Drupal\node\Entity\Node::loadMultiple($nids);
+        $col = '';
+        if((!empty($attr['display_type'])) && $attr['display_type'] == '2_col') {
+          $col = '2';
+        } else if((!empty($attr['display_type'])) && $attr['display_type'] == '3_col') {
+          $col = '3';
+        } else if((!empty($attr['display_type'])) && $attr['display_type'] == '4_col') {
+          $col = '4';
+        }
+        if($attr['display_type'] == 'carousel') {
+          return array(
+              '#type' => 'html',
+              '#cache' => array('max-age' => 0),
+              '#theme' => 'page_portfolio_content_owl_carousel',
+              '#portfolio_catagory' => $terms,
+              '#portfolios' => $portfolios,
+              '#hover_effect' => (!empty($attr['hover_effect'])) ? $attr['hover_effect'] : '',
+              '#grid_col' => (!empty($attr['display_type'])) ? $col : '',
+              '#el_class' => (!empty($attr['el_class'])) ? $attr['el_class'] : '',
+          );
+        } else {
+          return array(
+              '#type' => 'html',
+              '#cache' => array('max-age' => 0),
+              '#theme' => 'page_portfolio_content',
+              '#portfolio_catagory' => $terms,
+              '#portfolios' => $portfolios,
+              '#hover_effect' => (!empty($attr['hover_effect'])) ? $attr['hover_effect'] : '',
+              '#grid_col' => (!empty($attr['display_type'])) ? $col : '',
+              '#el_class' => (!empty($attr['el_class'])) ? $attr['el_class'] : '',
+          );
+        }
+        
     } 
    }
 endif;   

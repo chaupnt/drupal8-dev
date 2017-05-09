@@ -100,6 +100,16 @@ function custom_pagebuilder_theme() {
         'portfolio_catagory' => false,
         'portfolios' => false,
         'hover_effect' => false,
+        'grid_col' => false,
+      ),
+      'path' => drupal_get_path('module', 'custom_pagebuilder') . '/templates/portfolio',
+    ),
+    'page_portfolio_content_owl_carousel' => array(
+      'variables' => array(
+        'portfolio_catagory' => false,
+        'portfolios' => false,
+        'hover_effect' => false,
+        'grid_col' => false,
       ),
       'path' => drupal_get_path('module', 'custom_pagebuilder') . '/templates/portfolio',
     ),

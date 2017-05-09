@@ -1,45 +1,107 @@
 {# empty Twig template #}
 <div class="wrapper-portfolio-content">
     <div class="filters">
-        <button class="btn btn-default btn-filter-portfolio" data-rel="all">All</button>
-        <button class="btn btn-default" data-rel="web">Websites</button>
-        <button class="btn btn-default" data-rel="flyers">Flyers</button>
-        <button class="btn btn-default" data-rel="bcards">Business Cards</button>
+        <button class="btn btn-filter-portfolio" data-rel="all">All</button>
+        <button class="btn btn-filter-portfolio" data-rel="web">Websites</button>
+        <button class="btn btn-filter-portfolio" data-rel="flyers">Flyers</button>
+        <button class="btn btn-filter-portfolio" data-rel="bcards">Business Cards</button>
+        {% for term in portfolio_catagory %}
+            <button class="btn btn-filter-portfolio" data-rel="{{ term.machine_name }}">{{ term.name }}</button>
+        {% endfor %}
     </div>
 
     <div style="clear:both;"></div>
-    <div class="portfolio-content portfolio-3-col">
+    <div class="portfolio-content portfolio-{{ grid_col }}-col">
         <div class="tile scale-anm web all">
-            <img src="/sites/default/files/cpb-uploads/business_img004-8k031c.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm bcards all">
-            <img src="/sites/default/files/cpb-uploads/business_img003-dakoqk.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/04.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm web all">
-            <img src="/sites/default/files/cpb-uploads/business_img004-8k031c.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm web all">
-            <img src="/sites/default/files/cpb-uploads/performance_img002-vapup5.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/01.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm flyers all">
-            <img src="/sites/default/files/cpb-uploads/business_img003-dakoqk.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/04.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm flyers all">
-            <img src="/sites/default/files/cpb-uploads/business_img004-8k031c.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/02.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm bcards all">
-            <img src="/sites/default/files/cpb-uploads/business_img004-8k031c.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/03.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm bcards all">
-            <img src="/sites/default/files/cpb-uploads/performance_img002-vapup5.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/01.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm web all">
-            <img src="/sites/default/files/cpb-uploads/business_img004-8k031c.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/03.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
         <div class="tile scale-anm bcards all">
-            <img src="/sites/default/files/cpb-uploads/business_img004-8k031c.jpg" alt="Images">
+            <figure class="{{ hover_effect }}">
+                <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">
+                <figcaption>
+                    Hover Content
+                </figcaption>
+                <a href="http://www.imagehover.io"></a>
+            </figure>
         </div>
     </div>
-
     <div style="clear:both;"></div>
-</div> <!-- /#portfolio1 -->
+</div>

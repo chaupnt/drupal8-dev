@@ -10,71 +10,129 @@ and open the template in the editor.
 
 /* portfolio 3 Col */
 .wrapper-portfolio-content {
-	padding: 40px 0;
+    padding: 40px 0;
 }
 
 .wrapper-portfolio-content .filters {
-	text-align: center;
-	margin-bottom: 40px;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .wrapper-portfolio-content .portfolio-content.portfolio-3-col {
-  	margin: 1rem 0;
-  	-webkit-column-count: 3;
-  	-moz-column-count: 3;
-  	column-count: 3;
-  	-webkit-column-gap: 1rem;
-  	-moz-column-gap: 1rem;
-  	column-gap: 1rem;
-  	-webkit-column-width: 33.33333333333333%;
-  	-moz-column-width: 33.33333333333333%;
-  	column-width: 33.33333333333333%;
+    margin: 1rem 0;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    column-gap: 1rem;
+    -webkit-column-width: 33.33333333333333%;
+    -moz-column-width: 33.33333333333333%;
+    column-width: 33.33333333333333%;
 }
 
 /* Media */
 @media (max-width: 768px) {
-	.wrapper-portfolio-content .portfolio-content.portfolio-3-col {
-  		margin: 1rem 0;
-  		-webkit-column-count: 1;
-  		-moz-column-count: 1;
-  		column-count: 1;
-  		-webkit-column-gap: 1rem;
-  		-moz-column-gap: 1rem;
-  		column-gap: 1rem;
-  		-webkit-column-width: 100%;
-  		-moz-column-width: 100%;
-  		column-width: 100%;
-	}
+    .wrapper-portfolio-content .portfolio-content.portfolio-3-col {
+        margin: 1rem 0;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+        -webkit-column-gap: 1rem;
+        -moz-column-gap: 1rem;
+        column-gap: 1rem;
+        -webkit-column-width: 100%;
+        -moz-column-width: 100%;
+        column-width: 100%;
+    }
 }
 
 .wrapper-portfolio-content .tile {
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: all 350ms ease;
-  transition: all 350ms ease;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 350ms ease;
+    transition: all 350ms ease;
 }
 
 .wrapper-portfolio-content .tile:hover {}
 
 .wrapper-portfolio-content .scale-anm {
-  transform: scale(1);
+    transform: scale(1);
 }
 
 .wrapper-portfolio-content .tile img {
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  margin-bottom: 1rem;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 
 .wrapper-portfolio-content .title h3 {
-	text-transform: uppercase;
-	text-align: center;
-	font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
 }
 
 .wrapper-portfolio-content .title p {
-	text-align: center;
-	font-size: 12px;
-	margin-bottom: 40px;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 40px;
 }
+
+.wrapper-portfolio-content .portfolio-content.portfolio-2-col {
+    margin: 1rem 0;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    column-gap: 1rem;
+    -webkit-column-width: 50%;
+    -moz-column-width: 50%;
+    column-width: 50%;
+}
+
+/* Media */
+@media (max-width: 768px) {
+    .wrapper-portfolio-content .portfolio-content.portfolio-2-col {
+        margin: 1rem 0;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+        -webkit-column-gap: 1rem;
+        -moz-column-gap: 1rem;
+        column-gap: 1rem;
+        -webkit-column-width: 100%;
+        -moz-column-width: 100%;
+        column-width: 100%;
+    }
+}
+
+.wrapper-portfolio-content .portfolio-content.portfolio-4-col {
+    margin: 1rem 0;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    column-gap: 1rem;
+    -webkit-column-width: 25%;
+    -moz-column-width: 25%;
+    column-width: 25%;
+}
+
+/* Media */
+@media (max-width: 768px) {
+    .wrapper-portfolio-content .portfolio-content.portfolio-4-col {
+        margin: 1rem 0;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+        -webkit-column-gap: 1rem;
+        -moz-column-gap: 1rem;
+        column-gap: 1rem;
+        -webkit-column-width: 100%;
+        -moz-column-width: 100%;
+        column-width: 100%;
+    }
+}
+

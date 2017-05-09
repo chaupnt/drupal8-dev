@@ -74,7 +74,7 @@ if(!class_exists('cpb_carousel')) {
       public static function sc_carousel( $attr, $content = null ){
         $_id = custom_pagebuilder_makeid(10);
         $output = '';
-        if(count($attr['multiple_images']) > 0 && !empty($attr['multiple_images'][0]['url_image'])) {
+        if(!empty($attr['multiple_images'][0]['url_image']) && count($attr['multiple_images']) > 0  ) {
           $output .= '<div id="custom-pagebuider-carousel-'. $_id .'" class="carousel slide" data-ride="carousel">';
           $output .= '<div class="carousel-inner" role="listbox">';
               foreach($attr['multiple_images'] as $key=>$images) {

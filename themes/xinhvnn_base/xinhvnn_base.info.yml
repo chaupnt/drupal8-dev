@@ -8,6 +8,7 @@ base theme: false
 libraries:
   - xinhvnn_base/bootstrapcdn
   - xinhvnn_base/global-styling
+  - xinhvnn_base/xinhvnn_owl_carousel
 
 libraries-extend:
   core/drupal.dropbutton:

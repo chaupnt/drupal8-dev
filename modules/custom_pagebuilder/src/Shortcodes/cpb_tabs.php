@@ -84,7 +84,7 @@ if(!class_exists('cpb_tabs')):
         
         if($attr['type'] == 'tabs') {
           $_id = 'tab-'.custom_pagebuilder_makeid();
-          if(is_array($attr['tabs'])) {
+          if(!empty($attr['tabs']) && is_array($attr['tabs'])) {
             $script = '<script>(function ($) { $("#builder-tabs-'. $_id .' a").click(function (e) { e.preventDefault() $(this).tab("show") })  }(jQuery))</script>';
             $output .= $script;
             $output .= '<div id="builder-tabs-'. $_id .'" class="wraper-custom-pagebuilder-tabs">';
