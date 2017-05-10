@@ -15,3 +15,7 @@ and open the template in the editor.
 .cpb-field-element + cpb-field-element {
     margin-top:30px;
 }
+
+[class*=" imghvr-"], [class^=imghvr-] {
+    width:100%;
+}

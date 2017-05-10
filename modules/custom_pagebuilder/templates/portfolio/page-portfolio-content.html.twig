@@ -9,9 +9,24 @@
             <button class="btn btn-filter-portfolio" data-rel="{{ term.machine_name }}">{{ term.name }}</button>
         {% endfor %}
     </div>
-
     <div style="clear:both;"></div>
     <div class="portfolio-content portfolio-{{ grid_col }}-col">
+        {% set class = '' %}
+        {% for portfolio in portfolios %}
+            
+            {% for cat in  portfolio.field_portfolio_category %}
+                {% set class = class ~ ' ' ~ cat.entity.name.value|lower|replace({" ":"_"}) %}
+            {% endfor %}
+            <div class="tile scale-anm {{ class }} all">
+                <figure class="{{ hover_effect }}">
+                    <img src="{{ file_url(portfolio.field_image.entity.uri.value) }}" alt="{{ portfolio.title.value }}">
+                    <figcaption>
+                        <h3>{{ portfolio.title.value }}</h3>
+                    </figcaption>
+                    <a href="http://www.imagehover.io"></a>
+                </figure>
+            </div>
+        {% endfor %}
         <div class="tile scale-anm web all">
             <figure class="{{ hover_effect }}">
                 <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">

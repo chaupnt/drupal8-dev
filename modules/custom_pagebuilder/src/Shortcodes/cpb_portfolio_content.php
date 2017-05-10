@@ -73,7 +73,7 @@ if(!class_exists('cpb_portfolio_content')):
 
       public function sc_portfolio_content( $attr, $content = null ){
         $terms = $this->get_portfolio_categories();
-        $nids = \Drupal::entityQuery('node')->condition('type','portfolio')->execute();
+        $nids = \Drupal::entityQuery('node')->condition('type','portfolio')->pager(1)->execute();
         $portfolios =  \Drupal\node\Entity\Node::loadMultiple($nids);
         $col = '';
         if((!empty($attr['display_type'])) && $attr['display_type'] == '2_col') {
