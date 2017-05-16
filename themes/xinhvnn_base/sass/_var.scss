@@ -1,0 +1,52 @@
+@import "mixin/_mixin.scss";
+
+$font_size:14;
+
+
+// Start with assigning color names to specific hex values.
+$color_theme:         #d23c1a !default;
+$red:                 #d9534f !default;
+$yellow:              #ffd500 !default;
+$blue:                #3253bc !default;
+$turquoise:           #008d97 !default;
+$pink:                #fe3829 !default;
+$violet:              #6e48b1 !default;
+$peacoc:              #338faa !default;
+$chino:               #b9a888 !default;
+$mulled_wine:         #342f3c !default;
+$vista_blue :         #4ac97d !default;
+$black:               #0e0e0e !default;
+$gray:                #cfcfcf !default;
+$orange:              #f4a733 !default;
+$sky:                 #2a86db !default;
+$green:               #53812d !default;
+$juicy_pink:          #f11f18 !default;
+$sandy_brown:         #f46e33 !default;
+$purple:              #a559a8 !default;
+$teal:                #5bc0de !default;
+$white:               #fff !default;
+
+
+// Create grayscale
+$gray-dark:                 #333 !default;
+
+$gray-light:                #636c72 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+// Reassign color vars to semantic color scheme
+$brand-primary:             $blue !default;
+$brand-success:             $green !default;
+$brand-info:                $teal !default;
+$brand-warning:             $orange !default;
+$brand-danger:              $red !default;
+$brand-inverse:             $gray-dark !default;
+
+$text_color:#292b2c;
+
+$h1_color:$text_color;
+$h2_color:$text_color;
+$h3_color:$text_color;
+$h4_color:$text_color;
+$h5_color:$text_color;
+$h6_color:$text_color;

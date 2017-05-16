@@ -35,7 +35,11 @@ global-styling:
       css/components/vertical-tabs.css: {}
       css/components/views.css: {}
       css/components/ui-dialog.css: {}
-      css/components/imagehover.min.css: {}
+      css/imagehover.min.css: {}
+      css/components/heading.css: {}
+      css/components/button.css: {}
+      css/utility.css: {}
+      css/main.css: {}
     theme:
       css/print.css: { media: print }
 

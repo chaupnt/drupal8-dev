@@ -44,9 +44,9 @@ custom_pagebuilder.assets.frontend:
       assets/css/page-portfolio.css: {}
       assets/css/frontend.css: {}
   js:
-    vendor/animate/js/wow.min.js: {}
-    vendor/skrollr.min.js: {cope: footer}
-    vendor/main.js: {cope: footer}
+      vendor/animate/js/wow.min.js: {}
+      vendor/skrollr.min.js: {cope: footer}
+      vendor/main.js: {cope: footer}
     
 custom_pagebuilder.font-awesome:
   remote: https://fortawesome.github.io/Font-Awesome/

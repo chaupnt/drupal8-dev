@@ -1,0 +1,633 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 11, 2017, 2:21:42 PM
+    Author     : EVA-Chau
+*/
+@import "../_var.scss";
+$text_heading: $text_color;
+.custom-pagebuilder-heading {
+    // ------------Settting Color Style-------------
+    .cbp-title-heading {
+        color:$text_color;
+        position: relative;
+        line-height:100%;
+        &.text-success {
+          span.cpb-sub-title-text {
+            color:lighten($brand-success, 10%);
+          }
+          border-color:lighten($brand-success, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($brand-success, 10%) !important;
+          }
+        }
+        
+        &.text-primary {
+          span.cpb-sub-title-text {
+            color:lighten($brand-primary, 10%);
+          }
+          border-color:lighten($brand-primary, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($brand-primary, 10%) !important;
+          }
+        }
+        
+        &.text-info {
+          span.cpb-sub-title-text {
+            color:lighten($brand-info, 10%);
+          }
+          border-color:lighten($brand-info, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($brand-info, 10%) !important;
+          }
+        }
+        
+        &.text-warning {
+          span.cpb-sub-title-text {
+            color:lighten($brand-warning, 10%);
+          }
+          border-color:lighten($brand-warning, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($brand-warning, 10%) !important;
+          }
+        }
+        
+        &.text-danger {
+          span.cpb-sub-title-text {
+            color:lighten($brand-danger, 10%);
+          }
+          border-color:lighten($brand-danger, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($brand-danger, 10%) !important;
+          }
+        }
+        
+        &.text-muted {
+          span.cpb-sub-title-text {
+            color:lighten($mulled_wine, 10%);
+          }
+          border-color:lighten($mulled_wine, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($mulled_wine, 10%) !important;
+          }
+        }
+        
+        &.text-color-theme {
+          span.cpb-sub-title-text {
+            color:lighten($color_theme, 10%);
+          }
+          border-color:lighten($color_theme, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($color_theme, 10%) !important;
+          }
+        }
+        
+        &.text-red {
+          span.cpb-sub-title-text {
+            color:lighten($red, 10%);
+          }
+          border-color:lighten($red, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($red, 10%) !important;
+          }
+        }
+        
+        &.text-yellow {
+          span.cpb-sub-title-text {
+            color:lighten($yellow, 10%);
+          }
+          border-color:lighten($yellow, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($yellow, 10%) !important;
+          }
+        }
+        
+        &.text-blue {
+          span.cpb-sub-title-text {
+            color:lighten($blue, 10%);
+          }
+          border-color:lighten($blue, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($blue, 10%) !important;
+          }
+        }
+        
+        &.text-white {
+          span.cpb-sub-title-text {
+            color:lighten($white, 10%);
+          }
+          border-color:lighten($white, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($white, 10%) !important;
+          }
+        }
+        
+        &.text-black {
+          span.cpb-sub-title-text {
+            color:lighten($black, 10%);
+          }
+          border-color:lighten($black, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($black, 10%) !important;
+          }
+        }
+        
+        &.text-turquoise {
+          span.cpb-sub-title-text {
+            color:lighten($turquoise, 10%);
+          }
+          border-color:lighten($turquoise, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($turquoise, 10%) !important;
+          }
+        }
+        
+        &.text-pink {
+          span.cpb-sub-title-text {
+            color:lighten($pink, 10%);
+          }
+          border-color:lighten($pink, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($pink, 10%) !important;
+          }
+        }
+        
+        &.text-violet {
+          span.cpb-sub-title-text {
+            color:lighten($violet, 10%);
+          }
+          border-color:lighten($violet, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($violet, 10%) !important;
+          }
+        }
+        
+        &.text-peacoc {
+          span.cpb-sub-title-text {
+            color:lighten($peacoc, 10%);
+          }
+          border-color:lighten($peacoc, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($peacoc, 10%) !important;
+          }
+        }
+        
+        &.text-peacoc {
+          span.cpb-sub-title-text {
+            color:lighten($chino, 10%);
+          }
+          border-color:lighten($chino, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($chino, 10%) !important;
+          }
+        }
+        
+        &.text-vista_blue {
+          span.cpb-sub-title-text {
+            color:lighten($vista_blue, 10%);
+          }
+          border-color:lighten($vista_blue, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($vista_blue, 10%) !important;
+          }
+        }
+        
+        &.text-gray {
+          span.cpb-sub-title-text {
+            color:lighten($gray, 10%);
+          }
+          border-color:lighten($gray, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($gray, 10%) !important;
+          }
+        }
+        
+        &.text-orange {
+          span.cpb-sub-title-text {
+            color:lighten($orange, 10%);
+          }
+          border-color:lighten($orange, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($orange, 10%) !important;
+          }
+        }
+        
+        &.text-sky {
+          span.cpb-sub-title-text {
+            color:lighten($sky, 10%);
+          }
+          border-color:lighten($sky, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($sky, 10%) !important;
+          }
+        }
+        
+        &.text-blue {
+          span.cpb-sub-title-text {
+            color:lighten($blue, 10%);
+          }
+          border-color:lighten($blue, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($blue, 10%) !important;
+          }
+        }
+        
+        &.text-green {
+          span.cpb-sub-title-text {
+            color:lighten($green, 10%);
+          }
+          border-color:lighten($green, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($green, 10%) !important;
+          }
+        }
+        
+        &.text-juicy_pink {
+          span.cpb-sub-title-text {
+            color:lighten($juicy_pink, 10%);
+          }
+          border-color:lighten($juicy_pink, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($juicy_pink, 10%) !important;
+          }
+        }
+        
+        &.text-sandy_brown {
+          span.cpb-sub-title-text {
+            color:lighten($sandy_brown, 10%);
+          }
+          border-color:lighten($sandy_brown, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($sandy_brown, 10%) !important;
+          }
+        }
+        
+        &.text-purple {
+          span.cpb-sub-title-text {
+            color:lighten($purple, 10%);
+          }
+          border-color:lighten($purple, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($purple, 10%) !important;
+          }
+        }
+        
+        &.text-teal {
+          span.cpb-sub-title-text {
+            color:lighten($teal, 10%);
+          }
+          border-color:lighten($teal, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($teal, 10%) !important;
+          }
+        }
+        
+      
+        
+        &.text-purple {
+          span.cpb-sub-title-text {
+            color:lighten($purple, 10%);
+          }
+          border-color:lighten($purple, 10%) !important;
+          &:after,
+          &:before {
+            background:lighten($purple, 10%) !important;
+          }
+        }
+        
+        span.cpb-sub-title-text {
+          color:lighten($text_heading, 30%);
+          @include fontsize(12);
+        }
+        &:after,
+        &:before {
+          position: absolute;
+          width:100%;
+          height:2px;
+          background:lighten($text_heading, 30%);
+        }
+    }
+    &.heading-border-bottom {
+      .cbp-title-heading {
+        padding-bottom:10px;
+        border-bottom:2px solid lighten($text_heading, 30%);
+      }
+    }
+    &.heading-border-top {
+      .cbp-title-heading {
+        padding-top:10px;
+        border-top:2px solid lighten($text_heading, 30%);
+      }
+    }
+    &.heading-short-border-top {
+      .cbp-title-heading {
+        padding-top:10px;
+        &:before {
+          content:" ";
+          width:80px;
+          height:2px;
+          top:0px;
+          left:0px;
+        }
+      }
+    }
+    &.heading-short-border-bottom {
+      .cbp-title-heading {
+        padding-bottom:10px;
+        &:after {
+          content:" ";
+          width:80px;
+          height:2px;
+          bottom:0px;
+          left:0px;
+        }
+      }
+    }
+    &.heading-title-side-border-top {
+      overflow:hidden;
+      .cbp-title-heading {
+        display:inline-block;
+        padding-right:20px;
+        &:after {
+          height:2px;
+          background: lighten($text_heading, 30%);
+          width:1000%;
+          right:-1000%;
+          top:4px;
+          content:" ";
+        }
+      }
+      &.text-center {
+        .cbp-title-heading {
+          padding:0px 20px;
+          &:before {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:1000%;
+            left:-1000%;
+            top:4px;
+            content:" ";
+          }
+        }
+      }
+      &.text-right {
+        .cbp-title-heading {
+          padding:0px 0px 0px 20px;
+          &:after {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:1000%;
+            left:-1000%;
+            top:4px;
+            content:" ";
+          }
+        }
+      }
+    }
+    
+    &.heading-title-side-border-middle {
+      overflow:hidden;
+      .cbp-title-heading {
+        display:inline-block;
+        padding-right:20px;
+        &:after {
+          height:2px;
+          background: lighten($text_heading, 30%);
+          width:1000%;
+          right:-1000%;
+          top:50%;
+          margin-top:-1px;
+          content:" ";
+        }
+      }
+      &.text-center {
+        .cbp-title-heading {
+          padding:0px 20px;
+          &:before {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:1000%;
+            left:-1000%;
+            top:50%;
+            margin-top:-1px;
+            content:" ";
+          }
+        }
+      }
+      &.text-right {
+        .cbp-title-heading {
+          padding:0px 0px 0px 20px;
+          &:after {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:1000%;
+            left:-1000%;
+            top:50%;
+            margin-top:-1px;
+            content:" ";
+          }
+        }
+      }
+    }
+    
+    &.heading-title-side-border-bottom {
+      overflow:hidden;
+      .cbp-title-heading {
+        display:inline-block;
+        padding-right:20px;
+        &:after {
+          height:2px;
+          background: lighten($text_heading, 30%);
+          width:1000%;
+          right:-1000%;
+          bottom:8px;
+          content:" ";
+        }
+      }
+      &.text-center {
+        .cbp-title-heading {
+          padding:0px 20px;
+          &:before {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:1000%;
+            left:-1000%;
+            bottom:8px;
+            content:" ";
+          }
+        }
+      }
+      &.text-right {
+        .cbp-title-heading {
+          padding:0px 0px 0px 20px;
+          &:after {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:1000%;
+            left:-1000%;
+            bottom:8px;
+            content:" ";
+          }
+        }
+      }
+    }
+    
+    &.heading-title-side-short-border-top {
+      overflow:hidden;
+      .cbp-title-heading {
+        display:inline-block;
+        padding-right:20px;
+        &:after {
+          height:2px;
+          background: lighten($text_heading, 30%);
+          width:80px;
+          right:-80px;
+          top:4px;
+          content:" ";
+        }
+      }
+      &.text-center {
+        .cbp-title-heading {
+          padding:0px 20px;
+          &:before {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:80px;
+            left:-80px;
+            top:4px;
+            content:" ";
+          }
+        }
+      }
+      &.text-right {
+        .cbp-title-heading {
+          padding:0px 0px 0px 20px;
+          &:after {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:80px;
+            left:-80px;
+            top:4px;
+            content:" ";
+          }
+        }
+      }
+    }
+    
+    &.heading-title-side-short-border-middle {
+      overflow:hidden;
+      .cbp-title-heading {
+        display:inline-block;
+        padding-right:20px;
+        &:after {
+          height:2px;
+          background: lighten($text_heading, 30%);
+          width:80px;
+          right:-80px;
+          top:50%;
+          margin-top:-1px;
+          content:" ";
+        }
+      }
+      &.text-center {
+        .cbp-title-heading {
+          padding:0px 20px;
+          &:before {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:80px;
+            left:-80px;
+            top:50%;
+            margin-top:-1px;
+            content:" ";
+          }
+        }
+      }
+      &.text-right {
+        .cbp-title-heading {
+          padding:0px 0px 0px 20px;
+          &:after {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:80px;
+            left:-80px;
+            top:50%;
+            margin-top:-1px;
+            content:" ";
+          }
+        }
+      }
+    }
+    
+    &.heading-title-side-short-border-bottom {
+      overflow:hidden;
+      .cbp-title-heading {
+        display:inline-block;
+        padding-right:20px;
+        &:after {
+          height:2px;
+          background: lighten($text_heading, 30%);
+          width:80px;
+          right:-80px;
+          bottom:8px;
+          content:" ";
+        }
+      }
+      &.text-center {
+        .cbp-title-heading {
+          padding:0px 20px;
+          &:before {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:80px;
+            left:-80px;
+            bottom:8px;
+            content:" ";
+          }
+        }
+      }
+      &.text-right {
+        .cbp-title-heading {
+          padding:0px 0px 0px 20px;
+          &:after {
+            height:2px;
+            background: lighten($text_heading, 30%);
+            width:80px;
+            left:-80px;
+            bottom:8px;
+            content:" ";
+          }
+        }
+      }
+    }
+}

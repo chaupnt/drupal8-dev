@@ -5,7 +5,7 @@
  */
 jQuery(document).ready(function($) {
 
-    $(".btn").click(function () {
+    $(".btn-filter-portfolio").click(function () {
         selectedClass = $(this).attr("data-rel");
         var wrapper = $(this).closest('.wrapper-portfolio-content');
         wrapper.find('.portfolio-content').fadeTo(100, 0.1);
@@ -15,6 +15,15 @@ jQuery(document).ready(function($) {
             wrapper.find('.portfolio-content .' + selectedClass).fadeIn().addClass("scale-anm");
                     wrapper.find('.portfolio-content').fadeTo(300, 1);
         }, 300);
+    });
+    
+    if($('.owl-carousel').length > 0) {
+        $('.owl-carousel').owlCarousel();
+    }
+
+    $('.nav-tabs a.nav-link').click(function(e){
+        //e.preventDefault()
+        //$(this).tab('show')
     });
 
 });

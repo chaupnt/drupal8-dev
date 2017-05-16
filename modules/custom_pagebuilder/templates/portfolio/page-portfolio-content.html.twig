@@ -2,9 +2,6 @@
 <div class="wrapper-portfolio-content">
     <div class="filters">
         <button class="btn btn-filter-portfolio" data-rel="all">All</button>
-        <button class="btn btn-filter-portfolio" data-rel="web">Websites</button>
-        <button class="btn btn-filter-portfolio" data-rel="flyers">Flyers</button>
-        <button class="btn btn-filter-portfolio" data-rel="bcards">Business Cards</button>
         {% for term in portfolio_catagory %}
             <button class="btn btn-filter-portfolio" data-rel="{{ term.machine_name }}">{{ term.name }}</button>
         {% endfor %}
@@ -23,100 +20,10 @@
                     <figcaption>
                         <h3>{{ portfolio.title.value }}</h3>
                     </figcaption>
-                    <a href="http://www.imagehover.io"></a>
+                    <a href="{{ path('entity.node.canonical', {'node': portfolio.id  }) }}" ></a>
                 </figure>
             </div>
         {% endfor %}
-        <div class="tile scale-anm web all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm bcards all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/04.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm web all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm web all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/01.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm flyers all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/04.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm flyers all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/02.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm bcards all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/03.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm bcards all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/01.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm web all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/03.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
-        <div class="tile scale-anm bcards all">
-            <figure class="{{ hover_effect }}">
-                <img src="/themes/xinhvnn_base/images/portfolio/05.jpg" alt="Images">
-                <figcaption>
-                    Hover Content
-                </figcaption>
-                <a href="http://www.imagehover.io"></a>
-            </figure>
-        </div>
     </div>
     <div style="clear:both;"></div>
 </div>

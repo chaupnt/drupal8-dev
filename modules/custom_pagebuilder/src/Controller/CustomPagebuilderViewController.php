@@ -20,7 +20,6 @@ class CustomPagebuilderViewController {
   
   
   function __construct($pid = null) {
-    //kint($pid);
     
     if(empty($pid)) {
       $pid = \Drupal::routeMatch()->getParameter('custom_pagebuilder');
@@ -135,7 +134,6 @@ class CustomPagebuilderViewController {
   }
   
   public function get_attr_row_content($row) {
-    
     $animate_opt = array();
     if(isset($row['attr'])){
 				$row_attr = $row['attr'];
@@ -147,18 +145,18 @@ class CustomPagebuilderViewController {
 				
 				//Padding for row
 				if(isset($row_attr['padding_top']) && $row_attr['padding_top']){
-					$array_style[] 	= 'padding-top:'. intval( $row_attr['padding_top'] ) .'px';
+					$array_style[] 	= 'padding-top:'.  $row_attr['padding_top'] ;
 				}
 				if(isset($row_attr['padding_bottom']) && $row_attr['padding_bottom']){
-					$array_style[] 	= 'padding-bottom:'. intval( $row_attr['padding_bottom'] ) .'px';
+					$array_style[] 	= 'padding-bottom:'. $row_attr['padding_bottom'];
 				}	
 
 				//Margin for row
 				if(isset($row_attr['margin_top']) && $row_attr['margin_top']){
-					$array_style[] 	= 'margin-top:'. intval( $row_attr['margin_top'] ) .'px';
+					$array_style[] 	= 'margin-top:'. $row_attr['margin_top'];
 				}
 				if(isset($row_attr['margin_bottom']) && $row_attr['margin_bottom']){
-					$array_style[] 	= 'margin-bottom:'. intval( $row_attr['margin_bottom'] ) .'px';
+					$array_style[] 	= 'margin-bottom:'. $row_attr['margin_bottom'];
 				}	
 
 				// Background for row
@@ -269,6 +267,27 @@ class CustomPagebuilderViewController {
         $col_style_array[] = 'background-position:' . $col_attr['bg_position'];
       }
     }
+    
+    //Padding for row
+				if(isset($col_attr['padding_top']) && $col_attr['padding_top']){
+					$col_style_array[] 	= 'padding-top:'.  $col_attr['padding_top'] ;
+				}
+				if(isset($col_attr['padding_bottom']) && $col_attr['padding_bottom']){
+					$col_style_array[] 	= 'padding-bottom:'. $col_attr['padding_bottom'] ;
+				}	
+
+				//Margin for row
+				if(isset($col_attr['margin_top']) && $col_attr['margin_top']){
+					$col_style_array[] 	= 'margin-top:'. $col_attr['margin_top'] ;
+				}
+				if(isset($col_attr['margin_bottom']) && $col_attr['margin_bottom']){
+					$col_style_array[] 	= 'margin-bottom:'. $col_attr['margin_bottom'];
+				}	
+
+				// Background for row
+				if(isset($col_attr['bg_color']) && $col_attr['bg_color']){
+					$col_style_array[] 	= 'background-color:'. $col_attr['bg_color'];
+				}
     
     if( isset($col_attr['animate']) && $col_attr['animate'] ){
       $class .= ' wow '.$col_attr['animate'];

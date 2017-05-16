@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";;;;;;;;;AAWI,8CAAmB;EACjB,UAAU,EAAE,MAAM",
+"sources": ["../../sass/elements/heading.scss"],
+"names": [],
+"file": "heading.css"
+}

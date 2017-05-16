@@ -84,8 +84,13 @@ if(!class_exists('cpb_custombutton')):
                   'type'      => 'select',
                   'title'     => t('Shape'),
                   'options'   => array(
-                        'round' => 'Rounded',
-                        'square'   => 'Square',
+                        'btn-round' => 'Rounded button',
+                        'btn-square'   => 'Square button',
+                        'btn-skewed' => 'Skewed button',
+                        'btn-round' => 'Round button',
+                        'btn-3d' => '3D button',
+                        'btn-outlined' => 'Outlined button',
+                        'btn-square-outlined' => 'Square Outlined button',
                   ),
                   'std'       => 'align-center'
                ),
@@ -95,44 +100,82 @@ if(!class_exists('cpb_custombutton')):
                   'type'      => 'select',
                   'title'     => t('Color'),
                   'options'   => array(
-                      "primary"=>"Classic Primary",
-                      "info"=>"Classic Info",
-                      "success"=>"Classic Success",
-                      "warning"=>"Classic Warning",
-                      "danger"=>"Classic Danger",
-                      "inverse"=>"Classic Inverse",
-                      "blue"=>"Blue",
-                      "turquoise"=>"Turquoise",
-                      "pink"=>"Pink",
-                      "violet"=>"Violet",
-                      "peacoc"=>"Peacoc",
-                      "chino"=>"Chino",
-                      "mulled-wine"=>"Mulled Wine",
-                      "vista-blue"=>"Vista Blue",
-                      "black"=>"Black",
-                      "grey"=>"Grey",
-                      "orange"=>"Orange",
-                      "sky"=>"Sky",
-                      "green"=>"Green",
-                      "juicy-pink"=>"Juicy pink",
-                      "sandy-brown"=>"Sandy brown",
-                      "purple"=>"Purple",
-                      "white"=>"White",
+                      'btn-primary'   => 'Class Button Primary',
+                      'btn-success'   => 'Class Button Success',
+                      'btn-info'   => 'Class Button Info',
+                      'btn-warning'   => 'Class Button Warning',
+                      'btn-danger'   => 'Class Button Danger',
+                      'btn-muted'   => 'Class Button muted',
+                      'btn-color-theme' => 'Color Theme',
+                      'btn-red'   => 'Button Red',
+                      'btn-yellow'   => 'Button Yellow',
+                      'btn-blue'   => 'Button Blue',
+                      'btn-black'   => 'Button Black',
+                      'btn-turquoise'   => 'Button Turquoise',
+                      'btn-pink'   => 'Button Pink',
+                      'btn-violet'   => 'Button Violet',
+                      'btn-peacoc'   => 'Button Peacoc',
+                      'btn-chino'   => 'Button Chino',
+                      'btn-vista_blue'   => 'Button Vista Blue',
+                      'btn-gray'   => 'Button Bray',
+                      'btn-orange'   => 'Button Orange',
+                      'btn-sky'   => 'Button Sky',
+                      'btn-green'   => 'Button Green',
+                      'btn-juicy_pink'   => 'Button Juicy Pink',
+                      'btn-sandy_brown'   => 'Button Sandy Brown',
+                      'btn-purple'   => 'Button Purple',
+                      'btn-teal'   => 'Button Teal',
+                      'btn-white'   => 'Button White',
                   ),
-                  'std'       => 'primary'
+                  'std'       => 'btn-primary'
                ),
+              
+              array(
+                  'id'        => 'animate',
+                  'type'      => 'select',
+                  'title'     => t('Animation Icon'),
+                  'desc'      => t('Entrance animation for element'),
+                  'options'   => custom_pagebuilder_animate(),
+               ),
+               
+              array(
+                'id'    => 'duration',
+                'type'    => 'text',
+                'title'   => ('Anumate Duration'),
+                'desc'    => ('Change the animation duration'),
+                'class'   => 'small-text',
+              ),
+
+             array(
+                'id'    => 'delay',
+                'type'    => 'text',
+                'title'   => ('Anumate Delay'),
+                'desc'    => ('Delay before the animation starts'),
+                'class'   => 'small-text',
+              ),
               
               array(
                   'id'        => 'size',
                   'type'      => 'select',
                   'title'     => t('Size'),
                   'options'   => array(
-                        'md' => 'Normal',
-                        'xs' => 'Mini',
-                        'sm' => 'Small',
-                        'lg' => 'Large'
+                        'btn-md' => 'Normal',
+                        'btn-xs' => 'Mini',
+                        'btn-sm' => 'Small',
+                        'btn-lg' => 'Large',
+                        'btn-xl' => 'Extra Large'
                   ),
-                  'std'       => 'md'
+                  'std'       => 'btn-md'
+              ),
+              
+              array(
+                  'id'        => 'block_button',
+                  'type'      => 'select',
+                  'title'     => t('Block Button'),
+                  'options'   => array(
+                        'no' => 'No',
+                        'yes' => 'Yes',
+                  ),
               ),
               
               array(
@@ -158,9 +201,9 @@ if(!class_exists('cpb_custombutton')):
         if( isset($attr['target']) && '_blank' == $attr['target'] ) {
           $target = 'target="_blank"';
         }
-        
+        $title = ($attr['title']) ? $attr['title'] : 'Text on the Button';
+        $text_button = $title;
         if(!empty($attr['add_icon'])) {
-          $title = ($attr['title']) ? $attr['title'] : 'Text on the Button';
           $text_button = '<i class="'. $attr['chose_icon'] .'"></i> '. $title;
           if($attr['icon_align'] == 'icon-right') {
             $text_button = $title . ' <i class="'. $attr['chose_icon'] .'"></i>';
@@ -169,17 +212,17 @@ if(!class_exists('cpb_custombutton')):
         
         $class = array();
         $class[] = 'btn';
-        $class[] = 'btn-type-'.$attr['shape'];
-        $class[] = 'btn-'.$attr['color'];
-        $class[] = 'btn-'.$attr['size'];
-         
-        $ourput = '<div class="wrapper-custom-pagebuild-item-elemet wrapper-custom-pagebuild-custom-button '. $attr['el_class'] .'">';
-        $ourput .= '<div class="inner-column-content">';
-        $ourput .= '<div class="content '. $attr['align'] .' "><a '. $target .' href="'. $attr['url_link'] .'" class="'. implode($class, ' ') .'">'
+        $class[] = $attr['shape'];
+        $class[] = $attr['color'];
+        $class[] = $attr['size'];
+        $class[] = ($attr['block_button'] == 'yes') ? 'btn-block':''; 
+        $output = '<div class="wrapper-custom-pagebuild-item-elemet wrapper-custom-pagebuild-custom-button '. $attr['el_class'] .'">';
+        $output .= '<div class="inner-column-content">';
+        $output .= '<div class="content '. $attr['align'] .' "><a '. $target .' href="'. $attr['url_link'] .'" class="'. implode($class, ' ') .'">'
              . $text_button . 
              '</a></div>';
-        $ourput .= '</div>';
-        $ourput .= '</div>';
+        $output .= '</div>';
+        $output .= '</div>';
         return array("#markup" => $output);
       }
    }

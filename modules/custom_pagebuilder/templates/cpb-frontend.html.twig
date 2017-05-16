@@ -1,12 +1,10 @@
 <div class="{{ row_class }}" style="{{ row_style }}">
   <div class="cpb-inner {{ row.attr.style_space }}">
     <div class="cpb-container {{ row.attr.layout }}">
-      <div class="row-wrapper clearfix">
-        <div class="row">
-          {% for col in columns  %}
+      <div class="row clearfix">
+        {% for col in columns  %}
               {{ col }}
-          {% endfor %}
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
