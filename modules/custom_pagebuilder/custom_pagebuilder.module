@@ -131,6 +131,7 @@ function custom_pagebuilder_list_shortcodes(){
     'cpb_node_view',
     'cpb_carousel',
     'cpb_portfolio_content',
+    'cpb_message_box',
     //'cpb_box_image',
     //'cpb_box_info',
     //'cpb_call_to_action',

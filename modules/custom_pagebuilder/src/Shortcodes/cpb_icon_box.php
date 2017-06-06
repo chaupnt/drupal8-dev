@@ -38,18 +38,63 @@ if(!class_exists('cpb_icon_box')):
                   'title'        => t('Chose Icon'), 
               ),
               
+              array(
+                  'id'        => 'iconboxstyle',
+                  'type'      => 'select',
+                  'title'     => 'Box Style',
+                  'options'   => array(
+                    ''=>'Default',
+                    'icon-style-default' => 'Simple Ultimate',
+                    'icon-style-medium' => 'Boxed',
+                  )
+               ),
+              
                array(
                   'id'        => 'icon_size',
                   'type'      => 'select',
                   'title'     => 'Icon font size',
-                  'options'   => array(''=>'Default', 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60)
+                  'options'   => array(
+                    ''=>'Default',
+                    'icon-size-small' => 'Small',
+                    'icon-size-medium' => 'Medium',
+                    'icon-size-large' => 'Large',
+                    'icon-size-xlarge' => 'X-large',
+                  )
                ),
               
                array(
                   'id'        => 'icon_color',
-                  'type'      => 'color',
+                  'type'      => 'select',
                   'title'     => t('Icon Color'),
-                  'desc'      => t('Color for icon, e.g: #000'),
+                  'options'   => array(
+                      'icon-color-color_theme' => 'Color Theme',
+                      'icon-color-primary'   => 'Class Icon Color Primary',
+                      'icon-color-success'   => 'Class Icon Color Success',
+                      'icon-color-info'   => 'Class Icon Color Info',
+                      'icon-color-warning'   => 'Class Icon Color Warning',
+                      'icon-color-danger'   => 'Class Icon Color Danger',
+                      'icon-color-muted'   => 'Class Icon Color muted',
+                      'icon-color-red'   => 'Icon Color Red',
+                      'icon-color-yellow'   => 'Icon Color Yellow',
+                      'icon-color-blue'   => 'Icon Color Blue',
+                      'icon-color-black'   => 'Icon Color Black',
+                      'icon-color-turquoise'   => 'Icon Color Turquoise',
+                      'icon-color-pink'   => 'Icon Color Pink',
+                      'icon-color-violet'   => 'Icon Color Violet',
+                      'icon-color-peacoc'   => 'Icon Color Peacoc',
+                      'icon-color-chino'   => 'Icon Color Chino',
+                      'icon-color-vista_blue'   => 'Icon Color Vista Blue',
+                      'icon-color-gray'   => 'Icon Color Bray',
+                      'icon-color-orange'   => 'Icon Color Orange',
+                      'icon-color-sky'   => 'Icon Color Sky',
+                      'icon-color-green'   => 'Icon Color Green',
+                      'icon-color-juicy_pink'   => 'Icon Color Juicy Pink',
+                      'icon-color-sandy_brown'   => 'Icon Color Sandy Brown',
+                      'icon-color-purple'   => 'Icon Color Purple',
+                      'icon-color-teal'   => 'Icon Color Teal',
+                      'icon-color-white'   => 'Icon Color White',
+                  ),
+                  'desc'      => t('Color for icon'),
                   'std'       => '',
                ),
                array(
@@ -63,12 +108,7 @@ if(!class_exists('cpb_icon_box')):
                   'type'          => 'select',
                   'options'       => array(
                      'top-center'      => 'Top Center',
-                     'top-left'        => 'Top Left',
-                     'top-right'       => 'Top Right',
-                     'right'           => 'Right',
                      'left'            => 'Left',
-                     'top-left-title'  => 'Top Left Title',
-                     'top-right-title' => 'Top Right Title',
                   ),
                   'title'  => t('Icon Position'),
                   'std'    => 'top',
@@ -78,7 +118,7 @@ if(!class_exists('cpb_icon_box')):
                   'id'        => 'link',
                   'type'      => 'text',
                   'title'     => t('Link'),
-                  'desc'      => t('Link for text')
+                  'desc'      => t('Link for Box')
                ),
 
                array(
@@ -93,8 +133,9 @@ if(!class_exists('cpb_icon_box')):
                   'type'      => 'select',
                   'title'     => 'Skin Text for box',
                   'options'   => array(
-                     'text-dark'  => t('Text Dark'), 
-                     'text-light' => t('Text Light')
+                     ''  => t('Text Default'), 
+                     'text-color-dark'  => t('Text Dark'), 
+                     'text-color-light' => t('Text Light')
                   ) 
                ),
                
@@ -179,6 +220,7 @@ if(!class_exists('cpb_icon_box')):
          
          // Class Box
          $class = array();
+         $class[] = (!empty($attr['iconboxstyle'])) ? $attr['iconboxstyle']:'';
          if($attr['el_class']){ $class[] = $attr['el_class']; }
          $class[] = $attr['icon_position'];
          if($attr['skin_text']){
@@ -194,12 +236,18 @@ if(!class_exists('cpb_icon_box')):
          
          $style_icon = array();
          if($attr['icon_size']){
-            $style_icon[] = 'font-size: ' . (14 + 2*$attr['icon_size']) .'px';
+            $class[] = $attr['icon_size'];
          }
          if($attr['icon_color']){
-            $style_icon[] = 'color: ' . $attr['icon_color'];
+            //$style_icon[] = 'color: ' . $attr['icon_color'];
+           $class[] = $attr['icon_color'];
          }
          
+         $title_box = '';
+         if(!empty($attr['title'])) {
+           $title_box = '<h3>'. $attr['title'] .'</h3>';
+           if(!empty( $attr['link'] )) $title_box = '<h3><a href="'. $attr['link'] .'">'. $attr['title'] .'</a></h3>';
+         }
          
          
          $output = '<div style="{{ style_box }}" class="wrapper-custom-pagebuilder-icon-box '. implode($class, ' ') .' ">';
@@ -210,7 +258,7 @@ if(!class_exists('cpb_icon_box')):
             }
             $output .= '<div class="highlight_content">';
               if($attr['title']) {
-                $output .= '<h3>'. $attr['title'] .'</h3>';
+                $output .= $title_box;
               }
               if($attr['content']) {
                 $output .= '<div class="desc">'. $attr['content'] .'</div>';

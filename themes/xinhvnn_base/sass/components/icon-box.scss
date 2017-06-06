@@ -1,0 +1,73 @@
+@import "../_var.scss";
+.wrapper-custom-pagebuild-field-element {
+  .highlight-image-icon {
+    margin-bottom:30px;
+  }
+  
+  .highlight_content {
+    h3 {
+      margin-bottom:20px;
+    }
+  }
+  
+  .top-center {
+    text-align: center;
+  }
+  
+  .left {
+    .inner-icon-box {
+      display: table;
+      .highlight-image-icon ,
+      .highlight_content {
+        display:table-cell;
+        vertical-align: top;
+      }
+      .highlight-image-icon {
+        padding:0px 15px;
+      }
+    }
+  }
+  
+  .inner-icon-box .icon-content {
+    @include fontsize(25);
+  }
+  
+  .icon-size-small {
+    .inner-icon-box .icon-content {
+      @include fontsize(20);
+    }
+  }
+  
+  .icon-size-medium {
+    .inner-icon-box .icon-content {
+      @include fontsize(28);
+    }
+  }
+  
+  .icon-size-large {
+    .inner-icon-box .icon-content {
+      @include fontsize(35);
+    }
+  }
+  
+  .icon-size-xlarge {
+    .inner-icon-box .icon-content {
+      @include fontsize(40);
+    }
+  }
+  
+  
+  @each $item in $color_array {
+    .icon-color-#{nth($item, 1)} {
+      .icon-content  {
+        color: nth($item, 2);
+        @include custom_translation(0.3);
+      }
+      &:hover {
+        .icon-content  {
+          color: lighten( nth($item, 2), 30%);
+        }
+      }
+    }
+  }
+}

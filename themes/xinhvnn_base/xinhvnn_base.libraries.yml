@@ -38,6 +38,8 @@ global-styling:
       css/imagehover.min.css: {}
       css/components/heading.css: {}
       css/components/button.css: {}
+      css/components/icon-box.css: {}
+      css/components/message_box.css: {}
       css/utility.css: {}
       css/main.css: {}
     theme:
@@ -284,7 +286,7 @@ bootstrapcdn:
     //cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js: { external: true }
     //maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js: { external: true }
   css:
-    theme:
+    base:
       //maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css: {}
   dependencies:
     - core/jquery

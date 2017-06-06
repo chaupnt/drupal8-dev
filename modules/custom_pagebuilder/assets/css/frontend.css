@@ -19,3 +19,7 @@ and open the template in the editor.
 [class*=" imghvr-"], [class^=imghvr-] {
     width:100%;
 }
+
+.cpb-column {
+  margin-bottom:30px;
+}

@@ -80,19 +80,40 @@ if(!class_exists('cpb_custombutton')):
                ),
               
               array(
+                  'id'        => 'button_style',
+                  'type'      => 'select',
+                  'title'     => t('Button Style'),
+                  'options'   => array(
+                        '' => 'Classic',
+                        'btn-flat' => 'Button Flat',
+                        'btn-outline'   => 'Button Outline',
+                        'btn-3d-button' => 'Button 3D',
+                  ),
+                  'std'       => 'btn-round'
+               ),
+              
+              array(
                   'id'        => 'shape',
                   'type'      => 'select',
                   'title'     => t('Shape'),
                   'options'   => array(
-                        'btn-round' => 'Rounded button',
+                        'btn-round' => 'Round button',
+                        'btn-rounded' => 'Full Rounded Button',
                         'btn-square'   => 'Square button',
                         'btn-skewed' => 'Skewed button',
-                        'btn-round' => 'Round button',
-                        'btn-3d' => '3D button',
-                        'btn-outlined' => 'Outlined button',
-                        'btn-square-outlined' => 'Square Outlined button',
                   ),
-                  'std'       => 'align-center'
+                  'std'       => 'btn-round'
+               ),
+              
+              array(
+                  'id'        => 'text-color',
+                  'type'      => 'select',
+                  'title'     => t('Text Color'),
+                  'options'   => array(
+                        'text-color-light' => 'Text Color light',
+                        'text-color-dark' => 'Text Color dark',
+                  ),
+                  'std'       => 'text-color-dark'
                ),
               
               array(
@@ -100,13 +121,13 @@ if(!class_exists('cpb_custombutton')):
                   'type'      => 'select',
                   'title'     => t('Color'),
                   'options'   => array(
+                      'btn-color_theme' => 'Color Theme',
                       'btn-primary'   => 'Class Button Primary',
                       'btn-success'   => 'Class Button Success',
                       'btn-info'   => 'Class Button Info',
                       'btn-warning'   => 'Class Button Warning',
                       'btn-danger'   => 'Class Button Danger',
                       'btn-muted'   => 'Class Button muted',
-                      'btn-color-theme' => 'Color Theme',
                       'btn-red'   => 'Button Red',
                       'btn-yellow'   => 'Button Yellow',
                       'btn-blue'   => 'Button Blue',
@@ -213,6 +234,8 @@ if(!class_exists('cpb_custombutton')):
         $class = array();
         $class[] = 'btn';
         $class[] = $attr['shape'];
+        $class[] = $attr['text-color'];
+        $class[] = $attr['button_style'];
         $class[] = $attr['color'];
         $class[] = $attr['size'];
         $class[] = ($attr['block_button'] == 'yes') ? 'btn-block':''; 

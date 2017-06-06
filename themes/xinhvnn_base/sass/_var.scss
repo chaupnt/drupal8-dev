@@ -25,12 +25,13 @@ $sandy_brown:         #f46e33 !default;
 $purple:              #a559a8 !default;
 $teal:                #5bc0de !default;
 $white:               #fff !default;
+$muted:               #5bc0de !default;
 
 
 // Create grayscale
 $gray-dark:                 #333 !default;
 
-$gray-light:                #636c72 !default;
+$gray-light:                #eceeef !default;
 $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
@@ -40,7 +41,39 @@ $brand-success:             $green !default;
 $brand-info:                $teal !default;
 $brand-warning:             $orange !default;
 $brand-danger:              $red !default;
+$brand-muted:               $muted !default;
 $brand-inverse:             $gray-dark !default;
+
+
+$color_array: (
+  'primary' $brand-primary,
+  'success' $brand-success,
+  'info'  $brand-info $brand-info,
+  'warning' $brand-warning,
+  'danger' $brand-danger,
+  'color_theme' $color_theme, 
+  'muted' $brand-muted,
+  'red' $red, 
+  'yellow' $yellow, 
+  'blue' $blue, 
+  'turquoise' $turquoise, 
+  'pink' $pink, 
+  'violet' $violet, 
+  'peacoc' $peacoc, 
+  'chino' $chino, 
+  'mulled_wine' $mulled_wine, 
+  'vista_blue' $vista_blue, 
+  'black' $black, 
+  'orange'  $orange,
+  'sky' $sky, 
+  'green' $green, 
+  'juicy_pink' $juicy_pink, 
+  'sandy_brown' $sandy_brown, 
+  'purple' $purple, 
+  'teal' $teal, 
+  'white' $white, 
+);
+
 
 $text_color:#292b2c;
 

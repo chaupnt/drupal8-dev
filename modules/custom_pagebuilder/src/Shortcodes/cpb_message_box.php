@@ -35,24 +35,13 @@ if(!class_exists('cpb_message_box')):
                   'type'      => 'select',
                   'title'     => t('Message Box Style'),
                   'options'   => array(
-                        'standard' => 'Standard',
-                        'solid' => 'Solid',
-                        'solid-icon' => 'Solid icon',
-                        'outline' => 'Outline',
+                        'message-box-standard' => 'Standard',
+                        'message-box-square' => 'Square Boxes',
+                        'message-box-round' => 'Round Boxes',
+                        'message-box-outlined' => 'Outlined Boxes',
                   ),
                   'desc'       => 'Select predefined message box design or choose "Custom" for custom styling.'
-              ),
-              
-              array(
-                  'id'        => 'shape',
-                  'type'      => 'select',
-                  'title'     => t('Shape'),
-                  'options'   => array(
-                        'square'   => 'Square',
-                        'round' => 'Rounded',
-                  ),
-                  'std'       => 'align-center'
-              ),              
+              ),           
               
               array(
                   'id'        => 'color',
@@ -71,15 +60,15 @@ if(!class_exists('cpb_message_box')):
                       "violet"=>"Violet",
                       "peacoc"=>"Peacoc",
                       "chino"=>"Chino",
-                      "mulled-wine"=>"Mulled Wine",
-                      "vista-blue"=>"Vista Blue",
+                      "mulled_wine"=>"Mulled Wine",
+                      "vista_blue"=>"Vista Blue",
                       "black"=>"Black",
                       "grey"=>"Grey",
                       "orange"=>"Orange",
                       "sky"=>"Sky",
                       "green"=>"Green",
-                      "juicy-pink"=>"Juicy pink",
-                      "sandy-brown"=>"Sandy brown",
+                      "juicy_pink"=>"Juicy pink",
+                      "sandy_brown"=>"Sandy brown",
                       "purple"=>"Purple",
                       "white"=>"White",
                   ),
@@ -91,6 +80,17 @@ if(!class_exists('cpb_message_box')):
                   'type'      => 'textarea',
                   'title'     => t('Message'),
               ),
+              
+              array(
+                  'id'        => 'text_color',
+                  'type'      => 'select',
+                  'title'     => 'Text Color',
+                  'options'   => array(
+                     ''  => t('Text Default'), 
+                     'text-color-dark'  => t('Text Dark'), 
+                     'text-color-light' => t('Text Light')
+                  ) 
+               ),
               
               array(
                   'id'        => 'el_class',
@@ -113,9 +113,8 @@ if(!class_exists('cpb_message_box')):
          $icon = '<i class="'. $attr['chose_icon'] .'"></i> ';
          
          $class_array = array();
-         $class_array[] = 'shape-'.$attr['shape'];
-         $class_array[] = 'message-box-shape-'.$attr['shape'];
-         $class_array[] = 'message-box-style-'.$attr['message_box_style'];
+         $class_array[] = $attr['text_color'];
+         $class_array[] = $attr['message_box_style'];
          $class_array[] = 'message-box-color-'.$attr['color'];
          $output = '<div class="wrapper-custom-pagebuilder-message-box">';
           $output .= '<div class="widget custom-pagebuilder-message-box '. $attr['el_class'] .'">';

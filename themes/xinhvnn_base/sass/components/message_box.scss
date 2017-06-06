@@ -1,0 +1,77 @@
+@import "../_var.scss";
+.alert {
+  border: 1px solid transparent;
+  position: relative;
+  padding-left:4rem;
+  @each $item in $color_array {
+    &.message-box-color-#{nth($item, 1)} {
+      color: nth($item, 2);
+      background: rgba( nth($item, 2), 0.2 );
+      border-color: rgba( nth($item, 2), 0.3 );
+      &:hover {
+        background: rgba( nth($item, 2), 0.4 );
+      }
+    }
+  }
+  
+  .cpb-message-box-icon {
+    bottom: 0;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: normal;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 4rem;
+    * {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: normal;
+      font-style: normal;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      -o-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+    }
+  }
+  &.message-box-square {
+    border-radius:0px;
+  }
+  &.message-box-round {
+    border-radius: 1000px;
+    padding-left: 5rem;
+    .cpb-message-box-icon {
+      left: 1rem;
+    }
+  }
+  
+  &.message-box-outlined {
+    background:none;
+    @each $item in $color_array {
+      &.message-box-color-#{nth($item, 1)} {
+        color: nth($item, 2);
+        background: none;
+        border-color: nth($item, 2);
+        &:hover {
+          background: rgba( nth($item, 2), 0.2 );
+        }
+      }
+    }
+  }
+  
+  &.text-color-dark {
+    * {
+      color: $gray-dark !important;
+    }
+  }
+  
+  &.text-color-light {
+    * {
+      color: $gray-light !important;
+    }
+  }
+  
+}

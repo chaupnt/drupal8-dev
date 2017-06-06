@@ -1,8 +1,90 @@
 @import "../_var.scss";
 .btn {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  color: $gray-light;
+  &:hover {
+    color: $gray-light;
+  }
+  &.text-color-dark {
+    color: $gray-dark;
+    &:hover {
+      color: $gray-dark;
+    }
+  }
+  
+  @each $item in $color_array {
+    &.btn-#{nth($item, 1)} {
+      background: nth($item, 2);
+      &:hover {
+        background: lighten( nth($item, 2), 10% );
+      }
+    }
+  }
+  
   &.btn-xs {
     padding: .15rem .2rem;
     font-size: .875rem;
     border-radius: .2rem;
   }
+  
+  &.btn-flat {
+    box-shadow: none;
+    text-shadow: none;
+    border:0px !important;
+  }
+  
+  &.btn-outline {
+    border-width: 1px;
+    border-style: solid;
+    &.btn-lg ,
+    &.btn-xl {
+      border-width: 3px;
+    }
+    @each $item in $color_array {
+      &.btn-#{nth($item, 1)} {
+        border-color: nth($item, 2);
+        background: none;
+        color: nth($item, 2);
+        &.text-color-dark {
+          &:hover {
+            color: $gray-dark;
+          }
+        }
+        &:hover {
+          background: nth($item, 2);
+          color: $gray-light;
+        }
+      }
+    }
+  }
+  
+  &.btn-3d-button {
+    border: 0px;
+    @each $item in $color_array {
+      &.btn-#{nth($item, 1)} {
+        background: nth($item, 2);
+        box-shadow: 0px 3px 0px 0px darken( nth($item, 2), 10% );
+        &:hover {
+          background: lighten( nth($item, 2), 10% );
+        }
+      }
+    }
+  }
+  
+  &.btn-rounded {
+    border-radius:100px;
+  }
+  &.btn-square {
+    border-radius: 0px;
+  }
+  
+  &.btn-skewed {
+    border-radius: 0;
+    @include skew(-20deg, 0);
+  }
+  
 }

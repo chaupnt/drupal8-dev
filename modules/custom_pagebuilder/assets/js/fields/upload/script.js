@@ -2,46 +2,53 @@
     $(function(){
         // Initialize the jQuery File Upload plugin
         $('.upload').each(function(){
-            var $this = $(this);
-            var $_id = $(this).attr('data-id');
-            $(this).fileupload({
-                add: function (e, data) {
-                    if( typeof(data.form.context.id) != "undefined" ) {
-                        var $_id = data.form.context.id;
-                        console.log(data.form.context.id);
-                        $('#cpbuilder-' + $_id + ' .loading').each(function(){
-                                $(this).css('display', 'inline-block'); 
-                        });
-                        var jqXHR = data.submit().done(function(data){
-                            data = JSON.parse(data);
-                            $('#cpbuilder-' + $_id + ' .loading').each(function(){
-                                $(this).css('display', 'none'); 
-                            });
-                            $('#cpbuilder-' + $_id + ' input.file-input').each(function(){
-                                $(this).val(data['file_url']); 
-                            });
-
-                            $('#cpbuilder-' + $_id + ' .custompagebuilder-image-demo').each(function(){
-                                $(this).attr('src', data['file_url_full']);
-                            });
-
-                            $('#cpbuilder-' + $_id + ' .custompagebuilder-field-upload-remove').each(function(){
-                                $(this).css('display', 'inline-block');
-                            });
-                        });
-                    }
-                },
-
-                progress: function(e, data){
-                
-                },
-                fail: function(e, data){
-                    // Something has gone wrong!
-                    data.context.addClass('error');
-                }
-            });
+            
         });
+        
+        
+        function auto_upload_image_form() {
+          var $this = $(this);
+          var $_id = $(this).attr('data-id');
+          $('.upload').fileupload({
+              add: function (e, data) {
+                  if( typeof(data.form.context.id) != "undefined" ) {
+                      var $_id = data.form.context.id;
+                      console.log($_id);
+                      $('#cpbuilder-' + $_id + ' .loading').each(function(){
+                              $(this).css('display', 'inline-block'); 
+                      });
+                      var jqXHR = data.submit().done(function(data){
+                          data = JSON.parse(data);
+                          $('#cpbuilder-' + $_id + ' .loading').each(function(){
+                              $(this).css('display', 'none'); 
+                          });
+                          $('#cpbuilder-' + $_id + ' input.file-input').each(function(){
+                              $(this).val(data['file_url']); 
+                          });
+
+                          $('#cpbuilder-' + $_id + ' .custompagebuilder-image-demo').each(function(){
+                              $(this).attr('src', data['file_url_full']);
+                          });
+
+                          $('#cpbuilder-' + $_id + ' .custompagebuilder-field-upload-remove').each(function(){
+                              $(this).css('display', 'inline-block');
+                          });
+                      });
+                  }
+              },
+
+              progress: function(e, data){
+              
+              },
+              fail: function(e, data){
+                  // Something has gone wrong!
+                  data.context.addClass('error');
+              }
+          });
+        }
+        
         $(document).ready(function () {
+             auto_upload_image_form();
              custompagebuilder_load_images();
              custompagebuilder_choose_image();
         });
@@ -119,7 +126,7 @@
     });
 
     $(document).ready(function(){
-        $('.custompagebuilder-field-upload-remove').click(function(){
+        $('.custompagebuilder-field-upload-remove').on( "click", function(){
           $(this).parent().find('.custompagebuilder-image-demo').attr('src', $(this).attr("data-src"));
           $(this).parent().find('input.file-input').val('');
         })
